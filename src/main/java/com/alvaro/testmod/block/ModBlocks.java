@@ -26,17 +26,17 @@ public class ModBlocks {
 
     
     public static final RegistryObject<Block> BLACK_OPAL_ORE = registerBlock("black_opal_ore", 
-    () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(6f).requiresCorrectToolForDrops(), UniformInt.of(2, 6)));
+    () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(6f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> DEEPSLATE_BLACK_OPAL_ORE = registerBlock("deepslate_black_opal_ore", 
-    () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(7f).requiresCorrectToolForDrops(), UniformInt.of(2, 6)));
+    () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(7f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> NETHERRACK_BLACK_OPAL_ORE = registerBlock("netherrack_black_opal_ore", 
-        () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
-                        .strength(5f).requiresCorrectToolForDrops(), UniformInt.of(2, 6)));
+        () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                        .strength(5f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> ENDSTONE_BLACK_OPAL_ORE = registerBlock("endstone_black_opal_ore", 
-    () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(8f).requiresCorrectToolForDrops(), UniformInt.of(2, 6)));
+    () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(8f).requiresCorrectToolForDrops()));
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
