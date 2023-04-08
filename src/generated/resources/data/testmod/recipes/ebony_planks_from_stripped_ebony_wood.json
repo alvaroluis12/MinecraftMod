@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "planks",
+  "ingredients": [
+    {
+      "item": "testmod:stripped_ebony_wood"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "testmod:ebony_planks"
+  }
+}

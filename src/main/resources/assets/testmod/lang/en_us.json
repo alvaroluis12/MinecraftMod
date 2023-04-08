@@ -8,5 +8,13 @@
     "block.testmod.netherrack_black_opal_ore": "Netherrack Black Opal Ore",
     "block.testmod.endstone_black_opal_ore": "Endstone Black Opal Ore",
 
+    "block.testmod.ebony_log": "Ebony Log",
+    "block.testmod.ebony_wood": "Ebony Wood",
+    "block.testmod.ebony_planks": "Ebony Planks",
+    "block.testmod.stripped_ebony_log": "Stripped Ebony Log",
+    "block.testmod.stripped_ebony_wood": "Stripped Ebony Wood",
+    "block.testmod.ebony_leaves": "Ebony Leaves",
+    "block.testmod.ebony_sapling": "Ebony Sapling",
+
     "creativemodetab.test_mod": "Test Tab"
 }

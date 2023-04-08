@@ -1,6 +1,13 @@
-// 1.19.3	2023-04-07T20:19:49.6070863	Loot Tables
+// 1.19.3	2023-04-08T09:41:46.5160837	Loot Tables
 873a42d46d53b59f482de897b70687e4f3a0f891 data/testmod/loot_tables/blocks/black_opal_block.json
 e6ddfb0b83bc93eeeb570f713a899313e9073556 data/testmod/loot_tables/blocks/black_opal_ore.json
 c519be67ad0d7f32a6b3e5b2bcc02527cee7b2ed data/testmod/loot_tables/blocks/deepslate_black_opal_ore.json
+0d0feae69b9be10584ae17d3f2d84b2fac15dd01 data/testmod/loot_tables/blocks/ebony_leaves.json
+b9ec0575acdf1fe17173986032ede274da19a00f data/testmod/loot_tables/blocks/ebony_log.json
+5a5c80cc8672c2fd2e30daa7dfc8fd53126bd9a6 data/testmod/loot_tables/blocks/ebony_planks.json
+6b0fe07b4fa1c3c6ecd25f01fd6af31756047b85 data/testmod/loot_tables/blocks/ebony_sapling.json
+d419b513ef23e04dafe3628d592909d52c4f426d data/testmod/loot_tables/blocks/ebony_wood.json
 b8262bde36cc75b4872cb56d9525a621c2296014 data/testmod/loot_tables/blocks/endstone_black_opal_ore.json
 38d5eeb30f43a1f32e6067d7f7707d9b04613a97 data/testmod/loot_tables/blocks/netherrack_black_opal_ore.json
+23ce873c2cba6ff5268eaec2d31661f1b5a6c2be data/testmod/loot_tables/blocks/stripped_ebony_log.json
+0e1d1ff82aaa98be99bd8c2f19bf06689abd009c data/testmod/loot_tables/blocks/stripped_ebony_wood.json
