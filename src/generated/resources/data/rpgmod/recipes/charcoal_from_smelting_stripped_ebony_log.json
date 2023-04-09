@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.15,
+  "group": "Recipes",
+  "ingredient": {
+    "item": "rpgmod:stripped_ebony_log"
+  },
+  "result": "minecraft:charcoal"
+}

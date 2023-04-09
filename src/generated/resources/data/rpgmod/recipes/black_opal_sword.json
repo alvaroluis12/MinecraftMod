@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": {
+      "item": "rpgmod:black_opal"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "O",
+    "O",
+    "S"
+  ],
+  "result": {
+    "item": "rpgmod:black_opal_sword"
+  },
+  "show_notification": true
+}
