@@ -1,4 +1,9 @@
-// 1.19.3	2023-04-08T10:24:39.0174227	Item Models: testmod
+// 1.19.3	2023-04-08T20:52:24.1525513	Item Models: testmod
 01ea1273c1ec94ff0e1d88222bde3056228d07d2 assets/testmod/models/item/black_opal.json
+c4cfe5669a98f78a4e561bd33dd760c57e0f970f assets/testmod/models/item/black_opal_axe.json
+61bf4adfc1733a43b72afc5aabb9e4149ec0e157 assets/testmod/models/item/black_opal_hoe.json
+e93feecde95aab45323ba7084843f203f38d25c0 assets/testmod/models/item/black_opal_pickaxe.json
+9e2d3521f53a3a4e1eb36382c1403323e00d6cef assets/testmod/models/item/black_opal_shovel.json
+313d2838b3f766bc0f6f036f965e2e92a3c74613 assets/testmod/models/item/black_opal_sword.json
 6419a734ebc3de3a0b2c088810f8e8d32e8a2095 assets/testmod/models/item/ebony_sapling.json
 429ee3eb285aa3512d162cd99a30a05aa0e41cff assets/testmod/models/item/raw_black_opal.json

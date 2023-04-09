@@ -22,6 +22,7 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> EBONY_KEY = registerKey("ebony");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context){
+        
         register(context, EBONY_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
             BlockStateProvider.simple(ModBlocks.EBONY_LOG.get()),
             new StraightTrunkPlacer(5, 6, 3),

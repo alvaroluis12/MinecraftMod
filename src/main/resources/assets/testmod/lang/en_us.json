@@ -1,6 +1,11 @@
 {
     "item.testmod.black_opal": "Black Opal",
     "item.testmod.raw_black_opal": "Raw Black Opal",
+    "item.testmod.black_opal_sword": "Black Opal Sword",
+    "item.testmod.black_opal_pickaxe": "Black Opal Pickaxe",
+    "item.testmod.black_opal_hoe": "Black Opal Hoe",
+    "item.testmod.black_opal_shovel": "Black Opal Shovel",
+    "item.testmod.black_opal_axe": "Black Opal Axe",
     
     "block.testmod.black_opal_block": "Block of Black Opal",
     "block.testmod.black_opal_ore": "Black Opal Ore",

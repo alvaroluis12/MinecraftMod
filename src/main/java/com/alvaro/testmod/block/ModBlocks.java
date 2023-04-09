@@ -6,10 +6,14 @@ import com.alvaro.testmod.TestMod;
 import com.alvaro.testmod.block.custom.ModFlammableRotatedPillarBlock;
 import com.alvaro.testmod.item.ModItems;
 import com.alvaro.testmod.worldgen.tree.EbonyTreeGrower;
+import com.mojang.datafixers.types.templates.Tag;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;

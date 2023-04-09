@@ -33,7 +33,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
-        Smelting(consumer, List.of(ModItems.RAW_BLACK_OPAL.get()), RecipeCategory.MISC, 
+        Smelting(consumer, 
+        List.of(ModItems.RAW_BLACK_OPAL.get(), 
+                ModBlocks.BLACK_OPAL_ORE.get(), 
+                ModBlocks.ENDSTONE_BLACK_OPAL_ORE.get(), 
+                ModBlocks.DEEPSLATE_BLACK_OPAL_ORE.get(), 
+                ModBlocks.NETHERRACK_BLACK_OPAL_ORE.get()), RecipeCategory.MISC, 
                 ModItems.BLACK_OPAL.get(), 0.7f, 200, "black_opal");
         
         nineBlockStorageRecipes(consumer, RecipeCategory.BUILDING_BLOCKS, ModItems.BLACK_OPAL.get(), RecipeCategory.MISC, ModBlocks.BLACK_OPAL_BLOCK.get());
@@ -51,14 +56,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             RecipeCategory.MISC, Items.CHARCOAL, 0.15f, 200, getName());
 
       
-        // ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.BLACK_OPAL_BLOCK.get())
-        //         .define('B', ModItems.BLACK_OPAL.get())
-        //         .pattern("BBB")
-        //         .pattern("BBB")
-        //         .pattern("BBB")
-        //         .unlockedBy("has_black_opal", inventoryTrigger(ItemPredicate.Builder.item()
-        //                 .of(ModItems.BLACK_OPAL.get()).build()))
-        //         .save(consumer);
+        swordRecipe(consumer, ModItems.BLACK_OPAL.get(), Items.STICK, ModItems.BLACK_OPAL_SWORD.get());
+        axeRecipe(consumer, ModItems.BLACK_OPAL.get(), Items.STICK, ModItems.BLACK_OPAL_SWORD.get());
+        shovelRecipe(consumer, ModItems.BLACK_OPAL.get(), Items.STICK, ModItems.BLACK_OPAL_SWORD.get());
+        pickaxeRecipe(consumer, ModItems.BLACK_OPAL.get(), Items.STICK, ModItems.BLACK_OPAL_SWORD.get());
+        hoeRecipe(consumer, ModItems.BLACK_OPAL.get(), Items.STICK, ModItems.BLACK_OPAL_SWORD.get());
     }
 
     protected static void nineBlockStorageRecipes(Consumer<FinishedRecipe> p_249580_, RecipeCategory p_251203_, ItemLike p_251689_, RecipeCategory p_251376_, ItemLike p_248771_) {
@@ -112,6 +114,63 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             .group("bark")
             .unlockedBy("has_log", has(p_126005_))
             .save(p_126003_, new ResourceLocation(TestMod.MODID, getItemName(p_126004_) + "_from_" + getItemName(p_126005_)));
+     }
+
+     protected static void swordRecipe(Consumer<FinishedRecipe> consumer, ItemLike ore, ItemLike base, ItemLike result){
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+                 .define('O', ore)
+                 .define('S', base)
+                 .pattern("O")
+                 .pattern("O")
+                 .pattern("S")
+                 .unlockedBy("has_" + getItemName(ore), inventoryTrigger(ItemPredicate.Builder.item()
+                         .of(ore).of(base).build()))
+                 .save(consumer, new ResourceLocation(TestMod.MODID, getItemName(ore) + "_sword"));
+     }
+
+     protected static void pickaxeRecipe(Consumer<FinishedRecipe> consumer, ItemLike ore, ItemLike base, ItemLike result){
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+                 .define('O', ore)
+                 .define('S', base)
+                 .pattern("OOO")
+                 .pattern(" S ")
+                 .pattern(" S ")
+                 .unlockedBy("has_" + getItemName(ore), inventoryTrigger(ItemPredicate.Builder.item()
+                         .of(ore).of(base).build()))
+                 .save(consumer, new ResourceLocation(TestMod.MODID, getItemName(ore) + "_pickaxe"));
+     }
+     protected static void hoeRecipe(Consumer<FinishedRecipe> consumer, ItemLike ore, ItemLike base, ItemLike result){
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+                 .define('O', ore)
+                 .define('S', base)
+                 .pattern("OO")
+                 .pattern(" S")
+                 .pattern(" S")
+                 .unlockedBy("has_" + getItemName(ore), inventoryTrigger(ItemPredicate.Builder.item()
+                         .of(ore).of(base).build()))
+                 .save(consumer, new ResourceLocation(TestMod.MODID, getItemName(ore) + "_hoe"));
+     }
+     protected static void shovelRecipe(Consumer<FinishedRecipe> consumer, ItemLike ore, ItemLike base, ItemLike result){
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+                 .define('O', ore)
+                 .define('S', base)
+                 .pattern("O")
+                 .pattern("S")
+                 .pattern("S")
+                 .unlockedBy("has_" + getItemName(ore), inventoryTrigger(ItemPredicate.Builder.item()
+                         .of(ore).of(base).build()))
+                 .save(consumer, new ResourceLocation(TestMod.MODID, getItemName(ore) + "_shovel"));
+     }
+     protected static void axeRecipe(Consumer<FinishedRecipe> consumer, ItemLike ore, ItemLike base, ItemLike result){
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+                 .define('O', ore)
+                 .define('S', base)
+                 .pattern("O")
+                 .pattern("S")
+                 .pattern("S")
+                 .unlockedBy("has_" + getItemName(ore), inventoryTrigger(ItemPredicate.Builder.item()
+                         .of(ore).of(base).build()))
+                 .save(consumer, new ResourceLocation(TestMod.MODID, getItemName(ore) + "_axe"));
      }
     
 }

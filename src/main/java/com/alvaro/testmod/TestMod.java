@@ -70,6 +70,17 @@ public class TestMod
             event.accept(ModBlocks.EBONY_SAPLING);
         }
 
+        if(event.getTab() == CreativeModeTabs.COMBAT) {
+            event.accept(ModItems.BLACK_OPAL_SWORD);
+            event.accept(ModItems.BLACK_OPAL_AXE);
+        }
+        if(event.getTab() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+            event.accept(ModItems.BLACK_OPAL_HOE);
+            event.accept(ModItems.BLACK_OPAL_AXE);
+            event.accept(ModItems.BLACK_OPAL_PICKAXE);
+            event.accept(ModItems.BLACK_OPAL_SHOVEL);
+        }
+
         if(event.getTab() == ModCreativeModeTabs.TEST_TAB) {
             event.accept(ModItems.BLACK_OPAL);
             event.accept(ModItems.RAW_BLACK_OPAL);
@@ -85,6 +96,11 @@ public class TestMod
             event.accept(ModBlocks.STRIPPED_EBONY_LOG);
             event.accept(ModBlocks.STRIPPED_EBONY_WOOD);
             event.accept(ModBlocks.EBONY_SAPLING);
+            event.accept(ModItems.BLACK_OPAL_SWORD);
+            event.accept(ModItems.BLACK_OPAL_HOE);
+            event.accept(ModItems.BLACK_OPAL_AXE);
+            event.accept(ModItems.BLACK_OPAL_PICKAXE);
+            event.accept(ModItems.BLACK_OPAL_SHOVEL);
         }
     }
 

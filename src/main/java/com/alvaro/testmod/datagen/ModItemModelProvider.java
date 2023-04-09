@@ -7,7 +7,12 @@ import com.alvaro.testmod.item.ModItems;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -25,6 +30,11 @@ public class ModItemModelProvider extends ItemModelProvider{
         simpleItem(ModItems.BLACK_OPAL);
         simpleItem(ModItems.RAW_BLACK_OPAL);
         saplingItem(ModBlocks.EBONY_SAPLING);
+        swordItem(ModItems.BLACK_OPAL_SWORD);
+        pickaxeItem(ModItems.BLACK_OPAL_PICKAXE);
+        axeItem(ModItems.BLACK_OPAL_AXE);
+        shovelItem(ModItems.BLACK_OPAL_SHOVEL);
+        hoeItem(ModItems.BLACK_OPAL_HOE);
     }
 
 
@@ -43,10 +53,31 @@ public class ModItemModelProvider extends ItemModelProvider{
                 new ResourceLocation(TestMod.MODID, "block/" + item.getId().getPath()));
     }
 
-    private ItemModelBuilder handheldItem(RegistryObject<Item> item){
+    private ItemModelBuilder swordItem(RegistryObject<SwordItem> item){
         return withExistingParent(item.getId().getPath(), 
-        new ResourceLocation("item/handheld")).texture("layer0",
-        new ResourceLocation(TestMod.MODID, "item/" + item.getId().getPath()));
+                new ResourceLocation("item/handheld")).texture("layer0",
+                new ResourceLocation(TestMod.MODID, "item/" + item.getId().getPath()));
     }
+    private ItemModelBuilder pickaxeItem(RegistryObject<PickaxeItem> item){
+        return withExistingParent(item.getId().getPath(), 
+                new ResourceLocation("item/handheld")).texture("layer0",
+                new ResourceLocation(TestMod.MODID, "item/" + item.getId().getPath()));
+    }
+    private ItemModelBuilder axeItem(RegistryObject<AxeItem> item){
+        return withExistingParent(item.getId().getPath(), 
+                new ResourceLocation("item/handheld")).texture("layer0",
+                new ResourceLocation(TestMod.MODID, "item/" + item.getId().getPath()));
+    }
+    private ItemModelBuilder shovelItem(RegistryObject<ShovelItem> item){
+        return withExistingParent(item.getId().getPath(), 
+                new ResourceLocation("item/handheld")).texture("layer0",
+                new ResourceLocation(TestMod.MODID, "item/" + item.getId().getPath()));
+    }
+    private ItemModelBuilder hoeItem(RegistryObject<HoeItem> item){
+        return withExistingParent(item.getId().getPath(), 
+                new ResourceLocation("item/handheld")).texture("layer0",
+                new ResourceLocation(TestMod.MODID, "item/" + item.getId().getPath()));
+    }
+    
     
 }
