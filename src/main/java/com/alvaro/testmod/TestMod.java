@@ -1,11 +1,11 @@
 package com.alvaro.testmod;
 
-import org.slf4j.Logger;
+//import org.slf4j.Logger;
 
 import com.alvaro.testmod.block.ModBlocks;
 import com.alvaro.testmod.item.ModCreativeModeTabs;
 import com.alvaro.testmod.item.ModItems;
-import com.mojang.logging.LogUtils;
+//import com.mojang.logging.LogUtils;
 
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -24,7 +24,7 @@ public class TestMod
 {
     public static final String MODID = "testmod";
 
-    private static final Logger LOGGER = LogUtils.getLogger();
+    //private static final Logger LOGGER = LogUtils.getLogger();
 
     public TestMod()
     {

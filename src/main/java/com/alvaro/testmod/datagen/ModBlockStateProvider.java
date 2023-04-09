@@ -16,7 +16,6 @@ public class ModBlockStateProvider extends BlockStateProvider{
 
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, TestMod.MODID, exFileHelper);
-        //TODO Auto-generated constructor stub
     }
 
     @Override
