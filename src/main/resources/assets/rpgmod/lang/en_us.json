@@ -23,5 +23,8 @@
     "block.rpgmod.ebony_leaves": "Ebony Leaves",
     "block.rpgmod.ebony_sapling": "Ebony Sapling",
 
+    "entity.rpgmod.troll": "Troll",
+    "entity.rpgmod.tiger": "Tiger",
+
     "creativemodetab.rpg_mod": "RPG Tab"
 }
