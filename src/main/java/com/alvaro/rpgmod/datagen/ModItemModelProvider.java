@@ -35,6 +35,8 @@ public class ModItemModelProvider extends ItemModelProvider{
         axeItem(ModItems.BLACK_OPAL_AXE);
         shovelItem(ModItems.BLACK_OPAL_SHOVEL);
         hoeItem(ModItems.BLACK_OPAL_HOE);
+        withExistingParent(ModItems.TIGER_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+        withExistingParent(ModItems.TROLL_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
     }
 
 

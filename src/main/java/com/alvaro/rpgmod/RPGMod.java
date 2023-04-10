@@ -3,10 +3,14 @@ package com.alvaro.rpgmod;
 //import org.slf4j.Logger;
 
 import com.alvaro.rpgmod.block.ModBlocks;
+import com.alvaro.rpgmod.entity.ModEntities;
+import com.alvaro.rpgmod.entity.client.TigerRenderer;
+import com.alvaro.rpgmod.entity.client.TrollRenderer;
 import com.alvaro.rpgmod.item.ModCreativeModeTabs;
 import com.alvaro.rpgmod.item.ModItems;
 //import com.mojang.logging.LogUtils;
 
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -32,6 +36,8 @@ public class RPGMod
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+
+        ModEntities.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
@@ -80,8 +86,12 @@ public class RPGMod
             event.accept(ModItems.BLACK_OPAL_PICKAXE);
             event.accept(ModItems.BLACK_OPAL_SHOVEL);
         }
+        if(event.getTab() == CreativeModeTabs.SPAWN_EGGS) {
+            event.accept(ModItems.TIGER_SPAWN_EGG);
+            event.accept(ModItems.TROLL_SPAWN_EGG);
+        }
 
-        if(event.getTab() == ModCreativeModeTabs.TEST_TAB) {
+        if(event.getTab() == ModCreativeModeTabs.RPG_TAB) {
             event.accept(ModItems.BLACK_OPAL);
             event.accept(ModItems.RAW_BLACK_OPAL);
             event.accept(ModBlocks.BLACK_OPAL_BLOCK);
@@ -101,6 +111,8 @@ public class RPGMod
             event.accept(ModItems.BLACK_OPAL_AXE);
             event.accept(ModItems.BLACK_OPAL_PICKAXE);
             event.accept(ModItems.BLACK_OPAL_SHOVEL);
+            event.accept(ModItems.TIGER_SPAWN_EGG);
+            event.accept(ModItems.TROLL_SPAWN_EGG);
         }
     }
 
@@ -110,7 +122,8 @@ public class RPGMod
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-            
+            EntityRenderers.register(ModEntities.TIGER.get(), TigerRenderer::new);
+            EntityRenderers.register(ModEntities.TROLL.get(), TrollRenderer::new);
         }
     }
 }

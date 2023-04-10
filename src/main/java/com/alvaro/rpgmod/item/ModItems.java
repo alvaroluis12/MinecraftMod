@@ -1,6 +1,7 @@
 package com.alvaro.rpgmod.item;
 
 import com.alvaro.rpgmod.RPGMod;
+import com.alvaro.rpgmod.entity.ModEntities;
 
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.HoeItem;
@@ -10,6 +11,7 @@ import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.common.ForgeTier;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -36,6 +38,12 @@ public class ModItems {
             () -> new AxeItem(Tiers.BLACK_OPAL, 10f, 0f, new Item.Properties()));
     public static final RegistryObject<HoeItem> BLACK_OPAL_HOE = ITEMS.register( "black_opal_hoe", 
             () -> new HoeItem(Tiers.BLACK_OPAL, 0, 0f, new Item.Properties()));
+
+    public static final RegistryObject<Item> TIGER_SPAWN_EGG = ITEMS.register("tiger_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.TIGER, 0xD57E36, 0x1D0D00, new Item.Properties()));
+
+    public static final RegistryObject<Item> TROLL_SPAWN_EGG = ITEMS.register("troll_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.TROLL, 0xD57E36, 0x1D0D00, new Item.Properties()));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

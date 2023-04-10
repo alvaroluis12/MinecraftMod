@@ -13,11 +13,11 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = RPGMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModCreativeModeTabs{
-    public static CreativeModeTab TEST_TAB;
+    public static CreativeModeTab RPG_TAB;
 
     @SubscribeEvent
     public static void registerCreativeModeTabs(CreativeModeTabEvent.Register event) {
-        TEST_TAB = event.registerCreativeModeTab(new ResourceLocation(RPGMod.MODID, "rpg_tab"), 
+        RPG_TAB = event.registerCreativeModeTab(new ResourceLocation(RPGMod.MODID, "rpg_tab"), 
             builder -> builder.icon(() -> new ItemStack(ModItems.BLACK_OPAL.get())).title(Component.translatable("creativemodetab.rpg_mod")));
     }
 }
