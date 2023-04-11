@@ -26,5 +26,8 @@
     "entity.rpgmod.troll": "Troll",
     "entity.rpgmod.tiger": "Tiger",
 
+    "key.category.rpgmod.test": "RPG Mod",
+    "key.rpgmod.test": "Test",
+
     "creativemodetab.rpg_mod": "RPG Tab"
 }
