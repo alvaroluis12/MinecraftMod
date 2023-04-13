@@ -21,6 +21,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -33,12 +34,12 @@ import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegis
 import software.bernie.geckolib.core.object.PlayState;
 
 public class TrollEntity extends Monster implements GeoEntity{
-    /*private final ServerBossEvent bossEvent = 
-        (ServerBossEvent)(new ServerBossEvent(this.getDisplayName(), 
+    /*private final ServerBossEvent bossEvent =
+        (ServerBossEvent)(new ServerBossEvent(this.getDisplayName(),
             BossEvent.BossBarColor.GREEN,
             BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);*/
 
-    private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+    private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
     public TrollEntity(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
@@ -71,7 +72,7 @@ public class TrollEntity extends Monster implements GeoEntity{
     }
 
     @Override
-    protected void dropCustomDeathLoot(DamageSource p_21385_, int p_21386_, boolean p_21387_) {
+    protected void dropCustomDeathLoot(@NotNull DamageSource p_21385_, int p_21386_, boolean p_21387_) {
         super.dropCustomDeathLoot(p_21385_, p_21386_, p_21387_);
     }
 

@@ -9,6 +9,7 @@ import com.alvaro.rpgmod.entity.client.TrollRenderer;
 import com.alvaro.rpgmod.item.ModCreativeModeTabs;
 import com.alvaro.rpgmod.item.ModItems;
 //import com.mojang.logging.LogUtils;
+import com.alvaro.rpgmod.networking.ModMessages;
 
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -48,7 +49,7 @@ public class RPGMod
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-
+        ModMessages.register();
     }
 
     private void addCreative(CreativeModeTabEvent.BuildContents event) {

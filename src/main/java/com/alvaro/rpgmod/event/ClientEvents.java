@@ -3,8 +3,6 @@ package com.alvaro.rpgmod.event;
 import com.alvaro.rpgmod.RPGMod;
 import com.alvaro.rpgmod.util.KeyBinding;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
@@ -19,7 +17,7 @@ public class ClientEvents {
         @SubscribeEvent
         public static void onKeyInput(InputEvent.Key event){
              if (KeyBinding.TEST_KEY.consumeClick()){
-                Minecraft.getInstance().player.sendSystemMessage(Component.literal("Pressed a key!"));
+                //ModMessages.sendToServer(new SummonTammedTigerC2SPacket());
              }
         }
     }
