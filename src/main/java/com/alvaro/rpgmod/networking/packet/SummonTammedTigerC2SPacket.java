@@ -26,7 +26,7 @@ public class SummonTammedTigerC2SPacket {
 
     }
 
-    public void handle(Supplier<NetworkEvent.Context> supplier){
+    public boolean handle(Supplier<NetworkEvent.Context> supplier){
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
             // HERE WE ARE ON THE SERVER
@@ -41,6 +41,7 @@ public class SummonTammedTigerC2SPacket {
                  tiger.setOwnerUUID(player.getUUID());
                 }
         });
+        return true;
     }
     
     

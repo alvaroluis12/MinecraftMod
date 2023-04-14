@@ -174,7 +174,6 @@ public class TigerEntity extends TamableAnimal implements NeutralMob, GeoEntity 
                 }
                 InteractionResult interactionresult = super.mobInteract(p_30412_, p_30413_);
                 if ((!interactionresult.consumesAction() || this.isBaby()) && this.isOwnedBy(p_30412_)) {
-                    System.out.println(this.isOrderedToSit());
                     this.setOrderedToSit(!this.isOrderedToSit());
                     this.jumping = false;
                     this.navigation.stop();

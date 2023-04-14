@@ -1,6 +1,8 @@
 package com.alvaro.rpgmod.event;
 
 import com.alvaro.rpgmod.RPGMod;
+import com.alvaro.rpgmod.networking.ModMessages;
+import com.alvaro.rpgmod.networking.packet.TestC2SPacket;
 import com.alvaro.rpgmod.util.KeyBinding;
 
 import net.minecraftforge.api.distmarker.Dist;
@@ -17,6 +19,7 @@ public class ClientEvents {
         @SubscribeEvent
         public static void onKeyInput(InputEvent.Key event){
              if (KeyBinding.TEST_KEY.consumeClick()){
+                ModMessages.sendToServer(new TestC2SPacket());
                 //ModMessages.sendToServer(new SummonTammedTigerC2SPacket());
              }
         }

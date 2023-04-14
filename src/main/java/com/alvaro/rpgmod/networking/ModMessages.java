@@ -2,6 +2,7 @@ package com.alvaro.rpgmod.networking;
 
 import com.alvaro.rpgmod.RPGMod;
 import com.alvaro.rpgmod.networking.packet.SummonTammedTigerC2SPacket;
+import com.alvaro.rpgmod.networking.packet.TestC2SPacket;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -33,6 +34,12 @@ public class ModMessages {
                 .decoder(SummonTammedTigerC2SPacket::new)
                 .encoder(SummonTammedTigerC2SPacket::toBytes)
                 .consumerMainThread(SummonTammedTigerC2SPacket::handle)
+                .add();
+
+        net.messageBuilder(TestC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(TestC2SPacket::new)
+                .encoder(TestC2SPacket::toBytes)
+                .consumerMainThread(TestC2SPacket::handle)
                 .add();
     }
 
