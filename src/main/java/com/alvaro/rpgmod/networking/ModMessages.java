@@ -1,8 +1,9 @@
 package com.alvaro.rpgmod.networking;
 
 import com.alvaro.rpgmod.RPGMod;
+import com.alvaro.rpgmod.networking.packet.ManaDataSyncS2C;
 import com.alvaro.rpgmod.networking.packet.SummonTammedTigerC2SPacket;
-import com.alvaro.rpgmod.networking.packet.TestC2SPacket;
+import com.alvaro.rpgmod.networking.packet.SubManaC2SPacket;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -36,10 +37,16 @@ public class ModMessages {
                 .consumerMainThread(SummonTammedTigerC2SPacket::handle)
                 .add();
 
-        net.messageBuilder(TestC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(TestC2SPacket::new)
-                .encoder(TestC2SPacket::toBytes)
-                .consumerMainThread(TestC2SPacket::handle)
+        net.messageBuilder(SubManaC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(SubManaC2SPacket::new)
+                .encoder(SubManaC2SPacket::toBytes)
+                .consumerMainThread(SubManaC2SPacket::handle)
+                .add();
+
+        net.messageBuilder(ManaDataSyncS2C.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(ManaDataSyncS2C::new)
+                .encoder(ManaDataSyncS2C::toBytes)
+                .consumerMainThread(ManaDataSyncS2C::handle)
                 .add();
     }
 

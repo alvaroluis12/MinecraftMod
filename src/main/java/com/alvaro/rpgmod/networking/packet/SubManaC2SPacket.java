@@ -4,20 +4,20 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
 import com.alvaro.rpgmod.capabilities.mana.PlayerManaProvider;
+import com.alvaro.rpgmod.networking.ModMessages;
 
-public class TestC2SPacket {
+public class SubManaC2SPacket {
 
-    public TestC2SPacket() {
+    public SubManaC2SPacket() {
 
     }
 
-    public TestC2SPacket(FriendlyByteBuf buf){
+    public SubManaC2SPacket(FriendlyByteBuf buf){
 
     }
 
@@ -37,8 +37,15 @@ public class TestC2SPacket {
             //ModEntities.TIGER.get().spawn(level, (ItemStack)null, player, player.blockPosition(), MobSpawnType.COMMAND, true, false);
             
             player.getCapability(PlayerManaProvider.PLAYER_MANA).ifPresent(mana -> {
-                mana.addMana(1);
-                player.sendSystemMessage(Component.literal("Current Mana: " + mana.getMana()).withStyle(ChatFormatting.AQUA));
+                if (mana.getMana() > 0){
+                    mana.subMana(1);
+                    player.sendSystemMessage(Component.literal("Current Mana: " + mana.getMana()).withStyle(ChatFormatting.AQUA));
+                }
+                else {
+                    player.sendSystemMessage(Component.literal("Not enough mana").withStyle(ChatFormatting.RED));
+                }
+
+                ModMessages.sendToPlayer(new ManaDataSyncS2C(mana.getMana(), mana.getMaxMana()), player);
                 //Change player max health
                 //player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(player.getAttributeValue(Attributes.MAX_HEALTH) + 1);
 

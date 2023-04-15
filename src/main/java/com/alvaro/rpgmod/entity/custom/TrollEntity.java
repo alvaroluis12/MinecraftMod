@@ -1,5 +1,11 @@
 package com.alvaro.rpgmod.entity.custom;
 
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.BossEvent;
+
 //import javax.annotation.Nullable;
 
 import net.minecraft.world.damagesource.DamageSource;
@@ -21,6 +27,9 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+
+import javax.annotation.Nullable;
+
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -34,10 +43,10 @@ import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegis
 import software.bernie.geckolib.core.object.PlayState;
 
 public class TrollEntity extends Monster implements GeoEntity{
-    /*private final ServerBossEvent bossEvent =
+    private final ServerBossEvent bossEvent =
         (ServerBossEvent)(new ServerBossEvent(this.getDisplayName(),
             BossEvent.BossBarColor.GREEN,
-            BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);*/
+            BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);
 
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
@@ -75,8 +84,8 @@ public class TrollEntity extends Monster implements GeoEntity{
     protected void dropCustomDeathLoot(@NotNull DamageSource p_21385_, int p_21386_, boolean p_21387_) {
         super.dropCustomDeathLoot(p_21385_, p_21386_, p_21387_);
     }
-
-    /* 
+    
+    
     @Override
     public void readAdditionalSaveData(CompoundTag p_21450_) {
         super.readAdditionalSaveData(p_21450_);
@@ -108,7 +117,7 @@ public class TrollEntity extends Monster implements GeoEntity{
        super.stopSeenByPlayer(p_31488_);
        this.bossEvent.removePlayer(p_31488_);
     }
-    */
+    
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {

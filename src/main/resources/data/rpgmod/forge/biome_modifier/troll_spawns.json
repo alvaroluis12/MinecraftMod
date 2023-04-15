@@ -3,7 +3,7 @@
     "biomes": "#is_overworld",
     "spawners": {
       "type": "rpgmod:troll",
-      "weight": 15,
+      "weight": 10,
       "minCount": 1,
       "maxCount": 1
     }

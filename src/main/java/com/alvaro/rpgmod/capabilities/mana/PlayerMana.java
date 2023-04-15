@@ -5,19 +5,31 @@ import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 
 @AutoRegisterCapability
 public class PlayerMana {
-    private int mana = 0;
+    private int MANA = 0;
     private int MAX_MANA = 20;
 
     public int getMana(){
-        return this.mana;
+        return this.MANA;
+    }
+
+    public void setMana(int mana){
+        this.MANA = mana;
     }
 
     public void addMana(int add) {
-        this.mana = Math.min((mana + add), MAX_MANA);
+        this.MANA = Math.min((MANA + add), MAX_MANA);
     }
 
     public void subMana(int sub){
-        this.mana -= sub;
+        this.MANA -= sub;
+    }
+
+    public int getMaxMana(){
+        return this.MAX_MANA;
+    }
+
+    public void setMaxMana(int mana){
+        this.MAX_MANA = mana;
     }
 
     public void addMaxMana(int add){
@@ -29,20 +41,21 @@ public class PlayerMana {
     }
 
     public void resetManaToDefault(){
+        MANA = 0;
         MAX_MANA = 20;
     }
     
     public void copyFrom(PlayerMana source) {
-        this.mana = source.mana;
+        this.MANA = source.MANA;
     }
 
     public void saveNBTData(CompoundTag nbt){
-        nbt.putInt("mana", mana);
+        nbt.putInt("mana", MANA);
         nbt.putInt("max_mana", MAX_MANA);
     }
 
     public void loadNBTData(CompoundTag nbt){
-        mana = nbt.getInt("mana");
+        MANA = nbt.getInt("mana");
         MAX_MANA = nbt.getInt("max_mana");
     }
 

@@ -57,8 +57,8 @@ public class ModPlacedFeatures {
 
     }
 
-    private static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, Holder<ConfiguredFeature<?, ?>> configuration,
-                                 PlacementModifier... modifiers) {
-        register(context, key, configuration, List.of(modifiers));
-    }
+    //private static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, Holder<ConfiguredFeature<?, ?>> configuration,
+    //                             PlacementModifier... modifiers) {
+    //    register(context, key, configuration, List.of(modifiers));
+    //}
 }

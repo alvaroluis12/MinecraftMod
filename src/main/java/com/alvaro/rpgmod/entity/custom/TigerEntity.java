@@ -47,7 +47,7 @@ import java.util.UUID;
 public class TigerEntity extends TamableAnimal implements NeutralMob, GeoEntity {
 
     private final static float START_HEALTH = 16F;
-    private final static float TAMED_HEALTH = 16F;
+    private final static float TAMED_HEALTH = 32F;
 
 
 
@@ -70,7 +70,7 @@ public class TigerEntity extends TamableAnimal implements NeutralMob, GeoEntity 
     public static AttributeSupplier setAttributes() {
         return Animal.createMobAttributes()
             .add(Attributes.MAX_HEALTH, 16D)
-            .add(Attributes.ATTACK_DAMAGE, 3.0f)
+            .add(Attributes.ATTACK_DAMAGE, 10.0f)
             .add(Attributes.ATTACK_SPEED, 1.0f)
             .add(Attributes.MOVEMENT_SPEED, 0.4f).build();
     }
