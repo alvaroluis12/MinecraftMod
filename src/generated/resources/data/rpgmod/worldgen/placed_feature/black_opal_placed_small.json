@@ -1,9 +1,9 @@
 {
-  "feature": "rpgmod:end_black_opal_ore",
+  "feature": "rpgmod:black_opal_ore_smal",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 9
+      "count": 4
     },
     {
       "type": "minecraft:in_square"

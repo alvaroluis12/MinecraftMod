@@ -23,9 +23,11 @@ public class ModPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> EBONY_PLACED_KEY = createKey("ebony_placed");
 
+    public static final ResourceKey<PlacedFeature> BLACK_OPAL_PLACED_KEY_LARGE = createKey("black_opal_placed_large");
     public static final ResourceKey<PlacedFeature> BLACK_OPAL_PLACED_KEY = createKey("black_opal_placed");
-    public static final ResourceKey<PlacedFeature> END_BLACK_OPAL_PLACED_KEY = createKey("end_black_opal_placed");
-    public static final ResourceKey<PlacedFeature> NETHER_BLACK_OPAL_PLACED_KEY = createKey("nether_black_opal_placed");
+    public static final ResourceKey<PlacedFeature> BLACK_OPAL_PLACED_KEY_SMALL = createKey("black_opal_placed_small");
+    //public static final ResourceKey<PlacedFeature> END_BLACK_OPAL_PLACED_KEY = createKey("end_black_opal_placed");
+    //public static final ResourceKey<PlacedFeature> NETHER_BLACK_OPAL_PLACED_KEY = createKey("nether_black_opal_placed");
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -34,17 +36,23 @@ public class ModPlacedFeatures {
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.1f, 2), ModBlocks.EBONY_SAPLING.get()));
 
                 
-        register(context, BLACK_OPAL_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_BLACK_OPAL_ORE_KEY), 
+        register(context, BLACK_OPAL_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BLACK_OPAL_ORE), 
                 ModOrePlacements.commonOrePlacement(7, //veins per chunk
                         HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
-
-        register(context, END_BLACK_OPAL_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.END_BLACK_OPAL_ORE_KEY), 
-                ModOrePlacements.commonOrePlacement(9, //veins per chunk
+        register(context, BLACK_OPAL_PLACED_KEY_LARGE, configuredFeatures.getOrThrow(ModConfiguredFeatures.BLACK_OPAL_ORE_LARGE), 
+                ModOrePlacements.rareOrePlacement(9, //veins per chunk
+                        HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
+        register(context, BLACK_OPAL_PLACED_KEY_SMALL, configuredFeatures.getOrThrow(ModConfiguredFeatures.BLACK_OPAL_ORE_SMALL), 
+                ModOrePlacements.commonOrePlacement(4, //veins per chunk
                         HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
 
-        register(context, NETHER_BLACK_OPAL_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.NETHER_BLACK_OPAL_ORE_KEY), 
-                ModOrePlacements.commonOrePlacement(8, //veins per chunk
-                        HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
+        //register(context, END_BLACK_OPAL_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.END_BLACK_OPAL_ORE_KEY), 
+        //        ModOrePlacements.commonOrePlacement(9, //veins per chunk
+        //                HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
+
+        //register(context, NETHER_BLACK_OPAL_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.NETHER_BLACK_OPAL_ORE_KEY), 
+        //        ModOrePlacements.commonOrePlacement(8, //veins per chunk
+        //                HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
     }
 
     private static ResourceKey<PlacedFeature> createKey(String name) {

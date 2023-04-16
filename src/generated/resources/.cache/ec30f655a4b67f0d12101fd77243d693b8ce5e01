@@ -1,4 +1,4 @@
-// 1.19.4	2023-04-09T16:25:41.7071793	Block States: rpgmod
+// 1.19.4	2023-04-16T08:32:39.7903942	Block States: rpgmod
 77fde2b0f1a72ab003ca4d885afb362ecc2e047c assets/rpgmod/blockstates/black_opal_block.json
 ffe38f65cc971f1834a0b0385daf7b384a5c5b56 assets/rpgmod/blockstates/black_opal_ore.json
 59825b38c97685c326e4c709f057213db23dff33 assets/rpgmod/blockstates/deepslate_black_opal_ore.json
@@ -7,8 +7,6 @@ e24f387d955d47dd1b389bc3b2abf1b4adba4894 assets/rpgmod/blockstates/ebony_log.jso
 4cee9d605820f24345d7def2483d2e3e8f606e31 assets/rpgmod/blockstates/ebony_planks.json
 01063ee3867763853b60cdec13990439779c5577 assets/rpgmod/blockstates/ebony_sapling.json
 0488c254b8a2f01d5d5d8953063f47ac92c2940e assets/rpgmod/blockstates/ebony_wood.json
-df755b301d27bb0c030c0a134861780ee3638102 assets/rpgmod/blockstates/endstone_black_opal_ore.json
-a43eb612352bb166841d3ff9cc26f94652221352 assets/rpgmod/blockstates/netherrack_black_opal_ore.json
 cd7767ba666406c7fd621126d7e57e37f3d85d47 assets/rpgmod/blockstates/stripped_ebony_log.json
 4e1dae7772fc72c9c0b178efb489b73f10e4fafe assets/rpgmod/blockstates/stripped_ebony_wood.json
 9e1401d2ca43ede982cfb5b78235f06cf0ffa776 assets/rpgmod/models/block/black_opal_block.json
@@ -21,8 +19,6 @@ d6a57231f6c89475fbc0c91253b8cbb32e886225 assets/rpgmod/models/block/ebony_log_ho
 6186a1bfec78da447a88b0608f840aaae4254a92 assets/rpgmod/models/block/ebony_sapling.json
 b601473eec5ad15c968e3d4b7e4062bc3ad5cad3 assets/rpgmod/models/block/ebony_wood.json
 c8f1dc5b1278ae0373fa8de84970493382e709a1 assets/rpgmod/models/block/ebony_wood_horizontal.json
-a486667ed2e72f670b6459c64ef758db95e19d7f assets/rpgmod/models/block/endstone_black_opal_ore.json
-972452480ed3b4436470c660fef2bd3ce35b4445 assets/rpgmod/models/block/netherrack_black_opal_ore.json
 8b15c12c2798db1615e83ab7013c4c7f71154dbb assets/rpgmod/models/block/stripped_ebony_log.json
 51ca0cf8b5f4176eba4bf17137e36ac8c9c4b503 assets/rpgmod/models/block/stripped_ebony_log_horizontal.json
 c9b1a38ad6b217de82a91c16ca03fba9b6102557 assets/rpgmod/models/block/stripped_ebony_wood.json
@@ -34,7 +30,5 @@ fcd0462951650074537bfc48d84556c7ba6fea75 assets/rpgmod/models/item/deepslate_bla
 9555eb39c5c2cb1684376eaff4e30b4319ed4675 assets/rpgmod/models/item/ebony_log.json
 a8793fbca4acfc9ce90f4eb52648226e0a76ae6a assets/rpgmod/models/item/ebony_planks.json
 2ff85bddd89d09915af83819fd5def500289a785 assets/rpgmod/models/item/ebony_wood.json
-de81fa178f912207ba92766e909e4c79f4316962 assets/rpgmod/models/item/endstone_black_opal_ore.json
-5e780efb31d3b3d16e40efec7c237b09aaa9e0a2 assets/rpgmod/models/item/netherrack_black_opal_ore.json
 4c89fe924c9f658776455a7282e3c24065930012 assets/rpgmod/models/item/stripped_ebony_log.json
 fa724d9fb124adf7656acdbbf5d677c509555a72 assets/rpgmod/models/item/stripped_ebony_wood.json

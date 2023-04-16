@@ -24,10 +24,10 @@ public class ModBlockLootTables extends BlockLootSubProvider{
                 (block) -> createOreDrop(ModBlocks.BLACK_OPAL_ORE.get(), ModItems.RAW_BLACK_OPAL.get()));
         add(ModBlocks.DEEPSLATE_BLACK_OPAL_ORE.get(),
                 (block) -> createOreDrop(ModBlocks.DEEPSLATE_BLACK_OPAL_ORE.get(), ModItems.RAW_BLACK_OPAL.get()));
-        add(ModBlocks.NETHERRACK_BLACK_OPAL_ORE.get(),
-                (block) -> createOreDrop(ModBlocks.NETHERRACK_BLACK_OPAL_ORE.get(), ModItems.RAW_BLACK_OPAL.get()));
-        add(ModBlocks.ENDSTONE_BLACK_OPAL_ORE.get(),
-                (block) -> createOreDrop(ModBlocks.ENDSTONE_BLACK_OPAL_ORE.get(), ModItems.RAW_BLACK_OPAL.get()));
+        //add(ModBlocks.NETHERRACK_BLACK_OPAL_ORE.get(),
+        //        (block) -> createOreDrop(ModBlocks.NETHERRACK_BLACK_OPAL_ORE.get(), ModItems.RAW_BLACK_OPAL.get()));
+        //add(ModBlocks.ENDSTONE_BLACK_OPAL_ORE.get(),
+        //        (block) -> createOreDrop(ModBlocks.ENDSTONE_BLACK_OPAL_ORE.get(), ModItems.RAW_BLACK_OPAL.get()));
 
         this.dropSelf(ModBlocks.EBONY_LOG.get());
         this.dropSelf(ModBlocks.EBONY_WOOD.get());

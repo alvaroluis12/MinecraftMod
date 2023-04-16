@@ -1,9 +1,9 @@
 {
-  "feature": "rpgmod:nether_black_opal_ore",
+  "feature": "rpgmod:black_opal_ore_large",
   "placement": [
     {
-      "type": "minecraft:count",
-      "count": 8
+      "type": "minecraft:rarity_filter",
+      "chance": 9
     },
     {
       "type": "minecraft:in_square"

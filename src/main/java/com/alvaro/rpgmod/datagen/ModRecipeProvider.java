@@ -35,10 +35,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
         Smelting(consumer, 
         List.of(ModItems.RAW_BLACK_OPAL.get(), 
-                ModBlocks.BLACK_OPAL_ORE.get(), 
-                ModBlocks.ENDSTONE_BLACK_OPAL_ORE.get(), 
-                ModBlocks.DEEPSLATE_BLACK_OPAL_ORE.get(), 
-                ModBlocks.NETHERRACK_BLACK_OPAL_ORE.get()), RecipeCategory.MISC, 
+                ModBlocks.BLACK_OPAL_ORE.get(),  
+                ModBlocks.DEEPSLATE_BLACK_OPAL_ORE.get()), RecipeCategory.MISC, 
                 ModItems.BLACK_OPAL.get(), 0.7f, 200, "black_opal");
         
         nineBlockStorageRecipes(consumer, RecipeCategory.BUILDING_BLOCKS, ModItems.BLACK_OPAL.get(), RecipeCategory.MISC, ModBlocks.BLACK_OPAL_BLOCK.get());

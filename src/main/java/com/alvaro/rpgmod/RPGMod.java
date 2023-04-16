@@ -65,8 +65,8 @@ public class RPGMod
         if(event.getTab() == CreativeModeTabs.NATURAL_BLOCKS) {
             event.accept(ModBlocks.BLACK_OPAL_ORE);
             event.accept(ModBlocks.DEEPSLATE_BLACK_OPAL_ORE);
-            event.accept(ModBlocks.NETHERRACK_BLACK_OPAL_ORE);
-            event.accept(ModBlocks.ENDSTONE_BLACK_OPAL_ORE);
+            //event.accept(ModBlocks.NETHERRACK_BLACK_OPAL_ORE);
+            //event.accept(ModBlocks.ENDSTONE_BLACK_OPAL_ORE);
 
             event.accept(ModBlocks.EBONY_LEAVES);
             event.accept(ModBlocks.EBONY_LOG);
@@ -98,8 +98,8 @@ public class RPGMod
             event.accept(ModBlocks.BLACK_OPAL_BLOCK);
             event.accept(ModBlocks.BLACK_OPAL_ORE);
             event.accept(ModBlocks.DEEPSLATE_BLACK_OPAL_ORE);
-            event.accept(ModBlocks.NETHERRACK_BLACK_OPAL_ORE);
-            event.accept(ModBlocks.ENDSTONE_BLACK_OPAL_ORE);
+            //event.accept(ModBlocks.NETHERRACK_BLACK_OPAL_ORE);
+            //event.accept(ModBlocks.ENDSTONE_BLACK_OPAL_ORE);
             event.accept(ModBlocks.EBONY_LEAVES);
             event.accept(ModBlocks.EBONY_LOG);
             event.accept(ModBlocks.EBONY_WOOD);

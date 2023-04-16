@@ -37,12 +37,12 @@ public class ModBlocks {
     public static final RegistryObject<Block> DEEPSLATE_BLACK_OPAL_ORE = registerBlock("deepslate_black_opal_ore", 
         () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(7f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> NETHERRACK_BLACK_OPAL_ORE = registerBlock("netherrack_black_opal_ore", 
-        () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
-                        .strength(5f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> ENDSTONE_BLACK_OPAL_ORE = registerBlock("endstone_black_opal_ore", 
-        () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(8f).requiresCorrectToolForDrops()));
+    //public static final RegistryObject<Block> NETHERRACK_BLACK_OPAL_ORE = registerBlock("netherrack_black_opal_ore", 
+    //    () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+    //                    .strength(5f).requiresCorrectToolForDrops()));
+    //public static final RegistryObject<Block> ENDSTONE_BLACK_OPAL_ORE = registerBlock("endstone_black_opal_ore", 
+    //    () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+    //                .strength(8f).requiresCorrectToolForDrops()));
 
     
     public static final RegistryObject<Block> EBONY_LOG = registerBlock("ebony_log", 

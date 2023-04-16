@@ -1,6 +1,0 @@
-{
-    "type": "forge:add_features",
-    "biomes": "#is_nether",
-    "features": "rpgmod:nether_black_opal_placed",
-    "step": "underground_ores"
-}
