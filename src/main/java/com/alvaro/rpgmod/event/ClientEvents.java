@@ -4,13 +4,15 @@ import com.alvaro.rpgmod.RPGMod;
 import com.alvaro.rpgmod.client.ManaHudOverlay;
 import com.alvaro.rpgmod.networking.ModMessages;
 import com.alvaro.rpgmod.networking.packet.SubManaC2SPacket;
-import com.alvaro.rpgmod.networking.packet.SummonTammedTigerC2SPacket;
+import com.alvaro.rpgmod.networking.packet.UpdateAttributesC2SPacket;
 import com.alvaro.rpgmod.util.KeyBinding;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -23,8 +25,18 @@ public class ClientEvents {
         public static void onKeyInput(InputEvent.Key event){
              if (KeyBinding.TEST_KEY.consumeClick()){
                 ModMessages.sendToServer(new SubManaC2SPacket());
-                ModMessages.sendToServer(new SummonTammedTigerC2SPacket());
+                //ModMessages.sendToServer(new SummonTammedTigerC2SPacket());
              }
+        }
+        
+        @SubscribeEvent
+        public static void playerSpawn(PlayerEvent.PlayerRespawnEvent event){
+            ModMessages.sendToServer(new UpdateAttributesC2SPacket());
+        }
+
+        @SubscribeEvent
+        public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+            ModMessages.sendToServer(new UpdateAttributesC2SPacket());
         }
     }
 
@@ -40,6 +52,7 @@ public class ClientEvents {
         public static void registerGuiOverlays(RegisterGuiOverlaysEvent event){
             event.registerAboveAll("mana", ManaHudOverlay.HUD_MANA);
         }
+
     }
     
 }

@@ -1,12 +1,12 @@
 package com.alvaro.rpgmod.event;
 
 import com.alvaro.rpgmod.RPGMod;
-import com.alvaro.rpgmod.capabilities.mana.PlayerManaProvider;
+import com.alvaro.rpgmod.capabilities.stats.PlayerStatsProvider;
 import com.alvaro.rpgmod.entity.ModEntities;
 import com.alvaro.rpgmod.entity.custom.TigerEntity;
 import com.alvaro.rpgmod.entity.custom.TrollEntity;
 import com.alvaro.rpgmod.networking.ModMessages;
-import com.alvaro.rpgmod.networking.packet.ManaDataSyncS2C;
+import com.alvaro.rpgmod.networking.packet.StatsDataSyncS2C;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -52,8 +52,8 @@ public class ModEvents {
         @SubscribeEvent
         public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event) {
             if(event.getObject() instanceof Player) {
-                if(!event.getObject().getCapability(PlayerManaProvider.PLAYER_MANA).isPresent()) {
-                    event.addCapability(new ResourceLocation(RPGMod.MODID, "properties"), new PlayerManaProvider());
+                if(!event.getObject().getCapability(PlayerStatsProvider.PLAYER_STATS).isPresent()) {
+                    event.addCapability(new ResourceLocation(RPGMod.MODID, "properties"), new PlayerStatsProvider());
                 }
             }
         }
@@ -62,10 +62,9 @@ public class ModEvents {
         public static void onPlayerCloned(PlayerEvent.Clone event){
             if(event.isWasDeath()){
                 event.getOriginal().reviveCaps();
-                event.getOriginal().getCapability(PlayerManaProvider.PLAYER_MANA).ifPresent(oldStore -> {
-                    event.getEntity().getCapability(PlayerManaProvider.PLAYER_MANA).ifPresent(newStore -> {
+                event.getOriginal().getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(oldStore -> {
+                    event.getEntity().getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(newStore -> {
                         newStore.copyFrom(oldStore);
-                        newStore.setMana(newStore.getMaxMana());
                     });
                 });
             event.getOriginal().invalidateCaps();
@@ -77,10 +76,18 @@ public class ModEvents {
         @SubscribeEvent
         public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
             if(event.side == LogicalSide.SERVER) {
-                event.player.getCapability(PlayerManaProvider.PLAYER_MANA).ifPresent(mana -> {
-                    if(mana.getMaxMana() > 0 && event.player.getRandom().nextFloat() < 0.005f) { // Once Every 10 Seconds on Avg
-                        mana.addMana(1);
-                        ModMessages.sendToPlayer(new ManaDataSyncS2C(mana.getMana(), mana.getMaxMana()), ((ServerPlayer) event.player));
+                event.player.getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(stats -> {
+                    if(stats.getMaxMana() > 0 && event.player.getRandom().nextFloat() < 0.005f) { // Once Every 10 Seconds on Avg
+                        stats.addMana(stats.getWisdom());
+                        ModMessages.sendToPlayer(new StatsDataSyncS2C(stats.getMana(),
+                                                                      stats.getMaxMana(),
+                                                                      stats.getLevel(),
+                                                                      stats.getPoints(),
+                                                                      stats.getStrength(),
+                                                                      stats.getDex(),
+                                                                      stats.getCon(),
+                                                                      stats.getIntelligence(),
+                                                                      stats.getWisdom()), ((ServerPlayer) event.player));
                     }
                 });
             }
@@ -90,8 +97,16 @@ public class ModEvents {
         public static void onPlayerJoinWorld(EntityJoinLevelEvent event) {
             if(!event.getLevel().isClientSide()) {
                 if(event.getEntity() instanceof ServerPlayer player) {
-                    player.getCapability(PlayerManaProvider.PLAYER_MANA).ifPresent(mana -> {
-                        ModMessages.sendToPlayer(new ManaDataSyncS2C(mana.getMana(), mana.getMaxMana()), player);
+                    player.getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(stats -> {
+                        ModMessages.sendToPlayer(new StatsDataSyncS2C(stats.getMana(),
+                                                                      stats.getMaxMana(),
+                                                                      stats.getLevel(),
+                                                                      stats.getPoints(),
+                                                                      stats.getStrength(),
+                                                                      stats.getDex(),
+                                                                      stats.getCon(),
+                                                                      stats.getIntelligence(),
+                                                                      stats.getWisdom()), player);
                     });
                 }
             }

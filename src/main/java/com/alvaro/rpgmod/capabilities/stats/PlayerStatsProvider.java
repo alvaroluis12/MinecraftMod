@@ -1,4 +1,4 @@
-package com.alvaro.rpgmod.capabilities.mana;
+package com.alvaro.rpgmod.capabilities.stats;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -12,39 +12,38 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 
-public class PlayerManaProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
+public class PlayerStatsProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
-    public static Capability<PlayerMana> PLAYER_MANA = CapabilityManager.get(new CapabilityToken<PlayerMana>() {});
-
-    private PlayerMana mana = null;
-    private final LazyOptional<PlayerMana> optional = LazyOptional.of(this::createPlayerMana);
+    public static Capability<PlayerStats> PLAYER_STATS = CapabilityManager.get(new CapabilityToken<PlayerStats>() {});
+    private PlayerStats stats = null;
+    private final LazyOptional<PlayerStats> optional = LazyOptional.of(this::createPlayerStats);
 
     @Override
     public CompoundTag serializeNBT() {
         CompoundTag nbt = new CompoundTag();
-        createPlayerMana().saveNBTData(nbt);
+        createPlayerStats().saveNBTData(nbt);
         return nbt;
     }
 
     @Override
     public void deserializeNBT(CompoundTag nbt) {
-        createPlayerMana().loadNBTData(nbt);
+        createPlayerStats().loadNBTData(nbt);
     }
 
     @Override
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == PLAYER_MANA){
+        if (cap == PLAYER_STATS){
             return optional.cast();
         }
 
         return LazyOptional.empty();
     }
 
-    private PlayerMana createPlayerMana() {
-        if (this.mana == null){
-            this.mana = new PlayerMana();
+    private PlayerStats createPlayerStats() {
+        if (this.stats == null){
+            this.stats = new PlayerStats();
         }
-        return this.mana;
+        return this.stats;
     }
     
 }

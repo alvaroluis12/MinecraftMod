@@ -26,11 +26,12 @@ public class SummonTammedTigerC2SPacket {
 
     }
 
-    public boolean handle(Supplier<NetworkEvent.Context> supplier){
+    public void handle(Supplier<NetworkEvent.Context> supplier){
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
             // HERE WE ARE ON THE SERVER
             ServerPlayer player = context.getSender();
+            assert player != null;
             ServerLevel level = player.getLevel();
             
 
@@ -41,7 +42,6 @@ public class SummonTammedTigerC2SPacket {
                  tiger.setOwnerUUID(player.getUUID());
                 }
         });
-        return true;
     }
     
     

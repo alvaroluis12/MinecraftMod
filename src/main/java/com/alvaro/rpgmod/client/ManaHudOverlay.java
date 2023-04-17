@@ -15,7 +15,7 @@ public class ManaHudOverlay {
 
 
     public static final IGuiOverlay HUD_MANA = ((gui, poseStack, partialTick, width, height) -> {
-        MAX_MANA = ClientManaData.getPlayerMaxMana();
+        MAX_MANA = ClientStatsData.getPlayerMaxMana();
         int x = width / 2;
         int y = height;
 
@@ -29,7 +29,7 @@ public class ManaHudOverlay {
 
         RenderSystem.setShaderTexture(0, FILLED_MANA);
         for(int i = 0; i < MAX_MANA; i++) {
-            if(ClientManaData.getPlayerMana() > i) {
+            if(ClientStatsData.getPlayerMana() > i) {
                 GuiComponent.blit(poseStack,x - 94 + ((i%10) * 9),y - 54-(i-(i%10)),0,0,12,12,
                         12,12);
             } else {

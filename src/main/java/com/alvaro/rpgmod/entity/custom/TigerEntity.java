@@ -231,7 +231,7 @@ public class TigerEntity extends TamableAnimal implements NeutralMob, GeoEntity 
             tAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.tiger.sitting", Animation.LoopType.PLAY_ONCE));
             return PlayState.CONTINUE;
         }
-        else if (tAnimationState.isMoving()){
+        if (tAnimationState.isMoving()){
             tAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.tiger.walk", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;
         }
