@@ -3,16 +3,14 @@ package com.alvaro.rpgmod.event;
 import com.alvaro.rpgmod.RPGMod;
 import com.alvaro.rpgmod.client.ManaHudOverlay;
 import com.alvaro.rpgmod.networking.ModMessages;
+import com.alvaro.rpgmod.networking.packet.OpenCloseStatsScreenC2SPacket;
 import com.alvaro.rpgmod.networking.packet.SubManaC2SPacket;
-import com.alvaro.rpgmod.networking.packet.UpdateAttributesC2SPacket;
 import com.alvaro.rpgmod.util.KeyBinding;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -27,16 +25,9 @@ public class ClientEvents {
                 ModMessages.sendToServer(new SubManaC2SPacket());
                 //ModMessages.sendToServer(new SummonTammedTigerC2SPacket());
              }
-        }
-        
-        @SubscribeEvent
-        public static void playerSpawn(PlayerEvent.PlayerRespawnEvent event){
-            ModMessages.sendToServer(new UpdateAttributesC2SPacket());
-        }
-
-        @SubscribeEvent
-        public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-            ModMessages.sendToServer(new UpdateAttributesC2SPacket());
+             if(KeyBinding.GUI_KEY.consumeClick()){
+                ModMessages.sendToServer(new OpenCloseStatsScreenC2SPacket());
+             }
         }
     }
 
@@ -46,6 +37,7 @@ public class ClientEvents {
         @SubscribeEvent
         public static void onKeyRegister(RegisterKeyMappingsEvent event) {
             event.register(KeyBinding.TEST_KEY);
+            event.register(KeyBinding.GUI_KEY);
         }
 
         @SubscribeEvent

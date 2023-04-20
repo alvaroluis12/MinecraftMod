@@ -32,6 +32,9 @@ public class UpdateAttributesC2SPacket {
             //ServerLevel level = player.getLevel();
             assert player != null;
             player.getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(stats -> {
+                if (stats.getMaxMana() > 0 && player.getRandom().nextFloat() < 0.005f){// Once Every 10 Seconds on Avg
+                    stats.addMana(stats.getWisdom());
+                } 
 
                 ModMessages.sendToPlayer(new StatsDataSyncS2C(stats.getMana(),
                                                               stats.getMaxMana(),
@@ -47,8 +50,19 @@ public class UpdateAttributesC2SPacket {
                 Objects.requireNonNull(player.getAttribute(Attributes.ATTACK_DAMAGE)).setBaseValue(1.0D + stats.getStrength()/10);
                 Objects.requireNonNull(player.getAttribute(Attributes.ARMOR)).setBaseValue(stats.getCon());
                 Objects.requireNonNull(player.getAttribute(Attributes.ATTACK_SPEED)).setBaseValue(player.getAttributeValue(Attributes.ATTACK_SPEED) + (double) stats.getDex() /100);
-                //Objects.requireNonNull(player.getAttribute(Attributes.MOVEMENT_SPEED)).setBaseValue(Math.min((double) 0.1F + stats.getDex()/100, 0.5D));
-
+                Objects.requireNonNull(player.getAttribute(Attributes.MOVEMENT_SPEED)).setBaseValue(0.1F + stats.getDex()/350);
+                /*if (!player.hasEffect(MobEffects.REGENERATION)){
+                    player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, -1, Math.round(stats.getCon()/100), false, false, false), player);
+                }
+                if (!player.hasEffect(MobEffects.DAMAGE_RESISTANCE)){
+                    player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, -1, Math.round(stats.getCon()/100), false, false, false), player);
+                }
+                if(!player.hasEffect(MobEffects.DAMAGE_BOOST)){
+                    player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, -1, Math.round(stats.getStrength()/100), false, false, false), player);
+                }
+                if(!player.hasEffect(MobEffects.DIG_SPEED)){
+                    player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, -1, Math.round(stats.getStrength()/100), false, false, false), player);
+                }*/
             });
         });
     }

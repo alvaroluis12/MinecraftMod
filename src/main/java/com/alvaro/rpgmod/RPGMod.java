@@ -10,7 +10,10 @@ import com.alvaro.rpgmod.item.ModCreativeModeTabs;
 import com.alvaro.rpgmod.item.ModItems;
 //import com.mojang.logging.LogUtils;
 import com.alvaro.rpgmod.networking.ModMessages;
+import com.alvaro.rpgmod.screen.ModMenuTypes;
+import com.alvaro.rpgmod.screen.StatsScreen;
 
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -42,6 +45,7 @@ public class RPGMod
 
 
         modEventBus.addListener(this::commonSetup);
+        ModMenuTypes.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -126,6 +130,8 @@ public class RPGMod
         {
             EntityRenderers.register(ModEntities.TIGER.get(), TigerRenderer::new);
             EntityRenderers.register(ModEntities.TROLL.get(), TrollRenderer::new);
+            
+            MenuScreens.register(ModMenuTypes.Stats_Menu.get(), StatsScreen::new);
         }
     }
 }

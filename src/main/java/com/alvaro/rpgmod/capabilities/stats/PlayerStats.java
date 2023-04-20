@@ -5,12 +5,13 @@ import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 
 @AutoRegisterCapability
 public class PlayerStats {
+    public static final int LEVEL_UP_POINTS = 3, STR_INDEX = 0, DEX_INDEX = 1, CON_INDEX = 2, INT_INDEX = 3, WIS_INDEX = 4;
     //STRENGTH = attack damage
     //DEXTERITY = speed, attack speed
     //CONSTITUTION = max_hp, defense
     //INTELLIGENCE = magic attack, mana cost
     //WISDOM = max_mana, mana regen
-    private int LEVEL_UP_POINTS = 3, LEVEL = 0, POINTS = 0,  MANA = 0, STRENGTH = 0, DEXTERITY = 0, CONSTITUTION = 0, INTELLIGENCE = 0, WISDOM = 0;
+    private int LEVEL = 0, POINTS = 5,  MANA = 0, STRENGTH = 0, DEXTERITY = 0, CONSTITUTION = 0, INTELLIGENCE = 0, WISDOM = 0;
     private int MAX_MANA = this.WISDOM*10;
 
     public int getLevel(){
@@ -47,7 +48,7 @@ public class PlayerStats {
 
     public void addLevel(int lvl){
         this.LEVEL = lvl;
-        addPoints(LEVEL_UP_POINTS);
+        addPoints(LEVEL_UP_POINTS*lvl);
     }
     
     public void setPoints(int pts){
@@ -74,10 +75,12 @@ public class PlayerStats {
     }
 
     public boolean addStrength(int str){
-        if(hasEnoughPoints(str)){
-            this.STRENGTH = Math.min(this.STRENGTH+str, 300);
-            subPoints(str);
-            return true;
+        if (this.STRENGTH < 300){
+            if(hasEnoughPoints(str)){
+                this.STRENGTH = Math.min(this.STRENGTH+str, 300);
+                subPoints(str);
+                return true;
+            }
         }
         return false;
     }
@@ -87,11 +90,13 @@ public class PlayerStats {
     }
 
     public boolean addCon(int con){
-        if (hasEnoughPoints(con)){
-            this.CONSTITUTION = Math.min(this.CONSTITUTION+con, 300);
-            subPoints(con);
-            return true;
-        }  
+        if (this.CONSTITUTION < 300){
+            if (hasEnoughPoints(con)){
+                this.CONSTITUTION = Math.min(this.CONSTITUTION+con, 300);
+                subPoints(con);
+                return true;
+            }  
+        }
         return false;
     }
 
@@ -100,9 +105,11 @@ public class PlayerStats {
     }
 
     public boolean addDex(int dex){
-        if(hasEnoughPoints(dex)){
-            this.DEXTERITY = Math.min(this.DEXTERITY+dex, 300);
-            subPoints(dex);
+        if(this.DEXTERITY < 300){
+            if(hasEnoughPoints(dex)){
+                this.DEXTERITY = Math.min(this.DEXTERITY+dex, 300);
+                subPoints(dex);
+            }
         }
         return false;
     }
@@ -112,9 +119,11 @@ public class PlayerStats {
     }
 
     public void addIntelligence(int intell){
-        if (hasEnoughPoints(intell)){
-            this.INTELLIGENCE = Math.min(this.INTELLIGENCE+intell, 300);
-            subPoints(intell);
+        if(this.INTELLIGENCE < 300){
+            if (hasEnoughPoints(intell)){
+                this.INTELLIGENCE = Math.min(this.INTELLIGENCE+intell, 300);
+                subPoints(intell);
+            }
         }
     }
 
@@ -123,10 +132,14 @@ public class PlayerStats {
     }
 
     public boolean addWisdom(int wis){
-        if (hasEnoughPoints(wis)){
-            this.WISDOM = Math.min(this.WISDOM+wis, 300);
-            subPoints(wis);
-            return true;
+        if(this.WISDOM < 300){
+            if (hasEnoughPoints(wis)){
+                this.WISDOM = Math.min(this.WISDOM+wis, 300);
+                subPoints(wis);
+
+                addMaxMana(wis*10);
+                return true;
+            }
         }
         return false;
     }
@@ -163,8 +176,21 @@ public class PlayerStats {
         this.MAX_MANA -= sub;
     }
 
+    
+    public void resetStatsToDefault(){
+        this.LEVEL = 0;
+        this.POINTS = 5; 
+        this.MANA = 0;
+        this.STRENGTH = 0;
+        this.DEXTERITY = 0;
+        this.CONSTITUTION = 0;
+        this.INTELLIGENCE = 0;
+        this.WISDOM = 0;
+        resetManaToDefault();
+    }
+
     public void resetManaToDefault(){
-        MAX_MANA = this.WISDOM * 10;
+        this.MAX_MANA = (this.WISDOM * 10) + 20;
     }
     
     public void copyFrom(PlayerStats source) {
@@ -176,7 +202,7 @@ public class PlayerStats {
         this.INTELLIGENCE = source.INTELLIGENCE;
         this.WISDOM = source.WISDOM;
         this.LEVEL = source.LEVEL;
-        this.LEVEL_UP_POINTS = source.LEVEL_UP_POINTS;
+        this.POINTS = source.POINTS;
     }
 
     public void saveNBTData(CompoundTag nbt){
@@ -187,7 +213,7 @@ public class PlayerStats {
         nbt.putInt("constitution", CONSTITUTION);
         nbt.putInt("intelligence", INTELLIGENCE);
         nbt.putInt("wisdom", WISDOM);
-        nbt.putInt("level_up_points", LEVEL_UP_POINTS);
+        nbt.putInt("points", POINTS);
         nbt.putInt("level", LEVEL);
     }
 
@@ -199,7 +225,7 @@ public class PlayerStats {
         CONSTITUTION = nbt.getInt("constitution");
         INTELLIGENCE = nbt.getInt("intelligence");
         WISDOM = nbt.getInt("wisdom");
-        LEVEL_UP_POINTS = nbt.getInt("level_up_points");
+        POINTS = nbt.getInt("points");
         LEVEL = nbt.getInt("level");
     }
 

@@ -24,8 +24,11 @@
     "entity.rpgmod.troll": "Troll",
     "entity.rpgmod.tiger": "Tiger",
 
-    "key.category.rpgmod.test": "RPG Mod",
+    "key.category.rpgmod": "RPG Mod",
     "key.rpgmod.test": "Test",
+    "key.rpgmod.gui": "Open/Close GUI",
 
-    "creativemodetab.rpg_mod": "RPG Tab"
+    "creativemodetab.rpg_mod": "RPG Tab",
+
+    "menu.title.rpgmod.statsmenu": "Stats"
 }

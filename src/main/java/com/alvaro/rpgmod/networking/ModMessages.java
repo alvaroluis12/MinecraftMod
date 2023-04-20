@@ -1,9 +1,11 @@
 package com.alvaro.rpgmod.networking;
 
 import com.alvaro.rpgmod.RPGMod;
+import com.alvaro.rpgmod.networking.packet.OpenCloseStatsScreenC2SPacket;
 import com.alvaro.rpgmod.networking.packet.StatsDataSyncS2C;
 import com.alvaro.rpgmod.networking.packet.SummonTammedTigerC2SPacket;
 import com.alvaro.rpgmod.networking.packet.UpdateAttributesC2SPacket;
+import com.alvaro.rpgmod.networking.packet.addAttributeC2SPacket;
 import com.alvaro.rpgmod.networking.packet.SubManaC2SPacket;
 
 import net.minecraft.resources.ResourceLocation;
@@ -48,6 +50,18 @@ public class ModMessages {
                 .decoder(UpdateAttributesC2SPacket::new)
                 .encoder(UpdateAttributesC2SPacket::toBytes)
                 .consumerMainThread(UpdateAttributesC2SPacket::handle)
+                .add(); 
+
+        net.messageBuilder(OpenCloseStatsScreenC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(OpenCloseStatsScreenC2SPacket::new)
+                .encoder(OpenCloseStatsScreenC2SPacket::toBytes)
+                .consumerMainThread(OpenCloseStatsScreenC2SPacket::handle)
+                .add(); 
+
+        net.messageBuilder(addAttributeC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(addAttributeC2SPacket::new)
+                .encoder(addAttributeC2SPacket::toBytes)
+                .consumerMainThread(addAttributeC2SPacket::handle)
                 .add(); 
 
         net.messageBuilder(StatsDataSyncS2C.class, id(), NetworkDirection.PLAY_TO_CLIENT)

@@ -62,7 +62,7 @@ public class ClientStatsData {
         ClientStatsData.playerLevel = level;
     }
 
-    public static int getLeve(){
+    public static int getLevel(){
         return playerLevel;
     }
 

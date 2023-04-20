@@ -6,10 +6,9 @@ import com.alvaro.rpgmod.entity.ModEntities;
 import com.alvaro.rpgmod.entity.custom.TigerEntity;
 import com.alvaro.rpgmod.entity.custom.TrollEntity;
 import com.alvaro.rpgmod.networking.ModMessages;
-import com.alvaro.rpgmod.networking.packet.StatsDataSyncS2C;
+import com.alvaro.rpgmod.networking.packet.UpdateAttributesC2SPacket;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
@@ -72,43 +71,19 @@ public class ModEvents {
         }
 
         
-
+        
         @SubscribeEvent
         public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-            if(event.side == LogicalSide.SERVER) {
-                event.player.getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(stats -> {
-                    if(stats.getMaxMana() > 0 && event.player.getRandom().nextFloat() < 0.005f) { // Once Every 10 Seconds on Avg
-                        stats.addMana(stats.getWisdom());
-                        ModMessages.sendToPlayer(new StatsDataSyncS2C(stats.getMana(),
-                                                                      stats.getMaxMana(),
-                                                                      stats.getLevel(),
-                                                                      stats.getPoints(),
-                                                                      stats.getStrength(),
-                                                                      stats.getDex(),
-                                                                      stats.getCon(),
-                                                                      stats.getIntelligence(),
-                                                                      stats.getWisdom()), ((ServerPlayer) event.player));
-                    }
-                });
+            if(event.side == LogicalSide.CLIENT) {
+                
+                ModMessages.sendToServer(new UpdateAttributesC2SPacket());
             }
         }
 
         @SubscribeEvent
         public static void onPlayerJoinWorld(EntityJoinLevelEvent event) {
-            if(!event.getLevel().isClientSide()) {
-                if(event.getEntity() instanceof ServerPlayer player) {
-                    player.getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(stats -> {
-                        ModMessages.sendToPlayer(new StatsDataSyncS2C(stats.getMana(),
-                                                                      stats.getMaxMana(),
-                                                                      stats.getLevel(),
-                                                                      stats.getPoints(),
-                                                                      stats.getStrength(),
-                                                                      stats.getDex(),
-                                                                      stats.getCon(),
-                                                                      stats.getIntelligence(),
-                                                                      stats.getWisdom()), player);
-                    });
-                }
+            if(event.getLevel().isClientSide()) {
+                ModMessages.sendToServer(new UpdateAttributesC2SPacket());
             }
         }
     }
