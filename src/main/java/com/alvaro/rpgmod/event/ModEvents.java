@@ -9,6 +9,8 @@ import com.alvaro.rpgmod.networking.ModMessages;
 import com.alvaro.rpgmod.networking.packet.UpdateAttributesC2SPacket;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
@@ -21,6 +23,8 @@ import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent.Operation;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
@@ -84,6 +88,39 @@ public class ModEvents {
         public static void onPlayerJoinWorld(EntityJoinLevelEvent event) {
             if(event.getLevel().isClientSide()) {
                 ModMessages.sendToServer(new UpdateAttributesC2SPacket());
+            }
+        }
+
+        @SubscribeEvent
+        public static void onPlayerAttacked(LivingAttackEvent event){
+            DamageSource damageSource = event.getSource();
+            Entity damageSourceEntity = damageSource.getEntity();
+
+            if (damageSourceEntity != null){
+                if (event.getEntity() instanceof ServerPlayer){
+                    event.getEntity().getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(stats -> {
+                        if(event.getEntity().getRandom().nextFloat() < stats.getDex()*0.3F/100){
+                            event.setCanceled(true);
+                        }
+                    });
+                }
+            }
+        }
+        
+        @SubscribeEvent
+        public static void onPlayerAttack(LivingDamageEvent event){
+            DamageSource damageSource = event.getSource();
+            Entity damageSourceEntity = damageSource.getEntity();
+
+            if (damageSourceEntity instanceof ServerPlayer){
+                System.out.println(event.getAmount());
+                damageSourceEntity.getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(stats -> {
+                    if(event.getEntity().getRandom().nextFloat() < stats.getStrength() / 300 ){
+                        System.out.println("a");
+                        event.setAmount(event.getAmount() * 1.5f);
+                    }
+                    System.out.println(event.getAmount());
+                });
             }
         }
     }

@@ -28,7 +28,5 @@
     "key.rpgmod.test": "Test",
     "key.rpgmod.gui": "Open/Close GUI",
 
-    "creativemodetab.rpg_mod": "RPG Tab",
-
-    "menu.title.rpgmod.statsmenu": "Stats"
+    "creativemodetab.rpg_mod": "RPG Tab"
 }

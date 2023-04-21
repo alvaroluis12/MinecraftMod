@@ -6,8 +6,8 @@ import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 @AutoRegisterCapability
 public class PlayerStats {
     public static final int LEVEL_UP_POINTS = 3, STR_INDEX = 0, DEX_INDEX = 1, CON_INDEX = 2, INT_INDEX = 3, WIS_INDEX = 4;
-    //STRENGTH = attack damage
-    //DEXTERITY = speed, attack speed
+    //STRENGTH = attack damage, crit chance
+    //DEXTERITY = evsasion, attack speed
     //CONSTITUTION = max_hp, defense
     //INTELLIGENCE = magic attack, mana cost
     //WISDOM = max_mana, mana regen
