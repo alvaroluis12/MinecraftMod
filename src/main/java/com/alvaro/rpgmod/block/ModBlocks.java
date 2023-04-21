@@ -4,6 +4,7 @@ import java.util.function.Supplier;
 
 import com.alvaro.rpgmod.RPGMod;
 import com.alvaro.rpgmod.block.custom.ModFlammableRotatedPillarBlock;
+import com.alvaro.rpgmod.fluid.ModFluids;
 import com.alvaro.rpgmod.item.ModItems;
 import com.alvaro.rpgmod.worldgen.tree.EbonyTreeGrower;
 import net.minecraft.world.item.Item;
@@ -14,6 +15,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -90,6 +92,9 @@ public class ModBlocks {
                     });
     public static final RegistryObject<Block> EBONY_SAPLING = registerBlock("ebony_sapling", 
         () -> new SaplingBlock(new EbonyTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+
+    public static final RegistryObject<LiquidBlock> MANA_FLUID_BLOCK = BLOCKS.register("mana_fluid_block", 
+            () -> new LiquidBlock(ModFluids.SOURCE_MANA, BlockBehaviour.Properties.copy(Blocks.WATER).noLootTable()));
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

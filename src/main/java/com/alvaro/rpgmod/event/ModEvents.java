@@ -113,13 +113,10 @@ public class ModEvents {
             Entity damageSourceEntity = damageSource.getEntity();
 
             if (damageSourceEntity instanceof ServerPlayer){
-                System.out.println(event.getAmount());
                 damageSourceEntity.getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(stats -> {
                     if(event.getEntity().getRandom().nextFloat() < stats.getStrength() / 300 ){
-                        System.out.println("a");
                         event.setAmount(event.getAmount() * 1.5f);
                     }
-                    System.out.println(event.getAmount());
                 });
             }
         }

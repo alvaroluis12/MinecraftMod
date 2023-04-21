@@ -2,10 +2,13 @@ package com.alvaro.rpgmod.item;
 
 import com.alvaro.rpgmod.RPGMod;
 import com.alvaro.rpgmod.entity.ModEntities;
+import com.alvaro.rpgmod.fluid.ModFluids;
 
 import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SwordItem;
@@ -44,6 +47,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> TROLL_SPAWN_EGG = ITEMS.register("troll_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.TROLL, 0xD57E36, 0x1D0D00, new Item.Properties()));
+
+    public static final RegistryObject<Item> MANA_FLUID_BUCKET = ITEMS.register("mana_fluid_bucket", 
+            () -> new BucketItem(ModFluids.SOURCE_MANA, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

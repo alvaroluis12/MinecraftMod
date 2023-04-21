@@ -29,6 +29,7 @@ public class ModItemModelProvider extends ItemModelProvider{
     protected void registerModels() {
         simpleItem(ModItems.BLACK_OPAL);
         simpleItem(ModItems.RAW_BLACK_OPAL);
+        simpleItem(ModItems.MANA_FLUID_BUCKET);
         saplingItem(ModBlocks.EBONY_SAPLING);
         swordItem(ModItems.BLACK_OPAL_SWORD);
         pickaxeItem(ModItems.BLACK_OPAL_PICKAXE);

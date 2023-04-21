@@ -38,10 +38,6 @@ public class SubManaC2SPacket {
                 else {
                     player.sendSystemMessage(Component.literal("Not enough mana").withStyle(ChatFormatting.RED));
                 }
-
-                stats.resetStatsToDefault();
-                stats.addLevel(300);
-                stats.setCon(300);
             });
             
         });

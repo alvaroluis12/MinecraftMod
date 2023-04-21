@@ -6,6 +6,8 @@ import com.alvaro.rpgmod.block.ModBlocks;
 import com.alvaro.rpgmod.entity.ModEntities;
 import com.alvaro.rpgmod.entity.client.TigerRenderer;
 import com.alvaro.rpgmod.entity.client.TrollRenderer;
+import com.alvaro.rpgmod.fluid.ModFluids;
+import com.alvaro.rpgmod.fluid.ModFluidsTypes;
 import com.alvaro.rpgmod.item.ModCreativeModeTabs;
 import com.alvaro.rpgmod.item.ModItems;
 //import com.mojang.logging.LogUtils;
@@ -14,6 +16,8 @@ import com.alvaro.rpgmod.screen.ModMenuTypes;
 import com.alvaro.rpgmod.screen.StatsScreen;
 
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -48,6 +52,9 @@ public class RPGMod
         ModMenuTypes.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
+
+        ModFluids.register(modEventBus);
+        ModFluidsTypes.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
     }
@@ -91,6 +98,7 @@ public class RPGMod
             event.accept(ModItems.BLACK_OPAL_AXE);
             event.accept(ModItems.BLACK_OPAL_PICKAXE);
             event.accept(ModItems.BLACK_OPAL_SHOVEL);
+            event.accept(ModItems.MANA_FLUID_BUCKET);
         }
         if(event.getTab() == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(ModItems.TIGER_SPAWN_EGG);
@@ -119,6 +127,7 @@ public class RPGMod
             event.accept(ModItems.BLACK_OPAL_SHOVEL);
             event.accept(ModItems.TIGER_SPAWN_EGG);
             event.accept(ModItems.TROLL_SPAWN_EGG);
+            event.accept(ModItems.MANA_FLUID_BUCKET);
         }
     }
 
@@ -132,6 +141,9 @@ public class RPGMod
             EntityRenderers.register(ModEntities.TROLL.get(), TrollRenderer::new);
             
             MenuScreens.register(ModMenuTypes.Stats_Menu.get(), StatsScreen::new);
+
+            ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_MANA.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_MANA.get(), RenderType.translucent());
         }
     }
 }
