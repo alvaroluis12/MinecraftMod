@@ -14,6 +14,21 @@ public class PlayerStats {
     private int LEVEL = 0, POINTS = 5,  MANA = 0, STRENGTH = 0, DEXTERITY = 0, CONSTITUTION = 0, INTELLIGENCE = 0, WISDOM = 0;
     private int MAX_MANA = this.WISDOM*10;
 
+    public static final int NO_CLASS=-1, MAGE=0, DRUID=1, SUMMONER=2, RANGER=3, PALADIN=4, BERSERKER=5;
+    private int playerClass = -1;
+
+    public int getPlayerClass(){
+        return playerClass;
+    }
+
+    public void setPlayerClass(int playerClass){
+        this.playerClass = playerClass;
+    }
+
+    public boolean hasClass(){
+        return this.playerClass > NO_CLASS;
+    }
+    
     public int getLevel(){
         return this.LEVEL;
     }

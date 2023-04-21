@@ -29,5 +29,12 @@
     "key.rpgmod.test": "Test",
     "key.rpgmod.gui": "Open/Close GUI",
 
-    "creativemodetab.rpg_mod": "RPG Tab"
+    "creativemodetab.rpg_mod": "RPG Tab",
+
+    "rpgmod.classes.mage": "Mage",
+    "rpgmod.classes.druid": "Druid",
+    "rpgmod.classes.summoner": "Summoner",
+    "rpgmod.classes.ranger": "Ranger",
+    "rpgmod.classes.paladin": "Paladin",
+    "rpgmod.classes.berserker": "Berserker"
 }

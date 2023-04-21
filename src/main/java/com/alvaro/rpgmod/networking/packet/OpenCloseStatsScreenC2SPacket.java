@@ -3,7 +3,7 @@ package com.alvaro.rpgmod.networking.packet;
 import java.util.function.Supplier;
 
 import com.alvaro.rpgmod.client.ClientStatsData;
-import com.alvaro.rpgmod.screen.StatsMenu;
+import com.alvaro.rpgmod.screen.stats.StatsMenu;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;

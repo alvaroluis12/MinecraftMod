@@ -13,7 +13,8 @@ import com.alvaro.rpgmod.item.ModItems;
 //import com.mojang.logging.LogUtils;
 import com.alvaro.rpgmod.networking.ModMessages;
 import com.alvaro.rpgmod.screen.ModMenuTypes;
-import com.alvaro.rpgmod.screen.StatsScreen;
+import com.alvaro.rpgmod.screen.classes.ClassSelectScreen;
+import com.alvaro.rpgmod.screen.stats.StatsScreen;
 
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -140,6 +141,7 @@ public class RPGMod
             EntityRenderers.register(ModEntities.TIGER.get(), TigerRenderer::new);
             EntityRenderers.register(ModEntities.TROLL.get(), TrollRenderer::new);
             
+            MenuScreens.register(ModMenuTypes.Class_Select_Menu.get(), ClassSelectScreen::new);
             MenuScreens.register(ModMenuTypes.Stats_Menu.get(), StatsScreen::new);
 
             ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_MANA.get(), RenderType.translucent());

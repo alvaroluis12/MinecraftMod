@@ -1,15 +1,15 @@
-package com.alvaro.rpgmod.screen;
+package com.alvaro.rpgmod.screen.stats;
 
 import com.alvaro.rpgmod.RPGMod;
 import com.alvaro.rpgmod.capabilities.stats.PlayerStats;
 import com.alvaro.rpgmod.client.ClientStatsData;
 import com.alvaro.rpgmod.networking.ModMessages;
 import com.alvaro.rpgmod.networking.packet.addAttributeC2SPacket;
+import com.alvaro.rpgmod.screen.button.AddButton;
 import com.alvaro.rpgmod.util.KeyBinding;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -37,66 +37,66 @@ public class StatsScreen extends AbstractContainerScreen<StatsMenu>{
         int i= this.leftPos;
         int j = this.topPos;
 
-        this.addRenderableWidget(new addButton(
+        this.addRenderableWidget(new AddButton(
                 i+(166/2)-20,
                 j+20,
                 20,
                 20,
                 Component.literal("+"),
                 (button) -> {
-                    this.addStr();
+                    this.addAttribute(PlayerStats.STR_INDEX);
                 },
                 (button) -> {
                     return Component.translatable("str_add");
                 }));
 
-        this.addRenderableWidget(new addButton(
+        this.addRenderableWidget(new AddButton(
                 i+(166/2)-20,
                 j+50,
                 20,
                 20,
                 Component.literal("+"),
                 (button) -> {
-                    this.addDex();
+                    this.addAttribute(PlayerStats.DEX_INDEX);
                 },
                 (button) -> {
                     return Component.translatable("dex_add");
                 }));
 
-        this.addRenderableWidget(new addButton(
+        this.addRenderableWidget(new AddButton(
                 i+(166/2)-20,
                 j+80,
                 20,
                 20,
                 Component.literal("+"),
                 (button) -> {
-                    this.addCon();
+                    this.addAttribute(PlayerStats.CON_INDEX);
                 },
                 (button) -> {
                     return Component.translatable("con_add");
                 }));
 
-        this.addRenderableWidget(new addButton(
+        this.addRenderableWidget(new AddButton(
                 i+166-20,
                 j+20,
                 20,
                 20,
                 Component.literal("+"),
                 (button) -> {
-                    this.addInt();
+                    this.addAttribute(PlayerStats.INT_INDEX);
                 },
                 (button) -> {
                     return Component.translatable("int_add");
                 }));
 
-        this.addRenderableWidget(new addButton(
+        this.addRenderableWidget(new AddButton(
                 i+166-20,
                 j+50,
                 20,
                 20,
                 Component.literal("+"),
                 (button) -> {
-                    this.addWis();
+                    this.addAttribute(PlayerStats.WIS_INDEX);
                 },
                 (button) -> {
                     return Component.translatable("wis_add");
@@ -104,24 +104,8 @@ public class StatsScreen extends AbstractContainerScreen<StatsMenu>{
 	
     }
 
-    private void addDex() {
-        ModMessages.sendToServer(new addAttributeC2SPacket(PlayerStats.DEX_INDEX));
-    }
-
-    private void addStr() {
-        ModMessages.sendToServer(new addAttributeC2SPacket(PlayerStats.STR_INDEX));
-    }
-
-    private void addCon() {
-        ModMessages.sendToServer(new addAttributeC2SPacket(PlayerStats.CON_INDEX));
-    }
-
-    private void addInt() {
-        ModMessages.sendToServer(new addAttributeC2SPacket(PlayerStats.INT_INDEX));
-    }
-
-    private void addWis() {
-        ModMessages.sendToServer(new addAttributeC2SPacket(PlayerStats.WIS_INDEX));
+    private void addAttribute(int attribute) {
+        ModMessages.sendToServer(new addAttributeC2SPacket(attribute));
     }
 
     @Override
@@ -178,32 +162,6 @@ public class StatsScreen extends AbstractContainerScreen<StatsMenu>{
         this.font.draw(pPoseStack, Component.literal("HP: "+ player.getHealth() + "/" + player.getAttributeBaseValue(Attributes.MAX_HEALTH)), (float)this.titleLabelX, (float)this.titleLabelY+110, 4210752);
         this.font.draw(pPoseStack, Component.literal("MP: "+ ClientStatsData.getPlayerMana() + "/" + ClientStatsData.getPlayerMaxMana()), (float)this.titleLabelX, (float)this.titleLabelY+140, 4210752);
 
-    
-    }
-
-
-    public static class addButton extends Button{
-
-        public addButton(int pX, int pY, int pWidth, int pHeight, Component pMessage, OnPress pOnPress) {
-            super(pX,
-                  pY,
-                  pWidth,
-                  pHeight,
-                  pMessage,
-                  pOnPress,
-                  DEFAULT_NARRATION);
-        }
-
-        public addButton(int pX, int pY, int pWidth, int pHeight, Component pMessage, OnPress pOnPress,
-                CreateNarration pCreateNarration) {
-            super(pX,
-                  pY,
-                  pWidth,
-                  pHeight,
-                  pMessage,
-                  pOnPress,
-                  pCreateNarration);
-        }
     
     }
 }

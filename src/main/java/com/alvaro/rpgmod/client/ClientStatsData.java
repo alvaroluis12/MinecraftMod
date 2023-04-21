@@ -1,8 +1,15 @@
 package com.alvaro.rpgmod.client;
 
 public class ClientStatsData {
-    private static int playerMana, playerMaxMana, playerStrength, playerConstitution, playerDexterity, playerIntelligence, playerWisdom, playerLevel, playerPoints;
+    private static int playerClass, playerMana, playerMaxMana, playerStrength, playerConstitution, playerDexterity, playerIntelligence, playerWisdom, playerLevel, playerPoints;
 
+    public static void setPlayerClass(int playerClass){
+        ClientStatsData.playerClass = playerClass;
+    }
+
+    public static int getPlayerClass(){
+        return playerClass;
+    }
     public static void setMana(int mana){
         ClientStatsData.playerMana = mana;
     }

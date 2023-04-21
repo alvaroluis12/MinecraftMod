@@ -1,4 +1,4 @@
-package com.alvaro.rpgmod.screen;
+package com.alvaro.rpgmod.screen.classes;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -8,17 +8,19 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-public class StatsMenu extends AbstractContainerMenu{
+import com.alvaro.rpgmod.screen.ModMenuTypes;
 
-    public StatsMenu(int pContainerId, Inventory inv, FriendlyByteBuf buf) {
-        this(ModMenuTypes.Stats_Menu.get(), pContainerId, inv);
+public class ClassSelectMenu extends AbstractContainerMenu{
+
+    public ClassSelectMenu(int pContainerId, Inventory inv, FriendlyByteBuf buf) {
+        this(ModMenuTypes.Class_Select_Menu.get(), pContainerId, inv);
     }
 
-    public StatsMenu(int pContainerId, Inventory inv){
-        this(ModMenuTypes.Stats_Menu.get(), pContainerId, inv);
+    public ClassSelectMenu(int pContainerId, Inventory inv){
+        this(ModMenuTypes.Class_Select_Menu.get(), pContainerId, inv);
     }
 
-    public StatsMenu(MenuType<?> pMenuType, int pContainerId, Inventory inv) {
+    public ClassSelectMenu(MenuType<?> pMenuType, int pContainerId, Inventory inv) {
         super(pMenuType, pContainerId);
     }
 

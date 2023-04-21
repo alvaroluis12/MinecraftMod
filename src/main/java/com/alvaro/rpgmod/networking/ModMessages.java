@@ -2,6 +2,7 @@ package com.alvaro.rpgmod.networking;
 
 import com.alvaro.rpgmod.RPGMod;
 import com.alvaro.rpgmod.networking.packet.OpenCloseStatsScreenC2SPacket;
+import com.alvaro.rpgmod.networking.packet.SelectClassC2SPacket;
 import com.alvaro.rpgmod.networking.packet.StatsDataSyncS2C;
 import com.alvaro.rpgmod.networking.packet.SummonTammedTigerC2SPacket;
 import com.alvaro.rpgmod.networking.packet.UpdateAttributesC2SPacket;
@@ -68,6 +69,12 @@ public class ModMessages {
                 .decoder(StatsDataSyncS2C::new)
                 .encoder(StatsDataSyncS2C::toBytes)
                 .consumerMainThread(StatsDataSyncS2C::handle)
+                .add();
+
+        net.messageBuilder(SelectClassC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(SelectClassC2SPacket::new)
+                .encoder(SelectClassC2SPacket::toBytes)
+                .consumerMainThread(SelectClassC2SPacket::handle)
                 .add();
     }
 

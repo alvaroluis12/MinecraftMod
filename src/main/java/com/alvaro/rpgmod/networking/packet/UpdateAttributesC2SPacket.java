@@ -2,10 +2,15 @@ package com.alvaro.rpgmod.networking.packet;
 
 import com.alvaro.rpgmod.capabilities.stats.PlayerStatsProvider;
 import com.alvaro.rpgmod.networking.ModMessages;
+import com.alvaro.rpgmod.screen.classes.ClassSelectMenu;
+
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.network.NetworkHooks;
 
 import java.util.Objects;
 import java.util.function.Supplier;
@@ -36,7 +41,15 @@ public class UpdateAttributesC2SPacket {
                     stats.addMana(stats.getWisdom());
                 } 
 
-                ModMessages.sendToPlayer(new StatsDataSyncS2C(stats.getMana(),
+                if(!stats.hasClass()){
+                    NetworkHooks.openScreen(player, new SimpleMenuProvider(
+                        (containerId, playerInventory, nul) -> new ClassSelectMenu(containerId, playerInventory),
+                        Component.literal("Select class")
+                    ));
+                }
+                
+                ModMessages.sendToPlayer(new StatsDataSyncS2C(stats.getPlayerClass(),
+                                                              stats.getMana(),
                                                               stats.getMaxMana(),
                                                               stats.getLevel(),
                                                               stats.getPoints(),
