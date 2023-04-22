@@ -10,10 +10,10 @@ import com.alvaro.rpgmod.client.ClientStatsData;
 import it.unimi.dsi.fastutil.ints.IntList;
 
 public class StatsDataSyncS2C {
-    private final int playerClass, mana, maxMana, level, points, strength, dexterity, constitution, intelligence, wisdom;
+    private final int playerClass, mana, maxMana, level, points, strength, dexterity, constitution, intelligence, wisdom, xp, xpNecessary;
 
 
-    public StatsDataSyncS2C(int playerClass, int mana, int maxMana, int level, int points, int strength, int dexterity, int constitution, int intelligence, int wisdom) {
+    public StatsDataSyncS2C(int playerClass, int mana, int maxMana, int level, int points, int strength, int dexterity, int constitution, int intelligence, int wisdom, int xp, int xpNecessary) {
         this.playerClass = playerClass;
         this.mana = mana;
         this.maxMana = maxMana;
@@ -24,6 +24,8 @@ public class StatsDataSyncS2C {
         this.constitution = constitution;
         this.intelligence = intelligence;
         this.wisdom = wisdom;
+        this.xp = xp;
+        this.xpNecessary = xpNecessary;
     }
 
     public StatsDataSyncS2C(FriendlyByteBuf buf){
@@ -38,6 +40,8 @@ public class StatsDataSyncS2C {
         this.constitution = list.getInt(7);
         this.intelligence = list.getInt(8);
         this.wisdom = list.getInt(9);
+        this.xp = list.getInt(10);
+        this.xpNecessary = list.getInt(11);
     }
 
     public void toBytes(FriendlyByteBuf buf){
@@ -50,7 +54,9 @@ public class StatsDataSyncS2C {
                       this.dexterity,
                       this.constitution,
                       this.intelligence,
-                      this.wisdom
+                      this.wisdom,
+                      this.xp,
+                      this.xpNecessary
                     };
         buf.writeVarIntArray(attr);
     }
@@ -69,6 +75,8 @@ public class StatsDataSyncS2C {
             ClientStatsData.setConstitution(constitution);
             ClientStatsData.setIntelligence(intelligence);
             ClientStatsData.setWisdom(wisdom);
+            ClientStatsData.setXp(xp);
+            ClientStatsData.setXpNecessary(xpNecessary);
         });
     }
 

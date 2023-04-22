@@ -18,6 +18,6 @@ public class ModCreativeModeTabs{
     @SubscribeEvent
     public static void registerCreativeModeTabs(CreativeModeTabEvent.Register event) {
         RPG_TAB = event.registerCreativeModeTab(new ResourceLocation(RPGMod.MODID, "rpg_tab"), 
-            builder -> builder.icon(() -> new ItemStack(ModItems.BLACK_OPAL.get())).title(Component.translatable("creativemodetab.rpg_mod")));
+            builder -> builder.icon(() -> new ItemStack(ModItems.BLACK_OPAL.get())).title(Component.translatable("rpgmod.creativemodetab.rpg_mod")));
     }
 }

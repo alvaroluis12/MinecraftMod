@@ -32,23 +32,25 @@ public class addAttributeC2SPacket {
             ServerPlayer player = context.getSender();
             assert player != null;
             player.getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(stats -> {
-                switch(attribute){
-                    case PlayerStats.STR_INDEX:
-                        stats.addStrength(1);
-                        break;
-                    case PlayerStats.CON_INDEX:
-                        stats.addCon(1);
-                        break;
-                    
-                    case PlayerStats.DEX_INDEX:
-                        stats.addDex(1);
-                        break;
-                    case PlayerStats.INT_INDEX:
-                        stats.addIntelligence(1);
-                        break;
-                    case PlayerStats.WIS_INDEX:
-                        stats.addWisdom(1);
-                        break;
+                    if (stats.getPoints() >= 1){
+                    switch(attribute){
+                        case PlayerStats.STR_INDEX:
+                            stats.addStrength(1);
+                            break;
+                        case PlayerStats.CON_INDEX:
+                            stats.addCon(1);
+                            break;
+                        
+                        case PlayerStats.DEX_INDEX:
+                            stats.addDex(1);
+                            break;
+                        case PlayerStats.INT_INDEX:
+                            stats.addIntelligence(1);
+                            break;
+                        case PlayerStats.WIS_INDEX:
+                            stats.addWisdom(1);
+                            break;
+                    }
                 }
             });
             

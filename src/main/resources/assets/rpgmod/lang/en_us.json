@@ -36,5 +36,15 @@
     "rpgmod.classes.summoner": "Summoner",
     "rpgmod.classes.ranger": "Ranger",
     "rpgmod.classes.paladin": "Paladin",
-    "rpgmod.classes.berserker": "Berserker"
+    "rpgmod.classes.berserker": "Berserker",
+
+    "rpgmod.attribute.strength": "Strength",
+    "rpgmod.attribute.dexterity": "Dexterity",
+    "rpgmod.attribute.constitution": "Constitution",
+    "rpgmod.attribute.intelligence": "Intelligence",
+    "rpgmod.commands.attribute.success.self": "attribute changed self",
+    "rpgmod.attribute.changed": "attribute changed",
+    "rpgmod.commands.attribute.success.other": "attribute changed other",
+    "rpgmod.attribute.wisdom": "Wisdom",
+    "rpgmod.argument.attribute.invalid": "Invalid attribute"
 }

@@ -2,6 +2,7 @@ package com.alvaro.rpgmod.event;
 
 import com.alvaro.rpgmod.RPGMod;
 import com.alvaro.rpgmod.capabilities.stats.PlayerStatsProvider;
+import com.alvaro.rpgmod.commands.AttributesCommand;
 import com.alvaro.rpgmod.entity.ModEntities;
 import com.alvaro.rpgmod.entity.custom.TigerEntity;
 import com.alvaro.rpgmod.entity.custom.TrollEntity;
@@ -18,6 +19,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
@@ -25,10 +27,12 @@ import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent.Operation;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.server.command.ConfigCommand;
 
 
 public class ModEvents {
@@ -63,15 +67,14 @@ public class ModEvents {
 
         @SubscribeEvent
         public static void onPlayerCloned(PlayerEvent.Clone event){
-            if(event.isWasDeath()){
-                event.getOriginal().reviveCaps();
-                event.getOriginal().getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(oldStore -> {
-                    event.getEntity().getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(newStore -> {
-                        newStore.copyFrom(oldStore);
-                    });
+            event.getOriginal().reviveCaps();
+            event.getOriginal().getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(oldStore -> {
+                event.getEntity().getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(newStore -> {
+                    newStore.copyFrom(oldStore);
                 });
+            });
             event.getOriginal().invalidateCaps();
-            }
+            
         }
 
         
@@ -79,7 +82,6 @@ public class ModEvents {
         @SubscribeEvent
         public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
             if(event.side == LogicalSide.CLIENT) {
-                
                 ModMessages.sendToServer(new UpdateAttributesC2SPacket());
             }
         }
@@ -119,6 +121,25 @@ public class ModEvents {
                     }
                 });
             }
+        }
+
+        @SubscribeEvent
+        public static void onEntityDeath(LivingDeathEvent event){
+            DamageSource damageSource = event.getSource();
+            Entity damageSourceEntity = damageSource.getEntity();
+
+            if(damageSourceEntity instanceof ServerPlayer){
+                damageSourceEntity.getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(stats -> {
+                    stats.addXp(event.getEntity().getExperienceReward());
+                });
+            }
+        }
+
+        
+        @SubscribeEvent
+        public static void onCommandsRegister(RegisterCommandsEvent event) {
+            AttributesCommand.register(event.getDispatcher());
+            ConfigCommand.register(event.getDispatcher());
         }
     }
 }

@@ -3,6 +3,7 @@ package com.alvaro.rpgmod;
 //import org.slf4j.Logger;
 
 import com.alvaro.rpgmod.block.ModBlocks;
+import com.alvaro.rpgmod.commands.ModArgumentTypes;
 import com.alvaro.rpgmod.entity.ModEntities;
 import com.alvaro.rpgmod.entity.client.TigerRenderer;
 import com.alvaro.rpgmod.entity.client.TrollRenderer;
@@ -47,6 +48,8 @@ public class RPGMod
         ModBlocks.register(modEventBus);
 
         ModEntities.register(modEventBus);
+
+        ModArgumentTypes.register(modEventBus);
 
 
         modEventBus.addListener(this::commonSetup);

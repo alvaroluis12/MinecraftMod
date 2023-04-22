@@ -31,6 +31,7 @@ public class SubManaC2SPacket {
             ServerPlayer player = context.getSender();
             assert player != null;
             player.getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(stats -> {
+                stats.resetPlayerToDefault();
                 if (stats.getMana() > 0){
                     stats.subMana(1);
                     player.sendSystemMessage(Component.literal("Current Mana: " + stats.getMana()).withStyle(ChatFormatting.AQUA));

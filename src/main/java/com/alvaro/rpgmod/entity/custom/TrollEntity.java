@@ -9,8 +9,6 @@ import net.minecraft.world.BossEvent;
 //import javax.annotation.Nullable;
 
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -52,16 +50,16 @@ public class TrollEntity extends Monster implements GeoEntity{
 
     public TrollEntity(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
-        this.addEffect(new MobEffectInstance(MobEffects.REGENERATION, -1, 3, false, false, false), null);
+        //this.addEffect(new MobEffectInstance(MobEffects.REGENERATION, -1, 3, false, false, false), null);
     }
 
     public static AttributeSupplier setAttributes() {
         return Monster.createMonsterAttributes()
-            .add(Attributes.MAX_HEALTH, 200D)
-            .add(Attributes.ATTACK_DAMAGE, 15.0f)
+            .add(Attributes.MAX_HEALTH, 600D)
+            .add(Attributes.ATTACK_DAMAGE, 30.0f)
             .add(Attributes.ATTACK_SPEED, 0.4f)
             .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
-            .add(Attributes.MOVEMENT_SPEED, 0.2D).build();
+            .add(Attributes.MOVEMENT_SPEED, 0.1D).build();
     }
 
     @Override
@@ -116,6 +114,11 @@ public class TrollEntity extends Monster implements GeoEntity{
     public void stopSeenByPlayer(ServerPlayer p_31488_) {
        super.stopSeenByPlayer(p_31488_);
        this.bossEvent.removePlayer(p_31488_);
+    }
+    
+    @Override
+    public int getExperienceReward() {
+        return 50;
     }
     
 

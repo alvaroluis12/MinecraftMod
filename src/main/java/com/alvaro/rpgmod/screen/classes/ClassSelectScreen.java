@@ -40,7 +40,7 @@ public class ClassSelectScreen extends AbstractContainerScreen<ClassSelectMenu>{
                     this.selectClass(PlayerStats.MAGE);
                 },
                 (button) -> {
-                    return Component.translatable("select_mage");
+                    return Component.translatable("rpgmod.select_mage");
                 }));
 
         this.addRenderableWidget(new AddButton(
@@ -53,7 +53,7 @@ public class ClassSelectScreen extends AbstractContainerScreen<ClassSelectMenu>{
                     this.selectClass(PlayerStats.DRUID);
                 },
                 (button) -> {
-                    return Component.translatable("select_druid");
+                    return Component.translatable("rpgmod.select_druid");
                 }));
 
         this.addRenderableWidget(new AddButton(
@@ -66,7 +66,7 @@ public class ClassSelectScreen extends AbstractContainerScreen<ClassSelectMenu>{
                     this.selectClass(PlayerStats.SUMMONER);
                 },
                 (button) -> {
-                    return Component.translatable("select_summoner");
+                    return Component.translatable("rpgmod.select_summoner");
                 }));
 
         this.addRenderableWidget(new AddButton(
@@ -79,7 +79,7 @@ public class ClassSelectScreen extends AbstractContainerScreen<ClassSelectMenu>{
                     this.selectClass(PlayerStats.RANGER);
                 },
                 (button) -> {
-                    return Component.translatable("select_ranger");
+                    return Component.translatable("rpgmod.select_ranger");
                 }));
 
         this.addRenderableWidget(new AddButton(
@@ -92,7 +92,7 @@ public class ClassSelectScreen extends AbstractContainerScreen<ClassSelectMenu>{
                     this.selectClass(PlayerStats.PALADIN);
                 },
                 (button) -> {
-                    return Component.translatable("select_paladin");
+                    return Component.translatable("rpgmod.select_paladin");
                 }));
 
         this.addRenderableWidget(new AddButton(
@@ -105,7 +105,7 @@ public class ClassSelectScreen extends AbstractContainerScreen<ClassSelectMenu>{
                     this.selectClass(PlayerStats.BERSERKER);
                 },
                 (button) -> {
-                    return Component.translatable("select_berserker");
+                    return Component.translatable("rpgmod.select_berserker");
                 }));
 	
     }

@@ -1,7 +1,7 @@
 package com.alvaro.rpgmod.client;
 
 public class ClientStatsData {
-    private static int playerClass, playerMana, playerMaxMana, playerStrength, playerConstitution, playerDexterity, playerIntelligence, playerWisdom, playerLevel, playerPoints;
+    private static int playerClass, playerMana, playerMaxMana, playerStrength, playerConstitution, playerDexterity, playerIntelligence, playerWisdom, playerLevel, playerPoints, xp, xpNecessary;
 
     public static void setPlayerClass(int playerClass){
         ClientStatsData.playerClass = playerClass;
@@ -10,6 +10,22 @@ public class ClientStatsData {
     public static int getPlayerClass(){
         return playerClass;
     }
+
+    public static int getXp(){
+        return xp;
+    }
+    public static void setXp(int xp){
+        ClientStatsData.xp = xp;
+    }
+    
+
+    public static int getXpNecessary(){
+        return xpNecessary;
+    }
+    public static void setXpNecessary(int xpNecessary){
+        ClientStatsData.xpNecessary = xpNecessary;
+    }
+
     public static void setMana(int mana){
         ClientStatsData.playerMana = mana;
     }
