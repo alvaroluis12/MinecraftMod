@@ -1,5 +1,7 @@
 package com.alvaro.rpgmod.networking.packet;
 
+import com.alvaro.rpgmod.capabilities.skills.Berserker.BerserSkillsProvider;
+import com.alvaro.rpgmod.capabilities.stats.PlayerStats;
 import com.alvaro.rpgmod.capabilities.stats.PlayerStatsProvider;
 import com.alvaro.rpgmod.networking.ModMessages;
 import com.alvaro.rpgmod.screen.classes.ClassSelectMenu;
@@ -49,6 +51,13 @@ public class UpdateAttributesC2SPacket {
                         Component.literal("Select class")
                     ));
                 }
+
+                switch(stats.getPlayerClass()){
+                    case PlayerStats.BERSERKER:
+                        player.getCapability(BerserSkillsProvider.BERSERKER_SKILLS).ifPresent(skills -> {
+                            skills.setDash(true);
+                        });
+                }
                 
                 ModMessages.sendToPlayer(new StatsDataSyncS2C(stats.getPlayerClass(),
                                                               stats.getMana(),
@@ -63,9 +72,15 @@ public class UpdateAttributesC2SPacket {
                                                               stats.getXp(),
                                                               stats.getXpNecessary()), player);
                 
-                //Change player max health
                 Objects.requireNonNull(player.getAttribute(Attributes.MAX_HEALTH)).setBaseValue(20 + stats.getCon()*2);
-                Objects.requireNonNull(player.getAttribute(Attributes.ATTACK_DAMAGE)).setBaseValue(1.0D + stats.getStrength()/10);
+
+                if (stats.getPlayerClass() == PlayerStats.BERSERKER){
+                    Objects.requireNonNull(player.getAttribute(Attributes.ATTACK_DAMAGE)).setBaseValue(
+                        (1.0D + stats.getStrength()*3/10)*(2-(player.getHealth()/player.getMaxHealth())));
+                }
+                else {
+                    Objects.requireNonNull(player.getAttribute(Attributes.ATTACK_DAMAGE)).setBaseValue(1.0D + stats.getStrength()*3/10);
+                }
                 Objects.requireNonNull(player.getAttribute(Attributes.ARMOR)).setBaseValue(stats.getCon());
                 Objects.requireNonNull(player.getAttribute(Attributes.ATTACK_SPEED)).setBaseValue(4F + (double) stats.getDex() /100);
                 Objects.requireNonNull(player.getAttribute(Attributes.MOVEMENT_SPEED)).setBaseValue(0.1F + stats.getDex()/350);

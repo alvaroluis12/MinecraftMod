@@ -21,21 +21,21 @@ public class AttributesCommand {
             return player.hasPermission(2);
         }).then(Commands.literal("add").then(Commands.argument("attribute", AttributeArgument.attribute()).executes((command0) -> {
             return addAttribute(command0.getSource(), AttributeArgument.getAttribute(command0, "attribute"), 1, command0.getSource().getPlayerOrException());
-        }).then(Commands.argument("value", IntegerArgumentType.integer(1)).executes((command1) -> {
+        }).then(Commands.argument("value", IntegerArgumentType.integer(0)).executes((command1) -> {
             return addAttribute(command1.getSource(), AttributeArgument.getAttribute(command1, "attribute"), IntegerArgumentType.getInteger(command1, "value"), command1.getSource().getPlayerOrException());
         }).then(Commands.argument("target", EntityArgument.player()).executes((command2) -> {
             return addAttribute(command2.getSource(), AttributeArgument.getAttribute(command2, "attribute"), IntegerArgumentType.getInteger(command2, "value"), EntityArgument.getPlayer(command2, "target"));
         })))))
         .then(Commands.literal("set").then(Commands.argument("attribute", AttributeArgument.attribute()).executes((command0) -> {
             return setAttribute(command0.getSource(), AttributeArgument.getAttribute(command0, "attribute"), 1, command0.getSource().getPlayerOrException());
-        }).then(Commands.argument("value", IntegerArgumentType.integer(1)).executes((command1) -> {
+        }).then(Commands.argument("value", IntegerArgumentType.integer(0)).executes((command1) -> {
             return setAttribute(command1.getSource(), AttributeArgument.getAttribute(command1, "attribute"), IntegerArgumentType.getInteger(command1, "value"), command1.getSource().getPlayerOrException());
         }).then(Commands.argument("target", EntityArgument.player()).executes((command2) -> {
             return setAttribute(command2.getSource(), AttributeArgument.getAttribute(command2, "attribute"), IntegerArgumentType.getInteger(command2, "value"), EntityArgument.getPlayer(command2, "target"));
         })))))
         .then(Commands.literal("remove").then(Commands.argument("attribute", AttributeArgument.attribute()).executes((command0) -> {
             return removeAttribute(command0.getSource(), AttributeArgument.getAttribute(command0, "attribute"), 1, command0.getSource().getPlayerOrException());
-        }).then(Commands.argument("value", IntegerArgumentType.integer(1)).executes((command1) -> {
+        }).then(Commands.argument("value", IntegerArgumentType.integer(0)).executes((command1) -> {
             return removeAttribute(command1.getSource(), AttributeArgument.getAttribute(command1, "attribute"), IntegerArgumentType.getInteger(command1, "value"), command1.getSource().getPlayerOrException());
         }).then(Commands.argument("target", EntityArgument.player()).executes((command2) -> {
             return removeAttribute(command2.getSource(), AttributeArgument.getAttribute(command2, "attribute"), IntegerArgumentType.getInteger(command2, "value"), EntityArgument.getPlayer(command2, "target"));

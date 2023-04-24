@@ -1,8 +1,10 @@
 package com.alvaro.rpgmod.entity;
 
 import com.alvaro.rpgmod.RPGMod;
+import com.alvaro.rpgmod.entity.custom.GloblinEntity;
 import com.alvaro.rpgmod.entity.custom.TigerEntity;
 import com.alvaro.rpgmod.entity.custom.TrollEntity;
+import com.alvaro.rpgmod.entity.custom.WindigoEntity;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -26,6 +28,18 @@ public class ModEntities {
                     () -> EntityType.Builder.of(TrollEntity::new, MobCategory.MONSTER)
                             .sized(1.5f, 3.5f)
                             .build(new ResourceLocation(RPGMod.MODID, "troll").toString()));
+    
+    public static final RegistryObject<EntityType<GloblinEntity>> GLOBLIN = 
+            ENTITY_TYPES.register("globlin", 
+                    () -> EntityType.Builder.of(GloblinEntity::new, MobCategory.MONSTER)
+                            .sized(1.5f, 1.75f)
+                            .build(new ResourceLocation(RPGMod.MODID, "globlin").toString()));
+    
+    public static final RegistryObject<EntityType<WindigoEntity>> WINDIGO = 
+            ENTITY_TYPES.register("windigo", 
+                    () -> EntityType.Builder.of(WindigoEntity::new, MobCategory.MONSTER)
+                            .sized(1.5f, 3.5f)
+                            .build(new ResourceLocation(RPGMod.MODID, "windigo").toString()));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

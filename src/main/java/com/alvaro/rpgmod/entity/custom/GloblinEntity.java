@@ -1,19 +1,12 @@
 package com.alvaro.rpgmod.entity.custom;
 
-
-
-import org.jetbrains.annotations.NotNull;
-
-//import javax.annotation.Nullable;
-
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.MoveThroughVillageGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
@@ -22,6 +15,8 @@ import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -34,33 +29,27 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class TrollEntity extends Monster implements GeoEntity{
-    /*private final ServerBossEvent bossEvent =
-        (ServerBossEvent)(new ServerBossEvent(this.getDisplayName(),
-            BossEvent.BossBarColor.GREEN,
-            BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);
-    */
+public class GloblinEntity extends Monster implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
-    public TrollEntity(EntityType<? extends Monster> entityType, Level level) {
-        super(entityType, level);
-        //this.addEffect(new MobEffectInstance(MobEffects.REGENERATION, -1, 3, false, false, false), null);
+    public GloblinEntity(EntityType<? extends Monster> pEntityType, Level pLevel) {
+        super(pEntityType, pLevel);
+        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.NETHERITE_AXE));
     }
 
     public static AttributeSupplier setAttributes() {
         return Monster.createMonsterAttributes()
-            .add(Attributes.MAX_HEALTH, 600D)
-            .add(Attributes.ATTACK_DAMAGE, 30.0f)
+            .add(Attributes.MAX_HEALTH, 20D)
+            .add(Attributes.ATTACK_DAMAGE, 2.0f)
             .add(Attributes.ATTACK_SPEED, 0.4f)
-            .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
-            .add(Attributes.MOVEMENT_SPEED, 0.2D).build();
+            .add(Attributes.MOVEMENT_SPEED, 0.3D).build();
     }
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
+        //this.goalSelector.addGoal(2, new FollowTrollGoal(this));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2D, false));
-        this.goalSelector.addGoal(6, new MoveThroughVillageGoal(this, 1.0D, false, 4, () -> {return false;}));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 1.00D));
         this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 12.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
@@ -70,49 +59,6 @@ public class TrollEntity extends Monster implements GeoEntity{
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
-    }
-
-    @Override
-    protected void dropCustomDeathLoot(@NotNull DamageSource p_21385_, int p_21386_, boolean p_21387_) {
-        super.dropCustomDeathLoot(p_21385_, p_21386_, p_21387_);
-    }
-    
-    /*
-    @Override
-    public void readAdditionalSaveData(CompoundTag p_21450_) {
-        super.readAdditionalSaveData(p_21450_);
-        if (this.hasCustomName()) {
-           this.bossEvent.setName(this.getDisplayName());
-        }
-    }
-
-    @Override
-    public void setCustomName(@Nullable Component p_20053_) {
-        super.setCustomName(p_20053_);
-        this.bossEvent.setName(this.getDisplayName());
-    }
-
-    @Override
-    protected void customServerAiStep() {
-        super.customServerAiStep();
-        this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
-    }
-
-    @Override
-    public void startSeenByPlayer(ServerPlayer p_31483_) {
-       super.startSeenByPlayer(p_31483_);
-       this.bossEvent.addPlayer(p_31483_);
-    }
-
-    @Override
-    public void stopSeenByPlayer(ServerPlayer p_31488_) {
-       super.stopSeenByPlayer(p_31488_);
-       this.bossEvent.removePlayer(p_31488_);
-    }
-    */
-    @Override
-    public int getExperienceReward() {
-        return 50;
     }
     
 
@@ -129,9 +75,9 @@ public class TrollEntity extends Monster implements GeoEntity{
 
     private <T extends GeoAnimatable> PlayState attackPredicate(AnimationState<T> state) {
         if (this.swinging){
-            //state.getController().forceAnimationReset();
-            state.getController().setAnimation(RawAnimation.begin().then("animation.troll.attack", Animation.LoopType.PLAY_ONCE));
-            //this.updateSwingTime();
+            state.getController().forceAnimationReset();
+            state.getController().setAnimation(RawAnimation.begin().then("animation.globlin.attack", Animation.LoopType.PLAY_ONCE));
+            this.updateSwingTime();
         }
         return PlayState.CONTINUE;
     }
@@ -139,11 +85,17 @@ public class TrollEntity extends Monster implements GeoEntity{
     private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState){
         
         if (tAnimationState.isMoving()){
-            return tAnimationState.setAndContinue(RawAnimation.begin().thenLoop("animation.troll.walk"));
+            return tAnimationState.setAndContinue(RawAnimation.begin().thenLoop("animation.globlin.walk"));
         }
         else{
-            return tAnimationState.setAndContinue(RawAnimation.begin().thenLoop("animation.troll.idle"));
+            return PlayState.STOP;
+            //return tAnimationState.setAndContinue(RawAnimation.begin().thenLoop("animation.globlin.idle"));
         }
+    }
+
+    @Override
+    public int getMaxSpawnClusterSize() {
+        return 10;
     }
     
 }

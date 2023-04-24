@@ -94,7 +94,7 @@ public class ClassSelectScreen extends AbstractContainerScreen<ClassSelectMenu>{
                 (button) -> {
                     return Component.translatable("rpgmod.select_paladin");
                 }));
-
+                
         this.addRenderableWidget(new AddButton(
                 i+100,
                 j+80,

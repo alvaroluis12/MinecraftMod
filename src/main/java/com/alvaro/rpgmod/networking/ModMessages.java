@@ -7,6 +7,7 @@ import com.alvaro.rpgmod.networking.packet.StatsDataSyncS2C;
 import com.alvaro.rpgmod.networking.packet.SummonTammedTigerC2SPacket;
 import com.alvaro.rpgmod.networking.packet.UpdateAttributesC2SPacket;
 import com.alvaro.rpgmod.networking.packet.addAttributeC2SPacket;
+import com.alvaro.rpgmod.networking.packet.skills.UseDashSkillC2SPacket;
 import com.alvaro.rpgmod.networking.packet.SubManaC2SPacket;
 
 import net.minecraft.resources.ResourceLocation;
@@ -75,6 +76,12 @@ public class ModMessages {
                 .decoder(SelectClassC2SPacket::new)
                 .encoder(SelectClassC2SPacket::toBytes)
                 .consumerMainThread(SelectClassC2SPacket::handle)
+                .add();
+
+        net.messageBuilder(UseDashSkillC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(UseDashSkillC2SPacket::new)
+                .encoder(UseDashSkillC2SPacket::toBytes)
+                .consumerMainThread(UseDashSkillC2SPacket::handle)
                 .add();
     }
 

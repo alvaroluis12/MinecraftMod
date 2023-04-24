@@ -15,6 +15,42 @@ public class PlayerStats {
     private int LEVEL = 0, POINTS = 0,  MANA = 0, STRENGTH = 0, DEXTERITY = 0, CONSTITUTION = 0, INTELLIGENCE = 0, WISDOM = 0, XP = 0, XP_NECESSARY = 20;
     private int MAX_MANA = this.WISDOM*10;
 
+    /*
+     * BERSERKER
+     * MENOS VIDA MAIS DANO
+     * MELEE 110%
+     * LIFESTEAL
+     * GAP CLOSE(DASH DE 5 BLOCOS)
+     * IMUNIDADE A CC
+     * MACHADO
+     * 
+     * PALADIN
+     * AMIGO DOS VILLAGERS
+     * TANK E BUFFER
+     * MELEE
+     * TIPO A LEONINHA
+     * MT CC
+     * 
+     * RANGER
+     * ARCO
+     * MT DEX
+     * HORRIVEL
+     * 
+     * SUMMONER
+     * SUMMONA BIXO
+     * PRECISA MATAR PRA SUMMONAR
+     * GASTA MANA PRA MANTER SUMMON
+     * SACRIFICA VIDA PARA SPAWNAR BIXO MAIS FORTE
+     * 
+     * MAGE
+     * O MAIS PIKA
+     * O FAVORECIDO POR MIM
+     * CRONTRA O CARALHO A QUATRO
+     * CONTEMPLEM O MAGO
+     * COM SEUS PODERES
+     * INCRIVEIS PODERES
+     */
+
     public static final int NO_CLASS=-1, MAGE=0, DRUID=1, SUMMONER=2, RANGER=3, PALADIN=4, BERSERKER=5;
     private int playerClass = -1;
 
@@ -44,7 +80,7 @@ public class PlayerStats {
     }
     
     public void setXp(int xp){
-        this.XP = xp;
+        this.XP = Math.max(xp, 0);
         levelUp();
     }
 
@@ -92,64 +128,64 @@ public class PlayerStats {
     }
 
     public void setLevel(int lvl){
-        this.LEVEL = lvl;
+        this.LEVEL = Math.max(lvl, 0);
     }
 
     public void addLevel(int lvl){
-        this.LEVEL += lvl;
+        this.LEVEL = Math.max(this.LEVEL + lvl, 0);
         addPoints(LEVEL_UP_POINTS*lvl);
     }
     
     public void setPoints(int pts){
-        this.POINTS = pts;
+        this.POINTS = Math.max(pts, 0);
     }
 
     public void addPoints(int pts){
-        this.POINTS += pts;
+        this.POINTS = Math.max(this.POINTS + pts, 0);
     }
 
     public void subPoints(int pts){
-        this.POINTS -= pts;
+        this.POINTS = Math.max(this.POINTS - pts, 0);
     }
 
     public void setStrength(int str){
-        this.STRENGTH = Math.min(str, 300);
+        this.STRENGTH = Math.min(Math.max(str, 0), 300)  ;
     }
 
     public void addStrength(int str){
-        this.STRENGTH = Math.min(this.STRENGTH+str, 300);
+        this.STRENGTH = Math.min(Math.max(this.STRENGTH+str, 0), 300);
     }
 
     public void setCon(int con){
-        this.CONSTITUTION = Math.min(con, 300);
+        this.CONSTITUTION = Math.min(Math.max(con, 0), 300);
     }
 
     public void addCon(int con){
-        this.CONSTITUTION = Math.min(this.CONSTITUTION+con, 300);
+        this.CONSTITUTION = Math.min(Math.max(this.CONSTITUTION+con, 0), 300);
     }
 
     public void setDex(int dex){
-        this.DEXTERITY = Math.min(dex, 300);
+        this.DEXTERITY = Math.min(Math.max(dex, 0), 300);
     }
 
     public void addDex(int dex){
-        this.DEXTERITY = Math.min(this.DEXTERITY+dex, 300);
+        this.DEXTERITY = Math.min(Math.max(this.DEXTERITY+dex, 0), 300);
     }
     
     public void setIntelligence(int intell){
-        this.INTELLIGENCE = Math.min(intell, 300);
+        this.INTELLIGENCE = Math.min(Math.max(intell, 0), 300);
     }
 
     public void addIntelligence(int intell){
-        this.INTELLIGENCE = Math.min(this.INTELLIGENCE+intell, 300);
+        this.INTELLIGENCE = Math.min(Math.max(this.INTELLIGENCE+intell, 0), 300);
     }
 
     public void setWisdom(int wis){
-        this.WISDOM = Math.min(wis, 300);
+        this.WISDOM = Math.min(Math.max(wis, 0), 300);
     }
 
     public void addWisdom(int wis){
-        this.WISDOM = Math.min(this.WISDOM+wis, 300);
+        this.WISDOM = Math.min(Math.max(this.WISDOM+wis, 0), 300);
     }
 
     public int getMana(){
@@ -157,15 +193,15 @@ public class PlayerStats {
     }
 
     public void setMana(int mana){
-        this.MANA = mana;
+        this.MANA = Math.max(mana, 0);
     }
 
     public void addMana(int add) {
-        this.MANA = Math.min((MANA + add), MAX_MANA);
+        this.MANA = Math.min(Math.max(MANA + add, 0), MAX_MANA);
     }
 
     public void subMana(int sub){
-        this.MANA -= sub;
+        this.MANA = Math.max(this.MANA - sub, 0);
     }
 
     public int getMaxMana(){
@@ -173,44 +209,44 @@ public class PlayerStats {
     }
 
     public void setMaxMana(int mana){
-        this.MAX_MANA = mana;
+        this.MAX_MANA = Math.max(mana, 20);
     }
 
     public void addMaxMana(int add){
-        this.MAX_MANA += add;
+        this.MAX_MANA = Math.max(this.MAX_MANA + add, 20);
     }
 
     public void subMaxMana(int sub){
-        this.MAX_MANA -= sub;
+        this.MAX_MANA = Math.max(this.MAX_MANA - sub, 20);
     }
 
     public void subStrength(int sub){
-        this.STRENGTH -= sub;
+        this.STRENGTH = Math.max(this.STRENGTH - sub, 0);
     }
 
     public void subConstitution(int sub){
-        this.CONSTITUTION -= sub;
+        this.CONSTITUTION = Math.max(this.CONSTITUTION - sub, 0);
     }
 
     public void subDexterity(int sub){
-        this.DEXTERITY -= sub;
+        this.DEXTERITY = Math.max(this.DEXTERITY - sub, 0);
     }
 
     public void subIntelligence(int sub){
-        this.INTELLIGENCE -= sub;
+        this.INTELLIGENCE = Math.max(this.INTELLIGENCE - sub, 0);
     }
 
     public void subWisdom(int sub){
-        this.WISDOM -= sub;
+        this.WISDOM = Math.max(this.WISDOM - sub, 0);
     }
 
     public void subLevel(int sub){
-        this.LEVEL -= sub;
-        subPoints(3);
+        Math.max(this.LEVEL - sub, 0);
+        subPoints(3*sub);
     }
 
     public void subXp(int sub){
-        this.XP -= sub;
+        this.XP = Math.max(this.XP - sub, 0);
     }
 
     

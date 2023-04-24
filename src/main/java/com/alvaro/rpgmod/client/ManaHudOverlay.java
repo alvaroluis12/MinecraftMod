@@ -42,10 +42,10 @@ public class ManaHudOverlay {
         GuiComponent.fill(poseStack,
                    x+14,
                    topY -19,
-                   x+14+(100*ClientStatsData.getPlayerMana()/ClientStatsData.getPlayerMaxMana()),
+                   x+14+(100*ClientStatsData.getPlayerMana()/Math.max(ClientStatsData.getPlayerMaxMana(), 20)),
                    topY -4,
                           FastColor.ARGB32.color(255, 46, 199, 221));
-
+        
         GuiComponent.drawCenteredString(poseStack,
                                         Minecraft.getInstance().font,
                                   ClientStatsData.getPlayerMana()+"/"+ClientStatsData.getPlayerMaxMana(),

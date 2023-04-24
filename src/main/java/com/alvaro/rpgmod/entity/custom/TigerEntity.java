@@ -18,7 +18,6 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
-import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.player.Player;
@@ -32,13 +31,13 @@ import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
 import software.bernie.geckolib.core.animation.Animation;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
@@ -58,7 +57,7 @@ public class TigerEntity extends TamableAnimal implements NeutralMob, GeoEntity 
     private UUID persistentAngerTarget;
 
 
-    private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     public TigerEntity(EntityType<? extends TigerEntity> p_27557_, Level p_27558_) {
         super(p_27557_, p_27558_);
@@ -93,7 +92,6 @@ public class TigerEntity extends TamableAnimal implements NeutralMob, GeoEntity 
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
-        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, AbstractSkeleton.class, false));
         this.targetSelector.addGoal(8, new ResetUniversalAngerTargetGoal<>(this, true));
     }
 
@@ -223,21 +221,19 @@ public class TigerEntity extends TamableAnimal implements NeutralMob, GeoEntity 
 
     @Override
     public void registerControllers(ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController<>(this, "controller", 0, this::predicate));
+        controllerRegistrar.add(new AnimationController<>(this, "controller", this::predicate));
     }
 
     private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState){
-        if (this.isInSittingPose()){
-            tAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.tiger.sitting", Animation.LoopType.PLAY_ONCE));
-            return PlayState.CONTINUE;
-        }
         if (tAnimationState.isMoving()){
-            tAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.tiger.walk", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
+            return tAnimationState.setAndContinue(RawAnimation.begin().thenLoop("animation.tiger.walk"));
         }
-
-        tAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.tiger.idle", Animation.LoopType.LOOP));
-        return PlayState.CONTINUE;
+        else if (this.isInSittingPose()){
+            return tAnimationState.setAndContinue(RawAnimation.begin().then("animation.tiger.sitting", Animation.LoopType.PLAY_ONCE));
+        }
+        else{
+            return tAnimationState.setAndContinue(RawAnimation.begin().thenLoop("animation.tiger.idle"));
+        }
     }
 
     public boolean hurt(@NotNull DamageSource p_30386_, float p_30387_) {

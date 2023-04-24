@@ -5,8 +5,10 @@ package com.alvaro.rpgmod;
 import com.alvaro.rpgmod.block.ModBlocks;
 import com.alvaro.rpgmod.commands.ModArgumentTypes;
 import com.alvaro.rpgmod.entity.ModEntities;
+import com.alvaro.rpgmod.entity.client.GloblinRenderer;
 import com.alvaro.rpgmod.entity.client.TigerRenderer;
 import com.alvaro.rpgmod.entity.client.TrollRenderer;
+import com.alvaro.rpgmod.entity.client.WindigoRenderer;
 import com.alvaro.rpgmod.fluid.ModFluids;
 import com.alvaro.rpgmod.fluid.ModFluidsTypes;
 import com.alvaro.rpgmod.item.ModCreativeModeTabs;
@@ -107,6 +109,8 @@ public class RPGMod
         if(event.getTab() == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(ModItems.TIGER_SPAWN_EGG);
             event.accept(ModItems.TROLL_SPAWN_EGG);
+            event.accept(ModItems.GLOBLIN_SPAWN_EGG);
+            event.accept(ModItems.WINDIGO_SPAWN_EGG);
         }
 
         if(event.getTab() == ModCreativeModeTabs.RPG_TAB) {
@@ -131,6 +135,8 @@ public class RPGMod
             event.accept(ModItems.BLACK_OPAL_SHOVEL);
             event.accept(ModItems.TIGER_SPAWN_EGG);
             event.accept(ModItems.TROLL_SPAWN_EGG);
+            event.accept(ModItems.GLOBLIN_SPAWN_EGG);
+            event.accept(ModItems.WINDIGO_SPAWN_EGG);
             event.accept(ModItems.MANA_FLUID_BUCKET);
         }
     }
@@ -143,6 +149,8 @@ public class RPGMod
         {
             EntityRenderers.register(ModEntities.TIGER.get(), TigerRenderer::new);
             EntityRenderers.register(ModEntities.TROLL.get(), TrollRenderer::new);
+            EntityRenderers.register(ModEntities.GLOBLIN.get(), GloblinRenderer::new);
+            EntityRenderers.register(ModEntities.WINDIGO.get(), WindigoRenderer::new);
             
             MenuScreens.register(ModMenuTypes.Class_Select_Menu.get(), ClassSelectScreen::new);
             MenuScreens.register(ModMenuTypes.Stats_Menu.get(), StatsScreen::new);
