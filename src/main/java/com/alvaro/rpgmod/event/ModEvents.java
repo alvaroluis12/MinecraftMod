@@ -83,6 +83,12 @@ public class ModEvents {
                     newStore.copyFrom(oldStore);
                 });
             });
+            event.getOriginal().reviveCaps();
+            event.getOriginal().getCapability(BerserSkillsProvider.BERSERKER_SKILLS).ifPresent(oldStore -> {
+                event.getEntity().getCapability(BerserSkillsProvider.BERSERKER_SKILLS).ifPresent(newStore -> {
+                    newStore.copyFrom(oldStore);
+                });
+            });
             event.getOriginal().invalidateCaps();
             
         }

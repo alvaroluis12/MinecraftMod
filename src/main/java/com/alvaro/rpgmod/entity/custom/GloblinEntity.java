@@ -1,5 +1,7 @@
 package com.alvaro.rpgmod.entity.custom;
 
+import com.alvaro.rpgmod.item.ModItems;
+
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -16,7 +18,6 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -34,7 +35,7 @@ public class GloblinEntity extends Monster implements GeoEntity {
 
     public GloblinEntity(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
-        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.NETHERITE_AXE));
+        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.GLOBLIN_DAGGER.get()));
     }
 
     public static AttributeSupplier setAttributes() {

@@ -98,6 +98,7 @@ public class RPGMod
         if(event.getTab() == CreativeModeTabs.COMBAT) {
             event.accept(ModItems.BLACK_OPAL_SWORD);
             event.accept(ModItems.BLACK_OPAL_AXE);
+            event.accept(ModItems.GLOBLIN_DAGGER);
         }
         if(event.getTab() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(ModItems.BLACK_OPAL_HOE);
@@ -129,6 +130,7 @@ public class RPGMod
             event.accept(ModBlocks.STRIPPED_EBONY_WOOD);
             event.accept(ModBlocks.EBONY_SAPLING);
             event.accept(ModItems.BLACK_OPAL_SWORD);
+            event.accept(ModItems.GLOBLIN_DAGGER);
             event.accept(ModItems.BLACK_OPAL_HOE);
             event.accept(ModItems.BLACK_OPAL_AXE);
             event.accept(ModItems.BLACK_OPAL_PICKAXE);

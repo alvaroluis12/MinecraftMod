@@ -2,6 +2,7 @@
     "item.rpgmod.black_opal": "Black Opal",
     "item.rpgmod.raw_black_opal": "Raw Black Opal",
     "item.rpgmod.black_opal_sword": "Black Opal Sword",
+    "item.rpgmod.globlin_dagger": "Globlin Dagger",
     "item.rpgmod.black_opal_pickaxe": "Black Opal Pickaxe",
     "item.rpgmod.black_opal_hoe": "Black Opal Hoe",
     "item.rpgmod.black_opal_shovel": "Black Opal Shovel",
@@ -33,7 +34,7 @@
     "key.rpgmod.test": "Test",
     "key.rpgmod.gui": "Open/Close GUI",
 
-    "rpgmod.creativemodetab.rpg_mod": "RPG Tab",
+    "rpgmod.creativemodetab": "RPG Tab",
 
     "rpgmod.classes.mage": "Mage",
     "rpgmod.classes.druid": "Druid",
