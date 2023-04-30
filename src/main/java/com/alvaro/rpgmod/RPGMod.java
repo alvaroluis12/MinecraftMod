@@ -99,6 +99,7 @@ public class RPGMod
             event.accept(ModItems.BLACK_OPAL_SWORD);
             event.accept(ModItems.BLACK_OPAL_AXE);
             event.accept(ModItems.GLOBLIN_DAGGER);
+            event.accept(ModItems.TOTEM_OF_GLOBLIN_FRIEND);
         }
         if(event.getTab() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(ModItems.BLACK_OPAL_HOE);
@@ -142,6 +143,7 @@ public class RPGMod
             event.accept(ModItems.ARCHER_GLOBLIN_SPAWN_EGG);
             event.accept(ModItems.WINDIGO_SPAWN_EGG);
             event.accept(ModItems.MANA_FLUID_BUCKET);
+            event.accept(ModItems.TOTEM_OF_GLOBLIN_FRIEND);
         }
     }
 

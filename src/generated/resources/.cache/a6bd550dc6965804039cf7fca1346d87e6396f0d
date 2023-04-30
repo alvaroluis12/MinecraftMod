@@ -1,4 +1,4 @@
-// 1.19.4	2023-04-27T21:07:59.606545	Item Models: rpgmod
+// 1.19.4	2023-04-30T09:28:00.1681052	Item Models: rpgmod
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/rpgmod/models/item/archer_globlin_spawn_egg.json
 ed07905b182346148df82da527fc418e86800ec0 assets/rpgmod/models/item/black_opal.json
 d33ee87bb2ba9db34478acd9222a99634b73e44a assets/rpgmod/models/item/black_opal_axe.json
@@ -12,5 +12,6 @@ e84580d615b4222eeafc2cb020a68cf33c9b9607 assets/rpgmod/models/item/black_opal_sw
 19726fb1c370a3a1fd78294b4f542b7ddca8c738 assets/rpgmod/models/item/mana_fluid_bucket.json
 9fc0503453a0e245fa69e66df1d4aa9f4b62d4ad assets/rpgmod/models/item/raw_black_opal.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/rpgmod/models/item/tiger_spawn_egg.json
+12a7bdcaeb8952159157de9da8eb66d46d00f196 assets/rpgmod/models/item/totem_of_globlin_friend.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/rpgmod/models/item/troll_spawn_egg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/rpgmod/models/item/windigo_spawn_egg.json

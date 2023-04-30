@@ -1,14 +1,12 @@
 package com.alvaro.rpgmod.networking.packet;
 
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.network.NetworkEvent;
-
 import java.util.function.Supplier;
 
-import com.alvaro.rpgmod.capabilities.stats.PlayerStatsProvider;
+import com.alvaro.rpgmod.capabilities.items.ItemEffectsProvider;
+
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.network.NetworkEvent;
 
 public class SubManaC2SPacket {
 
@@ -29,7 +27,11 @@ public class SubManaC2SPacket {
         context.enqueueWork(() -> {
             // HERE WE ARE ON THE SERVER
             ServerPlayer player = context.getSender();
-            player.getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(stats -> {
+
+            player.getCapability(ItemEffectsProvider.ITEM_EFFECTS).ifPresent(effects -> {
+                effects.setGloblinFriend(false);
+            });
+            /*player.getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(stats -> {
                 stats.resetPlayerToDefault();
                 if (stats.getMana() > 0){
                     stats.subMana(1);
@@ -39,7 +41,7 @@ public class SubManaC2SPacket {
                     player.sendSystemMessage(Component.literal("Not enough mana").withStyle(ChatFormatting.RED));
                 }
             });
-            
+            */
         });
     }
 

@@ -5,12 +5,12 @@ import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 
 @AutoRegisterCapability
 public class ItemEffects {
-    private boolean globlinFriend = true;
+    private boolean globlinFriend = false;
 
     public void setGloblinFriend(boolean friend){
         this.globlinFriend = friend;
     }
-    public boolean hasGloblinFriend(){
+    public boolean hasGloblinFriendship(){
         return globlinFriend;
     }
 

@@ -3,6 +3,7 @@ package com.alvaro.rpgmod.item;
 import com.alvaro.rpgmod.RPGMod;
 import com.alvaro.rpgmod.entity.ModEntities;
 import com.alvaro.rpgmod.fluid.ModFluids;
+import com.alvaro.rpgmod.item.custom.TotemOfGloblinFriendItem;
 
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.BucketItem;
@@ -10,6 +11,7 @@ import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
@@ -31,6 +33,9 @@ public class ModItems {
             
     public static final RegistryObject<Item> RAW_BLACK_OPAL = ITEMS.register( "raw_black_opal", 
             () -> new Item(new Item.Properties()));
+            
+    public static final RegistryObject<Item> TOTEM_OF_GLOBLIN_FRIEND = ITEMS.register( "totem_of_globlin_friend", 
+            () -> new TotemOfGloblinFriendItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).durability(1)));
     
     public static final RegistryObject<SwordItem> BLACK_OPAL_SWORD = ITEMS.register( "black_opal_sword", 
             () -> new SwordItem(ModTiers.BLACK_OPAL, 5, 3.5f, new Item.Properties()));

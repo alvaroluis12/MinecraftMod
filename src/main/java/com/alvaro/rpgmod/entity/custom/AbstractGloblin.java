@@ -124,7 +124,7 @@ public abstract class AbstractGloblin extends Monster implements GeoEntity{
             Player possibleTarget = this.mob.level.getNearestPlayer(this.targetConditions, this.mob, this.mob.getX(), this.mob.getEyeY(), this.mob.getZ());
             if (possibleTarget != null){
                 possibleTarget.getCapability(ItemEffectsProvider.ITEM_EFFECTS).ifPresent(effects -> {
-                    if (!effects.hasGloblinFriend()){
+                    if (!effects.hasGloblinFriendship()){
                         setTarget(possibleTarget);
                     }
                     else {
