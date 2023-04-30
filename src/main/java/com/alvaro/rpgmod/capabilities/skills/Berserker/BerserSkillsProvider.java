@@ -1,4 +1,4 @@
-package com.alvaro.rpgmod.capabilities.skills.Berserker;
+package com.alvaro.rpgmod.capabilities.skills.berserker;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

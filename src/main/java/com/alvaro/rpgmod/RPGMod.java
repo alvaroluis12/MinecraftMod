@@ -111,6 +111,7 @@ public class RPGMod
             event.accept(ModItems.TIGER_SPAWN_EGG);
             event.accept(ModItems.TROLL_SPAWN_EGG);
             event.accept(ModItems.GLOBLIN_SPAWN_EGG);
+            event.accept(ModItems.ARCHER_GLOBLIN_SPAWN_EGG);
             event.accept(ModItems.WINDIGO_SPAWN_EGG);
         }
 
@@ -138,6 +139,7 @@ public class RPGMod
             event.accept(ModItems.TIGER_SPAWN_EGG);
             event.accept(ModItems.TROLL_SPAWN_EGG);
             event.accept(ModItems.GLOBLIN_SPAWN_EGG);
+            event.accept(ModItems.ARCHER_GLOBLIN_SPAWN_EGG);
             event.accept(ModItems.WINDIGO_SPAWN_EGG);
             event.accept(ModItems.MANA_FLUID_BUCKET);
         }
@@ -152,6 +154,7 @@ public class RPGMod
             EntityRenderers.register(ModEntities.TIGER.get(), TigerRenderer::new);
             EntityRenderers.register(ModEntities.TROLL.get(), TrollRenderer::new);
             EntityRenderers.register(ModEntities.GLOBLIN.get(), GloblinRenderer::new);
+            EntityRenderers.register(ModEntities.ARCHER_GLOBLIN.get(), GloblinRenderer::new);
             EntityRenderers.register(ModEntities.WINDIGO.get(), WindigoRenderer::new);
             
             MenuScreens.register(ModMenuTypes.Class_Select_Menu.get(), ClassSelectScreen::new);

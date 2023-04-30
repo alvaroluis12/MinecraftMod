@@ -2,7 +2,7 @@ package com.alvaro.rpgmod.entity.client;
 
 import javax.annotation.Nullable;
 
-import com.alvaro.rpgmod.entity.custom.GloblinEntity;
+import com.alvaro.rpgmod.entity.custom.AbstractGloblin;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -17,7 +17,7 @@ import software.bernie.geckolib.renderer.DynamicGeoEntityRenderer;
 import software.bernie.geckolib.renderer.layer.BlockAndItemGeoLayer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 
-public class GloblinRenderer extends DynamicGeoEntityRenderer<GloblinEntity> {
+public class GloblinRenderer extends DynamicGeoEntityRenderer<AbstractGloblin> {
 
     private static final String RIGHT_HAND = "righthand";
     private static final String LEFT_HAND = "lefthand";
@@ -31,7 +31,7 @@ public class GloblinRenderer extends DynamicGeoEntityRenderer<GloblinEntity> {
 		addRenderLayer(new BlockAndItemGeoLayer<>(this) {
 			@Nullable
 			@Override
-			protected ItemStack getStackForBone(GeoBone bone, GloblinEntity animatable) {
+			protected ItemStack getStackForBone(GeoBone bone, AbstractGloblin animatable) {
 				// Retrieve the items in the entity's hands for the relevant bone
 				return switch (bone.getName()) {
 					case LEFT_HAND -> animatable.isLeftHanded() ?
@@ -43,7 +43,7 @@ public class GloblinRenderer extends DynamicGeoEntityRenderer<GloblinEntity> {
 			}
 
 			@Override
-			protected ItemDisplayContext getTransformTypeForStack(GeoBone bone, ItemStack stack, GloblinEntity animatable) {
+			protected ItemDisplayContext getTransformTypeForStack(GeoBone bone, ItemStack stack, AbstractGloblin animatable) {
 				// Apply the camera transform for the given hand
 				return switch (bone.getName()) {
 					case LEFT_HAND, RIGHT_HAND -> ItemDisplayContext.THIRD_PERSON_RIGHT_HAND;
@@ -53,7 +53,7 @@ public class GloblinRenderer extends DynamicGeoEntityRenderer<GloblinEntity> {
 
 			// Do some quick render modifications depending on what the item is
 			@Override
-			protected void renderStackForBone(PoseStack poseStack, GeoBone bone, ItemStack stack, GloblinEntity animatable,
+			protected void renderStackForBone(PoseStack poseStack, GeoBone bone, ItemStack stack, AbstractGloblin animatable,
 											  MultiBufferSource bufferSource, float partialTick, int packedLight, int packedOverlay) {
 				if (stack == GloblinRenderer.this.mainHandItem) {
 					poseStack.mulPose(Axis.XP.rotationDegrees(-90f));
@@ -76,7 +76,7 @@ public class GloblinRenderer extends DynamicGeoEntityRenderer<GloblinEntity> {
     }
 
     @Override
-    public void preRender(PoseStack poseStack, GloblinEntity animatable, BakedGeoModel model,
+    public void preRender(PoseStack poseStack, AbstractGloblin animatable, BakedGeoModel model,
             MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick,
             int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay,

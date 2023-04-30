@@ -1,7 +1,7 @@
 package com.alvaro.rpgmod.entity.client;
 
 import com.alvaro.rpgmod.RPGMod;
-import com.alvaro.rpgmod.entity.custom.GloblinEntity;
+import com.alvaro.rpgmod.entity.custom.AbstractGloblin;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -11,26 +11,26 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 
-public class GloblinModel extends GeoModel<GloblinEntity> {
+public class GloblinModel extends GeoModel<AbstractGloblin> {
 
     @Override
-    public ResourceLocation getModelResource(GloblinEntity animatable) {
+    public ResourceLocation getModelResource(AbstractGloblin animatable) {
         return new ResourceLocation(RPGMod.MODID, "geo/globlin.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureResource(GloblinEntity animatable) {
+    public ResourceLocation getTextureResource(AbstractGloblin animatable) {
         return new ResourceLocation(RPGMod.MODID, "textures/entity/globlin.png");
     }
 
     @Override
-    public ResourceLocation getAnimationResource(GloblinEntity animatable) {
+    public ResourceLocation getAnimationResource(AbstractGloblin animatable) {
         return new ResourceLocation(RPGMod.MODID, "animations/globlin.animation.json");
     }
 
     @Override
-    public void setCustomAnimations(GloblinEntity animatable, long instanceId,
-            AnimationState<GloblinEntity> animationState) {
+    public void setCustomAnimations(AbstractGloblin animatable, long instanceId,
+            AnimationState<AbstractGloblin> animationState) {
         CoreGeoBone head = getAnimationProcessor().getBone("head");
 
         if (head != null) {

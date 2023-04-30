@@ -1,6 +1,7 @@
 package com.alvaro.rpgmod.entity;
 
 import com.alvaro.rpgmod.RPGMod;
+import com.alvaro.rpgmod.entity.custom.ArcherGloblinEntity;
 import com.alvaro.rpgmod.entity.custom.GloblinEntity;
 import com.alvaro.rpgmod.entity.custom.TigerEntity;
 import com.alvaro.rpgmod.entity.custom.TrollEntity;
@@ -32,7 +33,13 @@ public class ModEntities {
     public static final RegistryObject<EntityType<GloblinEntity>> GLOBLIN = 
             ENTITY_TYPES.register("globlin", 
                     () -> EntityType.Builder.of(GloblinEntity::new, MobCategory.MONSTER)
-                            .sized(1.5f, 1.75f)
+                            .sized(0.8f, 1.75f)
+                            .build(new ResourceLocation(RPGMod.MODID, "globlin").toString()));
+    
+    public static final RegistryObject<EntityType<ArcherGloblinEntity>> ARCHER_GLOBLIN = 
+            ENTITY_TYPES.register("archer_globlin", 
+                    () -> EntityType.Builder.of(ArcherGloblinEntity::new, MobCategory.MONSTER)
+                            .sized(0.8f, 1.75f)
                             .build(new ResourceLocation(RPGMod.MODID, "globlin").toString()));
     
     public static final RegistryObject<EntityType<WindigoEntity>> WINDIGO = 

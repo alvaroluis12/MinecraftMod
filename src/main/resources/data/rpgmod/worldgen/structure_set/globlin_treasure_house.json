@@ -1,0 +1,17 @@
+{
+  "structures": [
+    {
+      "structure": "rpgmod:globlin_treasure_house",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 1646207470,
+
+    "spacing": 20,
+
+    "separation": 6,
+
+    "type": "minecraft:random_spread"
+  }
+}

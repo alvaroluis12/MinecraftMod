@@ -1,4 +1,4 @@
-package com.alvaro.rpgmod.capabilities.skills.Berserker;
+package com.alvaro.rpgmod.capabilities.skills.berserker;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.capabilities.AutoRegisterCapability;

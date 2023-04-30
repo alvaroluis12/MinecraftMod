@@ -30,7 +30,6 @@ public class addAttributeC2SPacket {
         context.enqueueWork(() -> {
             // HERE WE ARE ON THE SERVER
             ServerPlayer player = context.getSender();
-            assert player != null;
             player.getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(stats -> {
                     if (stats.getPoints() >= 1){
                     switch(attribute){

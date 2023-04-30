@@ -38,7 +38,7 @@ public class WindigoEntity extends Monster implements GeoEntity{
             .add(Attributes.MAX_HEALTH, 400D)
             .add(Attributes.ATTACK_DAMAGE, 20.0f)
             .add(Attributes.ATTACK_SPEED, 1f)
-            .add(Attributes.MOVEMENT_SPEED, 0.3D).build();
+            .add(Attributes.MOVEMENT_SPEED, 0.2D).build();
     }
 
     @Override

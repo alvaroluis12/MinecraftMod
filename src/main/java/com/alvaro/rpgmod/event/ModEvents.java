@@ -1,10 +1,12 @@
 package com.alvaro.rpgmod.event;
 
 import com.alvaro.rpgmod.RPGMod;
-import com.alvaro.rpgmod.capabilities.skills.Berserker.BerserSkillsProvider;
+import com.alvaro.rpgmod.capabilities.items.ItemEffectsProvider;
+import com.alvaro.rpgmod.capabilities.skills.berserker.BerserSkillsProvider;
 import com.alvaro.rpgmod.capabilities.stats.PlayerStatsProvider;
 import com.alvaro.rpgmod.commands.AttributesCommand;
 import com.alvaro.rpgmod.entity.ModEntities;
+import com.alvaro.rpgmod.entity.custom.ArcherGloblinEntity;
 import com.alvaro.rpgmod.entity.custom.GloblinEntity;
 import com.alvaro.rpgmod.entity.custom.TigerEntity;
 import com.alvaro.rpgmod.entity.custom.TrollEntity;
@@ -48,6 +50,7 @@ public class ModEvents {
             event.put(ModEntities.TIGER.get(), TigerEntity.setAttributes());
             event.put(ModEntities.TROLL.get(), TrollEntity.setAttributes());
             event.put(ModEntities.GLOBLIN.get(), GloblinEntity.setAttributes());
+            event.put(ModEntities.ARCHER_GLOBLIN.get(), ArcherGloblinEntity.setAttributes());
             event.put(ModEntities.WINDIGO.get(), WindigoEntity.setAttributes());
         }
         
@@ -56,6 +59,7 @@ public class ModEvents {
             event.register(ModEntities.TIGER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, Operation.REPLACE);
             event.register(ModEntities.TROLL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, Operation.REPLACE);
             event.register(ModEntities.GLOBLIN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, Operation.REPLACE);
+            event.register(ModEntities.ARCHER_GLOBLIN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, Operation.REPLACE);
             event.register(ModEntities.WINDIGO.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, Operation.REPLACE);
 
         }
@@ -72,6 +76,9 @@ public class ModEvents {
                 if(!event.getObject().getCapability(BerserSkillsProvider.BERSERKER_SKILLS).isPresent()){
                     event.addCapability(new ResourceLocation(RPGMod.MODID, "skills"), new BerserSkillsProvider());
                 }
+                if(!event.getObject().getCapability(ItemEffectsProvider.ITEM_EFFECTS).isPresent()){
+                    event.addCapability(new ResourceLocation(RPGMod.MODID, "item_effects"), new ItemEffectsProvider());
+                }
             }
         }
 
@@ -83,9 +90,13 @@ public class ModEvents {
                     newStore.copyFrom(oldStore);
                 });
             });
-            event.getOriginal().reviveCaps();
             event.getOriginal().getCapability(BerserSkillsProvider.BERSERKER_SKILLS).ifPresent(oldStore -> {
                 event.getEntity().getCapability(BerserSkillsProvider.BERSERKER_SKILLS).ifPresent(newStore -> {
+                    newStore.copyFrom(oldStore);
+                });
+            });
+            event.getOriginal().getCapability(ItemEffectsProvider.ITEM_EFFECTS).ifPresent(oldStore -> {
+                event.getEntity().getCapability(ItemEffectsProvider.ITEM_EFFECTS).ifPresent(newStore -> {
                     newStore.copyFrom(oldStore);
                 });
             });

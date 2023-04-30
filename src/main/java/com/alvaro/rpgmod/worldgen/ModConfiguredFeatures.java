@@ -49,7 +49,6 @@ public class ModConfiguredFeatures {
         //register(context, END_BLACK_OPAL_ORE_KEY, Feature.ORE, new OreConfiguration(endstoneReplaceables, ModBlocks.ENDSTONE_BLACK_OPAL_ORE.get().defaultBlockState(), 7));
         //register(context, NETHER_BLACK_OPAL_ORE_KEY, Feature.ORE, new OreConfiguration(netherrackReplaceables, ModBlocks.NETHERRACK_BLACK_OPAL_ORE.get().defaultBlockState(), 6));
         
-        
         register(context, EBONY_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
             BlockStateProvider.simple(ModBlocks.EBONY_LOG.get()),
             new StraightTrunkPlacer(5, 6, 3),

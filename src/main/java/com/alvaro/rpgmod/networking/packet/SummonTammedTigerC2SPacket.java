@@ -31,7 +31,6 @@ public class SummonTammedTigerC2SPacket {
         context.enqueueWork(() -> {
             // HERE WE ARE ON THE SERVER
             ServerPlayer player = context.getSender();
-            assert player != null;
             ServerLevel level = player.getLevel();
             
 

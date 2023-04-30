@@ -29,7 +29,6 @@ public class SelectClassC2SPacket {
         context.enqueueWork(() -> {
             // HERE WE ARE ON THE SERVER
             ServerPlayer player = context.getSender();
-            assert player != null;
             player.getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(stats -> {
                 stats.setPlayerClass(this.playerClass);
             });

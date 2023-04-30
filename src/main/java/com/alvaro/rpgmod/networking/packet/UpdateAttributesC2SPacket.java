@@ -1,6 +1,6 @@
 package com.alvaro.rpgmod.networking.packet;
 
-import com.alvaro.rpgmod.capabilities.skills.Berserker.BerserSkillsProvider;
+import com.alvaro.rpgmod.capabilities.skills.berserker.BerserSkillsProvider;
 import com.alvaro.rpgmod.capabilities.stats.PlayerStats;
 import com.alvaro.rpgmod.capabilities.stats.PlayerStatsProvider;
 import com.alvaro.rpgmod.networking.ModMessages;
@@ -37,7 +37,6 @@ public class UpdateAttributesC2SPacket {
             // HERE WE ARE ON THE SERVER
             ServerPlayer player = context.getSender();
             //ServerLevel level = player.getLevel();
-            assert player != null;
             player.getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(stats -> {
                 //tick every 0,05s
                 //20 ticks per second
