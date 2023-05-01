@@ -61,7 +61,6 @@ public class AttributesCommand {
         int i = 0;
         target.getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(stats -> {
             //boolean changed = false;
-            System.out.println(attribute.getId());
             switch(attribute.getId()){
                 case PlayerStats.STR_INDEX:
                     stats.addStrength(value);
@@ -106,7 +105,6 @@ public class AttributesCommand {
         int i = 0;
         target.getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(stats -> {
             //boolean changed = false;
-            System.out.println(attribute.getId());
             switch(attribute.getId()){
                 case PlayerStats.STR_INDEX:
                     stats.setStrength(value);
@@ -150,7 +148,6 @@ public class AttributesCommand {
         int i = 0;
         target.getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(stats -> {
             //boolean changed = false;
-            System.out.println(attribute.getId());
             switch(attribute.getId()){
                 case PlayerStats.STR_INDEX:
                     stats.subStrength(value);

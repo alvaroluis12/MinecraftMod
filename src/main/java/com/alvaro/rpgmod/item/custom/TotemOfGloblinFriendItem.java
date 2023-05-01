@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import com.alvaro.rpgmod.capabilities.items.ItemEffectsProvider;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -42,17 +43,15 @@ public class TotemOfGloblinFriendItem extends Item{
         return super.use(pLevel, pPlayer, pUsedHand);
     }
     
-    private boolean givePlayerGloblinFriendship(Player player){
-        player.getCapability(ItemEffectsProvider.ITEM_EFFECTS).ifPresent(effects -> {
-            System.out.println(effects.hasGloblinFriendship());
-            if (!effects.hasGloblinFriendship()){
-                effects.setGloblinFriend(true);
+    private boolean givePlayerGloblinFriendship(Player pPlayer){
+        pPlayer.getCapability(ItemEffectsProvider.ITEM_EFFECTS).ifPresent(player -> {
+            if (!player.hasGloblinFriendship()){
+                player.setGloblinFriend(true);
                 this.changed = true;
             }else{
             this.changed = false;
             }
         });
-        System.out.println(changed);
         return this.changed;
     }
 
@@ -60,7 +59,7 @@ public class TotemOfGloblinFriendItem extends Item{
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents,
             TooltipFlag pIsAdvanced) {
         if (Screen.hasShiftDown()){
-            pTooltipComponents.add(Component.literal(""));
+            pTooltipComponents.add(Component.translatable("item.rpgmod.totem_of_globlin_friend.description").withStyle(ChatFormatting.GREEN));
         }
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }

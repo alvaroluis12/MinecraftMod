@@ -38,16 +38,12 @@ public class UseDashSkillC2SPacket {
                     double pX = player.getX() + teleportToVec3.x;
                     double pY = player.getY() + teleportToVec3.y;
                     double pZ = player.getZ() + teleportToVec3.z;
-                    System.out.println(pX);
-                    System.out.println(pY);
-                    System.out.println(pZ);
-                    System.out.println(teleportToVec3);
                     Player nearestPlayer = level.getNearestPlayer(pX, pY, pZ, 2, false);
                     if (nearestPlayer != null){
                         teleportTo(level, player, nearestPlayer.getX(), nearestPlayer.getY(), nearestPlayer.getZ());
                     }
                     else{
-                        teleportTo(level, player, pX, pY+1, pZ);
+                        teleportTo(level, player, pX, pY, pZ);
                     }
                 }
             });

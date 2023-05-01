@@ -62,7 +62,7 @@ public abstract class AbstractGloblin extends Monster implements GeoEntity{
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 
         
-        this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, (new HurtByTargetGoal(this)).setAlertOthers());
         
         this.targetSelector.addGoal(2, new GloblinNearestPlayerGoalWithoutItem(this, 10, true, false, null));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
@@ -87,7 +87,6 @@ public abstract class AbstractGloblin extends Monster implements GeoEntity{
         }
         else{
             return PlayState.STOP;
-            //return tAnimationState.setAndContinue(RawAnimation.begin().thenLoop("animation.globlin.idle"));
         }
     }
 
