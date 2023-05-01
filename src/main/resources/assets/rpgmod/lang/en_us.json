@@ -9,6 +9,7 @@
     "item.rpgmod.black_opal_axe": "Black Opal Axe",
     "item.rpgmod.tiger_spawn_egg": "Tiger Spawn Egg",
     "item.rpgmod.troll_spawn_egg": "Troll Spawn Egg",
+    "item.rpgmod.globlin_lord_spawn_egg": "Globlin Lord Spawn Egg",
     "item.rpgmod.globlin_spawn_egg": "Globlin Spawn Egg",
     "item.rpgmod.archer_globlin_spawn_egg": "Archer Globlin Spawn Egg",
     "item.rpgmod.windigo_spawn_egg": "Windigo Spawn Egg",
@@ -32,6 +33,7 @@
     "entity.rpgmod.tiger": "Tiger",
     "entity.rpgmod.globlin": "Globlin",
     "entity.rpgmod.archer_globlin": "Archer Globlin",
+    "entity.rpgmod.globlin_lord": "Globlin Lord",
     "entity.rpgmod.windigo": "Windigo",
 
     "key.category.rpgmod": "RPG Mod",

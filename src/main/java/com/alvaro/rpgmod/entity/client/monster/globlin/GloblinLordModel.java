@@ -1,7 +1,7 @@
-package com.alvaro.rpgmod.entity.client;
+package com.alvaro.rpgmod.entity.client.monster.globlin;
 
 import com.alvaro.rpgmod.RPGMod;
-import com.alvaro.rpgmod.entity.custom.TrollEntity;
+import com.alvaro.rpgmod.entity.custom.globlin.GloblinLordEntity;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -11,26 +11,26 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 
-public class TrollModel extends GeoModel<TrollEntity> {
+public class GloblinLordModel extends GeoModel<GloblinLordEntity> {
 
     @Override
-    public ResourceLocation getModelResource(TrollEntity animatable) {
-        return new ResourceLocation(RPGMod.MODID, "geo/troll.geo.json");
+    public ResourceLocation getModelResource(GloblinLordEntity animatable) {
+        return new ResourceLocation(RPGMod.MODID, "geo/globlin_lord.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureResource(TrollEntity animatable) {
-        return new ResourceLocation(RPGMod.MODID, "textures/entity/troll.png");
+    public ResourceLocation getTextureResource(GloblinLordEntity animatable) {
+        return new ResourceLocation(RPGMod.MODID, "textures/entity/globlin_lord.png");
     }
 
     @Override
-    public ResourceLocation getAnimationResource(TrollEntity animatable) {
-        return new ResourceLocation(RPGMod.MODID, "animations/troll.animation.json");
+    public ResourceLocation getAnimationResource(GloblinLordEntity animatable) {
+        return new ResourceLocation(RPGMod.MODID, "animations/globlin_lord.animation.json");
     }
 
     @Override
-    public void setCustomAnimations(TrollEntity animatable, long instanceId,
-            AnimationState<TrollEntity> animationState) {
+    public void setCustomAnimations(GloblinLordEntity animatable, long instanceId,
+            AnimationState<GloblinLordEntity> animationState) {
         CoreGeoBone head = getAnimationProcessor().getBone("head");
 
         if (head != null) {

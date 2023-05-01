@@ -6,11 +6,12 @@ import com.alvaro.rpgmod.capabilities.skills.berserker.BerserSkillsProvider;
 import com.alvaro.rpgmod.capabilities.stats.PlayerStatsProvider;
 import com.alvaro.rpgmod.commands.AttributesCommand;
 import com.alvaro.rpgmod.entity.ModEntities;
-import com.alvaro.rpgmod.entity.custom.ArcherGloblinEntity;
-import com.alvaro.rpgmod.entity.custom.GloblinEntity;
 import com.alvaro.rpgmod.entity.custom.TigerEntity;
 import com.alvaro.rpgmod.entity.custom.TrollEntity;
 import com.alvaro.rpgmod.entity.custom.WindigoEntity;
+import com.alvaro.rpgmod.entity.custom.globlin.ArcherGloblinEntity;
+import com.alvaro.rpgmod.entity.custom.globlin.GloblinEntity;
+import com.alvaro.rpgmod.entity.custom.globlin.GloblinLordEntity;
 import com.alvaro.rpgmod.networking.ModMessages;
 import com.alvaro.rpgmod.networking.packet.UpdateAttributesC2SPacket;
 
@@ -50,6 +51,7 @@ public class ModEvents {
             event.put(ModEntities.TIGER.get(), TigerEntity.setAttributes());
             event.put(ModEntities.TROLL.get(), TrollEntity.setAttributes());
             event.put(ModEntities.GLOBLIN.get(), GloblinEntity.setAttributes());
+            event.put(ModEntities.GLOBLIN_LORD.get(), GloblinLordEntity.setAttributes());
             event.put(ModEntities.ARCHER_GLOBLIN.get(), ArcherGloblinEntity.setAttributes());
             event.put(ModEntities.WINDIGO.get(), WindigoEntity.setAttributes());
         }

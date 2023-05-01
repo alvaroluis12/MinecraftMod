@@ -1,4 +1,4 @@
-package com.alvaro.rpgmod.entity.custom;
+package com.alvaro.rpgmod.entity.custom.globlin;
 
 import com.alvaro.rpgmod.item.ModItems;
 

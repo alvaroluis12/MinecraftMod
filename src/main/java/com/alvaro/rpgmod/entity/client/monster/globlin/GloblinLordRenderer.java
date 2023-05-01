@@ -1,8 +1,8 @@
-package com.alvaro.rpgmod.entity.client;
+package com.alvaro.rpgmod.entity.client.monster.globlin;
 
 import javax.annotation.Nullable;
 
-import com.alvaro.rpgmod.entity.custom.AbstractGloblin;
+import com.alvaro.rpgmod.entity.custom.globlin.GloblinLordEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -17,7 +17,7 @@ import software.bernie.geckolib.renderer.DynamicGeoEntityRenderer;
 import software.bernie.geckolib.renderer.layer.BlockAndItemGeoLayer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 
-public class GloblinRenderer extends DynamicGeoEntityRenderer<AbstractGloblin> {
+public class GloblinLordRenderer extends DynamicGeoEntityRenderer<GloblinLordEntity> {
 
     private static final String RIGHT_HAND = "righthand";
     private static final String LEFT_HAND = "lefthand";
@@ -25,25 +25,25 @@ public class GloblinRenderer extends DynamicGeoEntityRenderer<AbstractGloblin> {
     protected ItemStack mainHandItem;
 	protected ItemStack offhandItem;
 
-    public GloblinRenderer(Context renderManager) {
-        super(renderManager, new GloblinModel());
+    public GloblinLordRenderer(Context renderManager) {
+        super(renderManager, new GloblinLordModel());
         // Add some held item rendering
 		addRenderLayer(new BlockAndItemGeoLayer<>(this) {
 			@Nullable
 			@Override
-			protected ItemStack getStackForBone(GeoBone bone, AbstractGloblin animatable) {
+			protected ItemStack getStackForBone(GeoBone bone, GloblinLordEntity animatable) {
 				// Retrieve the items in the entity's hands for the relevant bone
 				return switch (bone.getName()) {
 					case LEFT_HAND -> animatable.isLeftHanded() ?
-					GloblinRenderer.this.mainHandItem : GloblinRenderer.this.offhandItem;
+					GloblinLordRenderer.this.mainHandItem : GloblinLordRenderer.this.offhandItem;
 					case RIGHT_HAND -> animatable.isLeftHanded() ?
-					GloblinRenderer.this.offhandItem : GloblinRenderer.this.mainHandItem;
+					GloblinLordRenderer.this.offhandItem : GloblinLordRenderer.this.mainHandItem;
 					default -> null;
 				};
 			}
 
 			@Override
-			protected ItemDisplayContext getTransformTypeForStack(GeoBone bone, ItemStack stack, AbstractGloblin animatable) {
+			protected ItemDisplayContext getTransformTypeForStack(GeoBone bone, ItemStack stack, GloblinLordEntity animatable) {
 				// Apply the camera transform for the given hand
 				return switch (bone.getName()) {
 					case LEFT_HAND, RIGHT_HAND -> ItemDisplayContext.THIRD_PERSON_RIGHT_HAND;
@@ -53,15 +53,15 @@ public class GloblinRenderer extends DynamicGeoEntityRenderer<AbstractGloblin> {
 
 			// Do some quick render modifications depending on what the item is
 			@Override
-			protected void renderStackForBone(PoseStack poseStack, GeoBone bone, ItemStack stack, AbstractGloblin animatable,
+			protected void renderStackForBone(PoseStack poseStack, GeoBone bone, ItemStack stack, GloblinLordEntity animatable,
 											  MultiBufferSource bufferSource, float partialTick, int packedLight, int packedOverlay) {
-				if (stack == GloblinRenderer.this.mainHandItem) {
+				if (stack == GloblinLordRenderer.this.mainHandItem) {
 					poseStack.mulPose(Axis.XP.rotationDegrees(-90f));
 
 					if (stack.getItem() instanceof ShieldItem)
 						poseStack.translate(0, 0.125, -0.25);
 				}
-				else if (stack == GloblinRenderer.this.offhandItem) {
+				else if (stack == GloblinLordRenderer.this.offhandItem) {
 					poseStack.mulPose(Axis.XP.rotationDegrees(-90f));
 
 					if (stack.getItem() instanceof ShieldItem) {
@@ -76,7 +76,7 @@ public class GloblinRenderer extends DynamicGeoEntityRenderer<AbstractGloblin> {
     }
 
     @Override
-    public void preRender(PoseStack poseStack, AbstractGloblin animatable, BakedGeoModel model,
+    public void preRender(PoseStack poseStack, GloblinLordEntity animatable, BakedGeoModel model,
             MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick,
             int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay,

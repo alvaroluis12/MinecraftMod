@@ -1,4 +1,4 @@
-package com.alvaro.rpgmod.entity.client;
+package com.alvaro.rpgmod.entity.client.monster.troll;
 
 import com.alvaro.rpgmod.RPGMod;
 import com.alvaro.rpgmod.entity.custom.TrollEntity;

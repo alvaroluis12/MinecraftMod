@@ -1,7 +1,7 @@
-package com.alvaro.rpgmod.entity.client;
+package com.alvaro.rpgmod.entity.client.tiger;
 
 import com.alvaro.rpgmod.RPGMod;
-import com.alvaro.rpgmod.entity.custom.WindigoEntity;
+import com.alvaro.rpgmod.entity.custom.TigerEntity;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -11,26 +11,26 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 
-public class WindigoModel extends GeoModel<WindigoEntity> {
+public class TigerModel extends GeoModel<TigerEntity> {
 
     @Override
-    public ResourceLocation getModelResource(WindigoEntity animatable) {
-        return new ResourceLocation(RPGMod.MODID, "geo/windigo.geo.json");
+    public ResourceLocation getModelResource(TigerEntity animatable) {
+        return new ResourceLocation(RPGMod.MODID, "geo/tiger.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureResource(WindigoEntity animatable) {
-        return new ResourceLocation(RPGMod.MODID, "textures/entity/windigo.png");
+    public ResourceLocation getTextureResource(TigerEntity animatable) {
+        return new ResourceLocation(RPGMod.MODID, "textures/entity/tiger.png");
     }
 
     @Override
-    public ResourceLocation getAnimationResource(WindigoEntity animatable) {
-        return new ResourceLocation(RPGMod.MODID, "animations/windigo.animation.json");
+    public ResourceLocation getAnimationResource(TigerEntity animatable) {
+        return new ResourceLocation(RPGMod.MODID, "animations/tiger.animation.json");
     }
 
     @Override
-    public void setCustomAnimations(WindigoEntity animatable, long instanceId,
-            AnimationState<WindigoEntity> animationState) {
+    public void setCustomAnimations(TigerEntity animatable, long instanceId,
+            AnimationState<TigerEntity> animationState) {
         CoreGeoBone head = getAnimationProcessor().getBone("head");
 
         if (head != null) {

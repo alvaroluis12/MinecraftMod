@@ -1,4 +1,4 @@
-package com.alvaro.rpgmod.entity.custom;
+package com.alvaro.rpgmod.entity.custom.globlin;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.EntityDimensions;

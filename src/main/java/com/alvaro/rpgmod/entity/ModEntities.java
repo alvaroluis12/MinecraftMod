@@ -1,11 +1,12 @@
 package com.alvaro.rpgmod.entity;
 
 import com.alvaro.rpgmod.RPGMod;
-import com.alvaro.rpgmod.entity.custom.ArcherGloblinEntity;
-import com.alvaro.rpgmod.entity.custom.GloblinEntity;
 import com.alvaro.rpgmod.entity.custom.TigerEntity;
 import com.alvaro.rpgmod.entity.custom.TrollEntity;
 import com.alvaro.rpgmod.entity.custom.WindigoEntity;
+import com.alvaro.rpgmod.entity.custom.globlin.ArcherGloblinEntity;
+import com.alvaro.rpgmod.entity.custom.globlin.GloblinEntity;
+import com.alvaro.rpgmod.entity.custom.globlin.GloblinLordEntity;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -41,6 +42,12 @@ public class ModEntities {
                     () -> EntityType.Builder.of(ArcherGloblinEntity::new, MobCategory.MONSTER)
                             .sized(0.8f, 1.75f)
                             .build(new ResourceLocation(RPGMod.MODID, "globlin").toString()));
+    
+    public static final RegistryObject<EntityType<GloblinLordEntity>> GLOBLIN_LORD = 
+            ENTITY_TYPES.register("globlin_lord", 
+                    () -> EntityType.Builder.of(GloblinLordEntity::new, MobCategory.MONSTER)
+                            .sized(1.5f, 3f)
+                            .build(new ResourceLocation(RPGMod.MODID, "globlin_lord").toString()));
     
     public static final RegistryObject<EntityType<WindigoEntity>> WINDIGO = 
             ENTITY_TYPES.register("windigo", 

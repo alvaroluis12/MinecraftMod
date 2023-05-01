@@ -1,32 +1,23 @@
-package com.alvaro.rpgmod.entity.custom;
+package com.alvaro.rpgmod.entity.custom.globlin;
 
-import java.util.EnumSet;
-import java.util.function.Predicate;
-
-import javax.annotation.Nullable;
-
-import com.alvaro.rpgmod.capabilities.items.ItemEffectsProvider;
+import com.alvaro.rpgmod.goals.FollowLeaderGoal;
+import com.alvaro.rpgmod.goals.GloblinNearestPlayerGoalWithoutItem;
 
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.StrollThroughVillageGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.TargetGoal;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -58,15 +49,17 @@ public abstract class AbstractGloblin extends Monster implements GeoEntity{
         this.goalSelector.addGoal(1, new FloatGoal(this));
         //this.goalSelector.addGoal(2, new FollowTrollGoal(this));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 1.00D));
-        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 12.0F));
+        this.goalSelector.addGoal(4, new FollowLeaderGoal(this, 1.00D, GloblinLordEntity.class));
+        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 12.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 
-        
         this.targetSelector.addGoal(2, (new HurtByTargetGoal(this)).setAlertOthers());
         
         this.targetSelector.addGoal(2, new GloblinNearestPlayerGoalWithoutItem(this, 10, true, false, null));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
+        
+        this.goalSelector.addGoal(6, new StrollThroughVillageGoal(this, 1));
     }
     
 
@@ -74,7 +67,7 @@ public abstract class AbstractGloblin extends Monster implements GeoEntity{
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
     }
-
+    
     @Override
     public void registerControllers(ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "controller", this::predicate));
@@ -88,61 +81,5 @@ public abstract class AbstractGloblin extends Monster implements GeoEntity{
         else{
             return PlayState.STOP;
         }
-    }
-
-    public class GloblinNearestPlayerGoalWithoutItem extends TargetGoal {
-        protected final int randomInterval;
-        @Nullable
-        protected LivingEntity target;
-        /** This filter is applied to the Entity search. Only matching entities will be targeted. */
-        protected TargetingConditions targetConditions;
-      
-         public GloblinNearestPlayerGoalWithoutItem(Mob pMob, int pRandomInterval, boolean pMustSee, boolean pMustReach, @Nullable Predicate<LivingEntity> pTargetPredicate) {
-            super(pMob, pMustSee, pMustReach);
-            //this.target = pMob.getTarget() instanceof Player ? (Player) pMob.getTarget() : null;
-            this.randomInterval = reducedTickDelay(pRandomInterval);
-            this.setFlags(EnumSet.of(Goal.Flag.TARGET));
-            this.targetConditions = TargetingConditions.forCombat().range(this.getFollowDistance()).selector(pTargetPredicate);
-
-         }
-
-         public boolean canUse() {
-            if (this.randomInterval > 0 && this.mob.getRandom().nextInt(this.randomInterval) != 0) {
-               return false;
-            } else {
-               this.findTarget();
-               return this.target != null;
-            }
-         }
-      
-         protected AABB getTargetSearchArea(double pTargetDistance) {
-            return this.mob.getBoundingBox().inflate(pTargetDistance, 4.0D, pTargetDistance);
-         }
-      
-        protected void findTarget() {
-            Player possibleTarget = this.mob.level.getNearestPlayer(this.targetConditions, this.mob, this.mob.getX(), this.mob.getEyeY(), this.mob.getZ());
-            if (possibleTarget != null){
-                possibleTarget.getCapability(ItemEffectsProvider.ITEM_EFFECTS).ifPresent(effects -> {
-                    if (!effects.hasGloblinFriendship()){
-                        setTarget(possibleTarget);
-                    }
-                    else {
-                        setTarget(null);
-                    }
-                });
-            }
-        }
-         /**
-          * Execute a one shot task or start executing a continuous task
-          */
-         public void start() {
-            this.mob.setTarget(this.target);
-            super.start();
-         }
-      
-         public void setTarget(@Nullable LivingEntity pTarget) {
-            this.target = pTarget;
-         }
-
     }
 }

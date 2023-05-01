@@ -5,10 +5,11 @@ package com.alvaro.rpgmod;
 import com.alvaro.rpgmod.block.ModBlocks;
 import com.alvaro.rpgmod.commands.ModArgumentTypes;
 import com.alvaro.rpgmod.entity.ModEntities;
-import com.alvaro.rpgmod.entity.client.GloblinRenderer;
-import com.alvaro.rpgmod.entity.client.TigerRenderer;
-import com.alvaro.rpgmod.entity.client.TrollRenderer;
-import com.alvaro.rpgmod.entity.client.WindigoRenderer;
+import com.alvaro.rpgmod.entity.client.monster.globlin.GloblinLordRenderer;
+import com.alvaro.rpgmod.entity.client.monster.globlin.GloblinRenderer;
+import com.alvaro.rpgmod.entity.client.monster.troll.TrollRenderer;
+import com.alvaro.rpgmod.entity.client.monster.windigo.WindigoRenderer;
+import com.alvaro.rpgmod.entity.client.tiger.TigerRenderer;
 import com.alvaro.rpgmod.fluid.ModFluids;
 import com.alvaro.rpgmod.fluid.ModFluidsTypes;
 import com.alvaro.rpgmod.item.ModCreativeModeTabs;
@@ -113,6 +114,7 @@ public class RPGMod
             event.accept(ModItems.TROLL_SPAWN_EGG);
             event.accept(ModItems.GLOBLIN_SPAWN_EGG);
             event.accept(ModItems.ARCHER_GLOBLIN_SPAWN_EGG);
+            event.accept(ModItems.GLOBLIN_LORD_SPAWN_EGG);
             event.accept(ModItems.WINDIGO_SPAWN_EGG);
         }
 
@@ -140,6 +142,7 @@ public class RPGMod
             event.accept(ModItems.TIGER_SPAWN_EGG);
             event.accept(ModItems.TROLL_SPAWN_EGG);
             event.accept(ModItems.GLOBLIN_SPAWN_EGG);
+            event.accept(ModItems.GLOBLIN_LORD_SPAWN_EGG);
             event.accept(ModItems.ARCHER_GLOBLIN_SPAWN_EGG);
             event.accept(ModItems.WINDIGO_SPAWN_EGG);
             event.accept(ModItems.MANA_FLUID_BUCKET);
@@ -157,6 +160,7 @@ public class RPGMod
             EntityRenderers.register(ModEntities.TROLL.get(), TrollRenderer::new);
             EntityRenderers.register(ModEntities.GLOBLIN.get(), GloblinRenderer::new);
             EntityRenderers.register(ModEntities.ARCHER_GLOBLIN.get(), GloblinRenderer::new);
+            EntityRenderers.register(ModEntities.GLOBLIN_LORD.get(), GloblinLordRenderer::new);
             EntityRenderers.register(ModEntities.WINDIGO.get(), WindigoRenderer::new);
             
             MenuScreens.register(ModMenuTypes.Class_Select_Menu.get(), ClassSelectScreen::new);

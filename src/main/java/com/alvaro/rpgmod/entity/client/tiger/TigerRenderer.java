@@ -1,4 +1,4 @@
-package com.alvaro.rpgmod.entity.client;
+package com.alvaro.rpgmod.entity.client.tiger;
 
 import com.alvaro.rpgmod.RPGMod;
 import com.alvaro.rpgmod.entity.custom.TigerEntity;

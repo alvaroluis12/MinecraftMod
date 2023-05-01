@@ -40,6 +40,7 @@ public class ModItemModelProvider extends ItemModelProvider{
         withExistingParent(ModItems.TROLL_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.GLOBLIN_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.ARCHER_GLOBLIN_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+        withExistingParent(ModItems.GLOBLIN_LORD_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.WINDIGO_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         swordItem(ModItems.GLOBLIN_DAGGER);
 

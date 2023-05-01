@@ -1,7 +1,7 @@
-package com.alvaro.rpgmod.entity.client;
+package com.alvaro.rpgmod.entity.client.monster.windigo;
 
 import com.alvaro.rpgmod.RPGMod;
-import com.alvaro.rpgmod.entity.custom.AbstractGloblin;
+import com.alvaro.rpgmod.entity.custom.WindigoEntity;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -11,26 +11,26 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 
-public class GloblinModel extends GeoModel<AbstractGloblin> {
+public class WindigoModel extends GeoModel<WindigoEntity> {
 
     @Override
-    public ResourceLocation getModelResource(AbstractGloblin animatable) {
-        return new ResourceLocation(RPGMod.MODID, "geo/globlin.geo.json");
+    public ResourceLocation getModelResource(WindigoEntity animatable) {
+        return new ResourceLocation(RPGMod.MODID, "geo/windigo.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureResource(AbstractGloblin animatable) {
-        return new ResourceLocation(RPGMod.MODID, "textures/entity/globlin.png");
+    public ResourceLocation getTextureResource(WindigoEntity animatable) {
+        return new ResourceLocation(RPGMod.MODID, "textures/entity/windigo.png");
     }
 
     @Override
-    public ResourceLocation getAnimationResource(AbstractGloblin animatable) {
-        return new ResourceLocation(RPGMod.MODID, "animations/globlin.animation.json");
+    public ResourceLocation getAnimationResource(WindigoEntity animatable) {
+        return new ResourceLocation(RPGMod.MODID, "animations/windigo.animation.json");
     }
 
     @Override
-    public void setCustomAnimations(AbstractGloblin animatable, long instanceId,
-            AnimationState<AbstractGloblin> animationState) {
+    public void setCustomAnimations(WindigoEntity animatable, long instanceId,
+            AnimationState<WindigoEntity> animationState) {
         CoreGeoBone head = getAnimationProcessor().getBone("head");
 
         if (head != null) {

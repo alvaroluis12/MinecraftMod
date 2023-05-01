@@ -1,7 +1,7 @@
-package com.alvaro.rpgmod.entity.client;
+package com.alvaro.rpgmod.entity.client.monster.globlin;
 
 import com.alvaro.rpgmod.RPGMod;
-import com.alvaro.rpgmod.entity.custom.TigerEntity;
+import com.alvaro.rpgmod.entity.custom.globlin.AbstractGloblin;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -11,26 +11,26 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 
-public class TigerModel extends GeoModel<TigerEntity> {
+public class GloblinModel extends GeoModel<AbstractGloblin> {
 
     @Override
-    public ResourceLocation getModelResource(TigerEntity animatable) {
-        return new ResourceLocation(RPGMod.MODID, "geo/tiger.geo.json");
+    public ResourceLocation getModelResource(AbstractGloblin animatable) {
+        return new ResourceLocation(RPGMod.MODID, "geo/globlin.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureResource(TigerEntity animatable) {
-        return new ResourceLocation(RPGMod.MODID, "textures/entity/tiger.png");
+    public ResourceLocation getTextureResource(AbstractGloblin animatable) {
+        return new ResourceLocation(RPGMod.MODID, "textures/entity/globlin.png");
     }
 
     @Override
-    public ResourceLocation getAnimationResource(TigerEntity animatable) {
-        return new ResourceLocation(RPGMod.MODID, "animations/tiger.animation.json");
+    public ResourceLocation getAnimationResource(AbstractGloblin animatable) {
+        return new ResourceLocation(RPGMod.MODID, "animations/globlin.animation.json");
     }
 
     @Override
-    public void setCustomAnimations(TigerEntity animatable, long instanceId,
-            AnimationState<TigerEntity> animationState) {
+    public void setCustomAnimations(AbstractGloblin animatable, long instanceId,
+            AnimationState<AbstractGloblin> animationState) {
         CoreGeoBone head = getAnimationProcessor().getBone("head");
 
         if (head != null) {
