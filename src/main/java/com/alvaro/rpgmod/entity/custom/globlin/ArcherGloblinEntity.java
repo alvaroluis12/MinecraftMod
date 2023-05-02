@@ -16,6 +16,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.level.Level;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.object.PlayState;
 
 public class ArcherGloblinEntity extends AbstractGloblin implements RangedAttackMob {
     private final RangedBowAttackGoal<ArcherGloblinEntity> bowGoal = new RangedBowAttackGoal<ArcherGloblinEntity>(this, 1.0D, 20, 30.0F);
@@ -56,6 +62,23 @@ public class ArcherGloblinEntity extends AbstractGloblin implements RangedAttack
         abstractarrow.shoot(d0, d1 + d3 * (double) 0.2F, d2, 1.6F,
                 (float) (14 - this.level.getDifficulty().getId() * 4));
         this.level.addFreshEntity(abstractarrow);
+    }
+
+    
+
+    @Override
+    public void registerControllers(ControllerRegistrar controllers) {
+        super.registerControllers(controllers);
+        controllers.add(new AnimationController<>(this, "attackController", this::attackPredicate));
+    }
+
+    private <T extends GeoAnimatable> PlayState attackPredicate(AnimationState<T> state) {
+        System.out.println(this.getTarget());
+        if (this.getTarget() != null){
+            System.out.println("a");
+            return state.setAndContinue(RawAnimation.begin().thenPlayAndHold("animation.globlin.ranged_attack"));
+        }
+        return PlayState.STOP;
     }
 
     protected float getStandingEyeHeight(Pose pPose, EntityDimensions pSize) {

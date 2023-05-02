@@ -4,6 +4,7 @@ import com.alvaro.rpgmod.RPGMod;
 import com.alvaro.rpgmod.client.ManaHudOverlay;
 import com.alvaro.rpgmod.networking.ModMessages;
 import com.alvaro.rpgmod.networking.packet.OpenCloseStatsScreenC2SPacket;
+import com.alvaro.rpgmod.networking.packet.SubManaC2SPacket;
 import com.alvaro.rpgmod.networking.packet.skills.UseDashSkillC2SPacket;
 import com.alvaro.rpgmod.util.KeyBinding;
 
@@ -23,8 +24,11 @@ public class ClientEvents {
         public static void onKeyInput(InputEvent.Key event){
              if (KeyBinding.TEST_KEY.consumeClick()){
                 ModMessages.sendToServer(new UseDashSkillC2SPacket());
-                //ModMessages.sendToServer(new SubManaC2SPacket());
                 //ModMessages.sendToServer(new SummonTammedTigerC2SPacket());
+             }
+
+             if (KeyBinding.SKILL_1_KEY.consumeClick()){
+                ModMessages.sendToServer(new SubManaC2SPacket());
              }
              if(KeyBinding.GUI_KEY.consumeClick()){
                 ModMessages.sendToServer(new OpenCloseStatsScreenC2SPacket());

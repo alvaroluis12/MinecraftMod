@@ -104,6 +104,7 @@ public class ModEvents {
             });
             event.getOriginal().invalidateCaps();
             
+            event.getEntity().heal(event.getEntity().getMaxHealth());
         }
 
         

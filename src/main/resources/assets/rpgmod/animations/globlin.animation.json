@@ -58,6 +58,21 @@
 					}
 				}
 			}
+		},
+		"animation.globlin.ranged_attack": {
+			"animation_length": 0.25,
+			"bones": {
+				"rightarm": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.25": {
+							"vector": [-90, 0, 0]
+						}
+					}
+				}
+			}
 		}
 	}
 }

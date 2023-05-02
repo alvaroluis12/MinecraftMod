@@ -1,15 +1,16 @@
 package com.alvaro.rpgmod.networking.packet.skills;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import com.alvaro.rpgmod.capabilities.skills.berserker.BerserSkillsProvider;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkEvent;
 
@@ -34,61 +35,46 @@ public class UseDashSkillC2SPacket {
             assert player != null;
             player.getCapability(BerserSkillsProvider.BERSERKER_SKILLS).ifPresent((skills) -> {
                 if(skills.hasDash()){
-                    Vec3 teleportToVec3 = player.getLookAngle().scale(7F);
-                    double pX = player.getX() + teleportToVec3.x;
-                    double pY = player.getY() + teleportToVec3.y;
-                    double pZ = player.getZ() + teleportToVec3.z;
-                    Player nearestPlayer = level.getNearestPlayer(pX, pY, pZ, 2, false);
-                    if (nearestPlayer != null){
-                        teleportTo(level, player, nearestPlayer.getX(), nearestPlayer.getY(), nearestPlayer.getZ());
+                    Vec3 startPos = player.getEyePosition();
+
+                    Vec3 lookAngle = player.getLookAngle();
+
+                    double d0 = 100;
+                    Vec3 endVec = startPos.add(lookAngle.x * d0, lookAngle.y * d0, lookAngle.z * d0);
+                    AABB startEndBox = new AABB(startPos, endVec);
+                    Entity entity = null;
+
+                    for(Entity entity1 : level.getEntities(player, startEndBox, (val) -> true)) {
+                      AABB aabb = entity1.getBoundingBox().inflate(entity1.getPickRadius());
+                      Optional<Vec3> optional = aabb.clip(startPos, endVec);
+                      if (!(entity instanceof Player)){
+                        continue;
+                      }
+                      if (aabb.contains(startPos)) {
+                        if (d0 >= 0.0D) {
+                           entity = entity1;
+                           d0 = 0.0D;
+                        }
+                      } else if (optional.isPresent()) {
+                        Vec3 vec31 = optional.get();
+                        double d1 = startPos.distanceToSqr(vec31);
+                        if (d1 < d0 || d0 == 0.0D) {
+                            if (entity1.getRootVehicle() == player.getRootVehicle() && !entity1.canRiderInteract()) {
+                                if (d0 == 0.0D) {
+                                   entity = entity1;
+                                }
+                             } else {
+                                entity = entity1;
+                                d0 = d1;
+                             }
+                        }
+                      }
                     }
-                    else{
-                        teleportTo(level, player, pX, pY, pZ);
+                    if (entity != null){
+                        player.teleportTo(entity.getX(), entity.getY(), entity.getZ());
                     }
                 }
             });
         });
     }
-    public void teleportTo(ServerLevel level, ServerPlayer player, double pX, double pY, double pZ) {
-        double d0 = player.getX();
-        double d1 = player.getY();
-        double d2 = player.getZ();
-        double d3 = pY;
-        BlockPos blockpos = BlockPos.containing(pX, pY, pZ);
-        boolean flag1 = false;
-        while(!flag1 && blockpos.getY() > level.getMinBuildHeight()) {
-            BlockPos blockpos1 = blockpos.below();
-            BlockState blockstate = level.getBlockState(blockpos1);
-            if (!blockstate.getMaterial().blocksMotion()) {
-                --d3;
-                blockpos = blockpos1;
-            } else {
-                flag1 = true;
-            }
-        }
-        int i = 0;
-        player.teleportTo(pX, d3, pZ);
-        while (!level.noCollision(player)) {
-            i++;
-            if (pX >= d0 && pZ >= d2){
-                player.teleportTo(pX-i, pY, pZ-i);
-            }
-            else if(pX >= d0 && pZ <= d2){
-                player.teleportTo(pX-i, pY, pZ+i);
-
-            }
-            else if(pX <= d0 && pZ >= d2){
-                player.teleportTo(pX+i, pY, pZ-i);
-            }
-            else{
-                player.teleportTo(pX+i, pY, pZ+i);
-
-            }
-            if (i == 5){
-                System.out.println("a");
-                player.teleportTo(d0, d1, d2);
-                break;
-            }
-        }
-     }
 }

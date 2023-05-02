@@ -28,7 +28,7 @@ public class GloblinEntity extends AbstractGloblin{
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2D, false));
     }
 
-    @Override
+    /*@Override
     public void registerControllers(ControllerRegistrar controllers) {
         super.registerControllers(controllers);
         controllers.add(new AnimationController<>(this, "attackController", this::attackPredicate));
@@ -41,7 +41,7 @@ public class GloblinEntity extends AbstractGloblin{
             this.updateSwingTime();
         }
         return PlayState.CONTINUE;
-    }
+    }*/
 
     @Override
     public int getMaxSpawnClusterSize() {
