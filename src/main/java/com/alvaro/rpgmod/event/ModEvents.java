@@ -14,6 +14,7 @@ import com.alvaro.rpgmod.entity.custom.globlin.GloblinEntity;
 import com.alvaro.rpgmod.entity.custom.globlin.GloblinLordEntity;
 import com.alvaro.rpgmod.networking.ModMessages;
 import com.alvaro.rpgmod.networking.packet.UpdateAttributesC2SPacket;
+import com.alvaro.rpgmod.villager.ModVillagers;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -35,6 +36,7 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
@@ -170,6 +172,13 @@ public class ModEvents {
         public static void onCommandsRegister(RegisterCommandsEvent event) {
             AttributesCommand.register(event.getDispatcher());
             ConfigCommand.register(event.getDispatcher());
+        }
+
+        @SubscribeEvent
+        public static void addCustomTrades(VillagerTradesEvent event){
+            if (event.getType() == ModVillagers.QUEST_MASTER.get()){
+                System.out.println("a");
+            }
         }
     }
 }

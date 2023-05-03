@@ -35,6 +35,7 @@
     "entity.rpgmod.archer_globlin": "Archer Globlin",
     "entity.rpgmod.globlin_lord": "Globlin Lord",
     "entity.rpgmod.windigo": "Windigo",
+    "entity.minecraft.villager.rpgmod.quest_master": "Quest Master",
 
     "key.category.rpgmod": "RPG Mod",
     "key.rpgmod.test": "Test",

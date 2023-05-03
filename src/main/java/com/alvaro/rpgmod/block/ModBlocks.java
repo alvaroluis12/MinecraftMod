@@ -4,6 +4,7 @@ import java.util.function.Supplier;
 
 import com.alvaro.rpgmod.RPGMod;
 import com.alvaro.rpgmod.block.custom.ModFlammableRotatedPillarBlock;
+import com.alvaro.rpgmod.block.custom.QuestBlock;
 import com.alvaro.rpgmod.fluid.ModFluids;
 import com.alvaro.rpgmod.item.ModItems;
 import com.alvaro.rpgmod.worldgen.tree.EbonyTreeGrower;
@@ -96,6 +97,9 @@ public class ModBlocks {
     public static final RegistryObject<LiquidBlock> MANA_FLUID_BLOCK = BLOCKS.register("mana_fluid_block", 
             () -> new LiquidBlock(ModFluids.SOURCE_MANA, BlockBehaviour.Properties.copy(Blocks.WATER).noLootTable()));
 
+    public static final RegistryObject<Block> QUEST_BLOCK = registerBlock("quest_block", 
+        () -> new QuestBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(6f).requiresCorrectToolForDrops()));
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

@@ -19,6 +19,7 @@ import com.alvaro.rpgmod.networking.ModMessages;
 import com.alvaro.rpgmod.screen.ModMenuTypes;
 import com.alvaro.rpgmod.screen.classes.ClassSelectScreen;
 import com.alvaro.rpgmod.screen.stats.StatsScreen;
+import com.alvaro.rpgmod.villager.ModVillagers;
 
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -51,6 +52,7 @@ public class RPGMod
         ModBlocks.register(modEventBus);
 
         ModEntities.register(modEventBus);
+        ModVillagers.register(modEventBus);
 
         ModArgumentTypes.register(modEventBus);
 
@@ -69,6 +71,10 @@ public class RPGMod
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         ModMessages.register();
+
+        event.enqueueWork(() -> {
+            ModVillagers.registerPOIs();
+        });
     }
 
     private void addCreative(CreativeModeTabEvent.BuildContents event) {
@@ -79,6 +85,10 @@ public class RPGMod
 
         if(event.getTab() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(ModBlocks.BLACK_OPAL_BLOCK);
+        }
+
+        if(event.getTab() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+            event.accept(ModBlocks.QUEST_BLOCK);
         }
 
         if(event.getTab() == CreativeModeTabs.NATURAL_BLOCKS) {
@@ -147,6 +157,7 @@ public class RPGMod
             event.accept(ModItems.WINDIGO_SPAWN_EGG);
             event.accept(ModItems.MANA_FLUID_BUCKET);
             event.accept(ModItems.TOTEM_OF_GLOBLIN_FRIEND);
+            event.accept(ModBlocks.QUEST_BLOCK);
         }
     }
 

@@ -1,4 +1,4 @@
-// 1.19.4	2023-04-16T08:32:39.7844113	Loot Tables
+// 1.19.4	2023-05-02T21:15:55.0308243	Loot Tables
 89dfb6a33b7d7dbdb45bf5e43484f23618ec73c2 data/rpgmod/loot_tables/blocks/black_opal_block.json
 b7fdfb2081629434959374203e7e8e3b8e100389 data/rpgmod/loot_tables/blocks/black_opal_ore.json
 b7fed3b8b68af921006a820202c955bb0d36be65 data/rpgmod/loot_tables/blocks/deepslate_black_opal_ore.json
@@ -7,5 +7,6 @@ b0f51fde602e99ddcbda9d66b38a6730e2dbd369 data/rpgmod/loot_tables/blocks/ebony_lo
 41bff15fd664ea2c25e3ec8b3baa917f653037bb data/rpgmod/loot_tables/blocks/ebony_planks.json
 8f7f84ab11f96285f8f69ca3f5cd5b4f365be104 data/rpgmod/loot_tables/blocks/ebony_sapling.json
 dfeb0d5c4eddaf85d362fa9ac3cf2c2bbadcb748 data/rpgmod/loot_tables/blocks/ebony_wood.json
+fb0d2fd3d4a426c0b2b85191bac7564a8f4e3cf2 data/rpgmod/loot_tables/blocks/quest_block.json
 5cd2b3b7ce0c52e7480d5124ec947527a5646804 data/rpgmod/loot_tables/blocks/stripped_ebony_log.json
 8f7560770accdf692d1a1100c458d7272ca012a0 data/rpgmod/loot_tables/blocks/stripped_ebony_wood.json
