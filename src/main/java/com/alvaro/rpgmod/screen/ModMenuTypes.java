@@ -2,6 +2,7 @@ package com.alvaro.rpgmod.screen;
 
 import com.alvaro.rpgmod.RPGMod;
 import com.alvaro.rpgmod.screen.classes.ClassSelectMenu;
+import com.alvaro.rpgmod.screen.quests.QuestsMenu;
 import com.alvaro.rpgmod.screen.stats.StatsMenu;
 
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -18,6 +19,7 @@ public class ModMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, RPGMod.MODID);
 
     public static final RegistryObject<MenuType<StatsMenu>> Stats_Menu = registerMenuType("stats_menu", StatsMenu::new);
+    public static final RegistryObject<MenuType<QuestsMenu>> Quests_Menu = registerMenuType("quests_menu", QuestsMenu::new);
     public static final RegistryObject<MenuType<ClassSelectMenu>> Class_Select_Menu = registerMenuType("class_select_menu", ClassSelectMenu::new);
 
     public static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory){

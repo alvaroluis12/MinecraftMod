@@ -39,7 +39,8 @@
 
     "key.category.rpgmod": "RPG Mod",
     "key.rpgmod.test": "Test",
-    "key.rpgmod.gui": "Open/Close GUI",
+    "key.rpgmod.stats_gui": "Open/Close Stats GUI",
+    "key.rpgmod.quests_gui": "Open/Close Quests GUI",
     "key.rpgmod.skill1": "Skill 1",
     "key.rpgmod.skill2": "Skill 2",
     "key.rpgmod.skill3": "Skill 3",

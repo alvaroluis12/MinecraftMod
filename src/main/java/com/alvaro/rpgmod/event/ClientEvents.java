@@ -3,7 +3,7 @@ package com.alvaro.rpgmod.event;
 import com.alvaro.rpgmod.RPGMod;
 import com.alvaro.rpgmod.client.ManaHudOverlay;
 import com.alvaro.rpgmod.networking.ModMessages;
-import com.alvaro.rpgmod.networking.packet.OpenCloseStatsScreenC2SPacket;
+import com.alvaro.rpgmod.networking.packet.OpenScreenC2SPacket;
 import com.alvaro.rpgmod.networking.packet.SubManaC2SPacket;
 import com.alvaro.rpgmod.networking.packet.skills.UseDashSkillC2SPacket;
 import com.alvaro.rpgmod.util.KeyBinding;
@@ -30,8 +30,11 @@ public class ClientEvents {
              if (KeyBinding.SKILL_1_KEY.consumeClick()){
                 ModMessages.sendToServer(new SubManaC2SPacket());
              }
-             if(KeyBinding.GUI_KEY.consumeClick()){
-                ModMessages.sendToServer(new OpenCloseStatsScreenC2SPacket());
+             if(KeyBinding.STATS_GUI_KEY.consumeClick()){
+                ModMessages.sendToServer(new OpenScreenC2SPacket(0));
+             }
+             if(KeyBinding.QUESTS_GUI_KEY.consumeClick()){
+                ModMessages.sendToServer(new OpenScreenC2SPacket(2));
              }
         }
     }
@@ -42,7 +45,7 @@ public class ClientEvents {
         @SubscribeEvent
         public static void onKeyRegister(RegisterKeyMappingsEvent event) {
             event.register(KeyBinding.TEST_KEY);
-            event.register(KeyBinding.GUI_KEY);
+            event.register(KeyBinding.STATS_GUI_KEY);
         }
 
         @SubscribeEvent

@@ -111,7 +111,7 @@ public class StatsScreen extends AbstractContainerScreen<StatsMenu>{
 
     @Override
     public boolean keyPressed(int pKeyCode, int pScanCode, int pModifiers) {
-        if (pKeyCode == KeyBinding.GUI_KEY.getKey().getValue() && this.shouldCloseOnEsc()) {
+        if (pKeyCode == KeyBinding.STATS_GUI_KEY.getKey().getValue() && this.shouldCloseOnEsc()) {
            this.onClose();
            return true;
         }

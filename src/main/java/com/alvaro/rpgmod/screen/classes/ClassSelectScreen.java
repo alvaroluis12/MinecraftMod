@@ -18,7 +18,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class ClassSelectScreen extends AbstractContainerScreen<ClassSelectMenu>{
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation(RPGMod.MODID,"textures/gui/stats_gui.png");
+            new ResourceLocation(RPGMod.MODID,"textures/gui/classes_gui.png");
 
     public ClassSelectScreen(ClassSelectMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
