@@ -1,4 +1,4 @@
-package com.alvaro.rpgmod.networking.packet;
+package com.alvaro.rpgmod.networking.packet.s2c;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;

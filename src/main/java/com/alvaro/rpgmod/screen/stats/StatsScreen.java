@@ -4,7 +4,7 @@ import com.alvaro.rpgmod.RPGMod;
 import com.alvaro.rpgmod.capabilities.stats.PlayerStats;
 import com.alvaro.rpgmod.client.ClientStatsData;
 import com.alvaro.rpgmod.networking.ModMessages;
-import com.alvaro.rpgmod.networking.packet.addAttributeC2SPacket;
+import com.alvaro.rpgmod.networking.packet.c2s.addAttributeC2SPacket;
 import com.alvaro.rpgmod.screen.button.AddButton;
 import com.alvaro.rpgmod.util.KeyBinding;
 import com.mojang.blaze3d.systems.RenderSystem;

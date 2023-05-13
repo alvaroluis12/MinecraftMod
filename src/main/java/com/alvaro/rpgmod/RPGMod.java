@@ -4,6 +4,8 @@ package com.alvaro.rpgmod;
 
 import com.alvaro.rpgmod.block.ModBlocks;
 import com.alvaro.rpgmod.commands.ModArgumentTypes;
+import com.alvaro.rpgmod.config.RPGModClientConfigs;
+import com.alvaro.rpgmod.config.RPGModCommonConfigs;
 import com.alvaro.rpgmod.entity.ModEntities;
 import com.alvaro.rpgmod.entity.client.monster.globlin.GloblinLordRenderer;
 import com.alvaro.rpgmod.entity.client.monster.globlin.GloblinRenderer;
@@ -18,6 +20,7 @@ import com.alvaro.rpgmod.item.ModItems;
 import com.alvaro.rpgmod.networking.ModMessages;
 import com.alvaro.rpgmod.screen.ModMenuTypes;
 import com.alvaro.rpgmod.screen.classes.ClassSelectScreen;
+import com.alvaro.rpgmod.screen.quests.QuestsScreen;
 import com.alvaro.rpgmod.screen.stats.StatsScreen;
 import com.alvaro.rpgmod.villager.ModVillagers;
 
@@ -31,7 +34,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -66,6 +71,9 @@ public class RPGMod
         ModFluidsTypes.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
+
+        ModLoadingContext.get().registerConfig(Type.CLIENT, RPGModClientConfigs.SPEC, "rpgmod-client.toml");
+        ModLoadingContext.get().registerConfig(Type.COMMON, RPGModCommonConfigs.SPEC, "rpgmod-common.toml");
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
@@ -176,6 +184,7 @@ public class RPGMod
             
             MenuScreens.register(ModMenuTypes.Class_Select_Menu.get(), ClassSelectScreen::new);
             MenuScreens.register(ModMenuTypes.Stats_Menu.get(), StatsScreen::new);
+            MenuScreens.register(ModMenuTypes.Quests_Menu.get(), QuestsScreen::new);
 
             ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_MANA.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_MANA.get(), RenderType.translucent());

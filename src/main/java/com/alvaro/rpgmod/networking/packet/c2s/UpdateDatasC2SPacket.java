@@ -1,9 +1,12 @@
-package com.alvaro.rpgmod.networking.packet;
+package com.alvaro.rpgmod.networking.packet.c2s;
 
+import com.alvaro.rpgmod.capabilities.missions.PlayerMissionsProvider;
 import com.alvaro.rpgmod.capabilities.skills.berserker.BerserSkillsProvider;
 import com.alvaro.rpgmod.capabilities.stats.PlayerStats;
 import com.alvaro.rpgmod.capabilities.stats.PlayerStatsProvider;
 import com.alvaro.rpgmod.networking.ModMessages;
+import com.alvaro.rpgmod.networking.packet.s2c.MissionsDataSyncS2C;
+import com.alvaro.rpgmod.networking.packet.s2c.StatsDataSyncS2C;
 import com.alvaro.rpgmod.screen.classes.ClassSelectMenu;
 
 import net.minecraft.network.FriendlyByteBuf;
@@ -17,13 +20,13 @@ import net.minecraftforge.network.NetworkHooks;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-public class UpdateAttributesC2SPacket {
+public class UpdateDatasC2SPacket {
 
-    public UpdateAttributesC2SPacket() {
+    public UpdateDatasC2SPacket() {
 
     }
 
-    public UpdateAttributesC2SPacket(FriendlyByteBuf buf){
+    public UpdateDatasC2SPacket(FriendlyByteBuf buf){
 
     }
 
@@ -95,6 +98,9 @@ public class UpdateAttributesC2SPacket {
                 if(!player.hasEffect(MobEffects.DIG_SPEED)){
                     player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, -1, Math.round(stats.getStrength()/100), false, false, false), player);
                 }*/
+            });
+            player.getCapability(PlayerMissionsProvider.PLAYER_MISSIONS).ifPresent(missions -> {
+                ModMessages.sendToPlayer(new MissionsDataSyncS2C(missions.getMissions()), player);
             });
         });
     }

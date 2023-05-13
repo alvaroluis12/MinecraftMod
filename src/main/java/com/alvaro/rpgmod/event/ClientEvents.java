@@ -3,9 +3,9 @@ package com.alvaro.rpgmod.event;
 import com.alvaro.rpgmod.RPGMod;
 import com.alvaro.rpgmod.client.ManaHudOverlay;
 import com.alvaro.rpgmod.networking.ModMessages;
-import com.alvaro.rpgmod.networking.packet.OpenScreenC2SPacket;
-import com.alvaro.rpgmod.networking.packet.SubManaC2SPacket;
-import com.alvaro.rpgmod.networking.packet.skills.UseDashSkillC2SPacket;
+import com.alvaro.rpgmod.networking.packet.c2s.OpenScreenC2SPacket;
+import com.alvaro.rpgmod.networking.packet.c2s.SubManaC2SPacket;
+import com.alvaro.rpgmod.networking.packet.c2s.skills.UseDashSkillC2SPacket;
 import com.alvaro.rpgmod.util.KeyBinding;
 
 import net.minecraftforge.api.distmarker.Dist;
@@ -46,6 +46,11 @@ public class ClientEvents {
         public static void onKeyRegister(RegisterKeyMappingsEvent event) {
             event.register(KeyBinding.TEST_KEY);
             event.register(KeyBinding.STATS_GUI_KEY);
+            event.register(KeyBinding.QUESTS_GUI_KEY);
+            event.register(KeyBinding.SKILL_1_KEY);
+            event.register(KeyBinding.SKILL_2_KEY);
+            event.register(KeyBinding.SKILL_3_KEY);
+            event.register(KeyBinding.SKILL_4_KEY);
         }
 
         @SubscribeEvent

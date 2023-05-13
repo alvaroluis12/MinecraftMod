@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import com.alvaro.rpgmod.RPGMod;
 import com.alvaro.rpgmod.capabilities.stats.PlayerStats;
 import com.alvaro.rpgmod.networking.ModMessages;
-import com.alvaro.rpgmod.networking.packet.SelectClassC2SPacket;
+import com.alvaro.rpgmod.networking.packet.c2s.SelectClassC2SPacket;
 import com.alvaro.rpgmod.screen.button.AddButton;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;

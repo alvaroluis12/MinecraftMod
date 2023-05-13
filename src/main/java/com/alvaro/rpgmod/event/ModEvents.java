@@ -1,7 +1,10 @@
 package com.alvaro.rpgmod.event;
 
+import java.util.List;
+
 import com.alvaro.rpgmod.RPGMod;
 import com.alvaro.rpgmod.capabilities.items.ItemEffectsProvider;
+import com.alvaro.rpgmod.capabilities.missions.PlayerMissionsProvider;
 import com.alvaro.rpgmod.capabilities.skills.berserker.BerserSkillsProvider;
 import com.alvaro.rpgmod.capabilities.stats.PlayerStatsProvider;
 import com.alvaro.rpgmod.commands.AttributesCommand;
@@ -13,9 +16,11 @@ import com.alvaro.rpgmod.entity.custom.globlin.ArcherGloblinEntity;
 import com.alvaro.rpgmod.entity.custom.globlin.GloblinEntity;
 import com.alvaro.rpgmod.entity.custom.globlin.GloblinLordEntity;
 import com.alvaro.rpgmod.networking.ModMessages;
-import com.alvaro.rpgmod.networking.packet.UpdateAttributesC2SPacket;
+import com.alvaro.rpgmod.networking.packet.c2s.OpenScreenC2SPacket;
+import com.alvaro.rpgmod.networking.packet.c2s.UpdateDatasC2SPacket;
 import com.alvaro.rpgmod.villager.ModVillagers;
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
@@ -23,7 +28,12 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -36,6 +46,7 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteractSpecific;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
@@ -83,6 +94,9 @@ public class ModEvents {
                 if(!event.getObject().getCapability(ItemEffectsProvider.ITEM_EFFECTS).isPresent()){
                     event.addCapability(new ResourceLocation(RPGMod.MODID, "item_effects"), new ItemEffectsProvider());
                 }
+                if(!event.getObject().getCapability(PlayerMissionsProvider.PLAYER_MISSIONS).isPresent()){
+                    event.addCapability(new ResourceLocation(RPGMod.MODID, "missions"), new PlayerMissionsProvider());
+                }
             }
         }
 
@@ -104,6 +118,11 @@ public class ModEvents {
                     newStore.copyFrom(oldStore);
                 });
             });
+            event.getOriginal().getCapability(PlayerMissionsProvider.PLAYER_MISSIONS).ifPresent(oldStore -> {
+                event.getEntity().getCapability(PlayerMissionsProvider.PLAYER_MISSIONS).ifPresent(newStore -> {
+                    newStore.copyFrom(oldStore);
+                });
+            });
             event.getOriginal().invalidateCaps();
             
             event.getEntity().heal(event.getEntity().getMaxHealth());
@@ -114,14 +133,14 @@ public class ModEvents {
         @SubscribeEvent
         public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
             if(event.side == LogicalSide.CLIENT) {
-                ModMessages.sendToServer(new UpdateAttributesC2SPacket());
+                ModMessages.sendToServer(new UpdateDatasC2SPacket());
             }
         }
 
         @SubscribeEvent
         public static void onPlayerJoinWorld(EntityJoinLevelEvent event) {
             if(event.getLevel().isClientSide()) {
-                ModMessages.sendToServer(new UpdateAttributesC2SPacket());
+                ModMessages.sendToServer(new UpdateDatasC2SPacket());
             }
         }
 
@@ -175,9 +194,13 @@ public class ModEvents {
         }
 
         @SubscribeEvent
-        public static void addCustomTrades(VillagerTradesEvent event){
-            if (event.getType() == ModVillagers.QUEST_MASTER.get()){
-                System.out.println("a");
+        public static void openQuestMenu(EntityInteractSpecific event){
+            if (event.getTarget() instanceof Villager) {
+                Villager target = (Villager) event.getTarget();
+                if (target.getVillagerData().getProfession() == ModVillagers.QUEST_MASTER.get()){
+                    ModMessages.sendToServer(new OpenScreenC2SPacket(0));
+                    target.setPos(target.position());
+                }
             }
         }
     }

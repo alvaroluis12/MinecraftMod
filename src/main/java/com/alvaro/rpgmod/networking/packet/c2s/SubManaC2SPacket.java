@@ -1,39 +1,45 @@
-package com.alvaro.rpgmod.networking.packet;
+package com.alvaro.rpgmod.networking.packet.c2s;
 
 import java.util.function.Supplier;
 
 import com.alvaro.rpgmod.capabilities.stats.PlayerStatsProvider;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
 
-public class SelectClassC2SPacket {
-    private final int playerClass;
+public class SubManaC2SPacket {
 
-    public SelectClassC2SPacket(int playerClass){
-        this.playerClass = playerClass;
+    public SubManaC2SPacket() {
+
     }
 
-    public SelectClassC2SPacket(FriendlyByteBuf buf){
-        this.playerClass = buf.readInt();
+    public SubManaC2SPacket(FriendlyByteBuf buf){
+
     }
 
     public void toBytes(FriendlyByteBuf buf){
-        buf.writeInt(playerClass);
+
     }
 
     public void handle(Supplier<NetworkEvent.Context> supplier){
-        
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
             // HERE WE ARE ON THE SERVER
             ServerPlayer player = context.getSender();
+
             player.getCapability(PlayerStatsProvider.PLAYER_STATS).ifPresent(stats -> {
-                stats.setPlayerClass(this.playerClass);
+                if (stats.getMana() > 0){
+                    stats.subMana(1);
+                    //player.sendSystemMessage(Component.literal("Current Mana: " + stats.getMana()).withStyle(ChatFormatting.AQUA));
+                }
+                else {
+                    player.sendSystemMessage(Component.literal("Not enough mana").withStyle(ChatFormatting.RED));
+                }
             });
-            
         });
     }
-    
+
 }

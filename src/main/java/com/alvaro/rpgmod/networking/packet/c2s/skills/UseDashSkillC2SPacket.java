@@ -1,4 +1,4 @@
-package com.alvaro.rpgmod.networking.packet.skills;
+package com.alvaro.rpgmod.networking.packet.c2s.skills;
 
 import java.util.Optional;
 import java.util.function.Supplier;

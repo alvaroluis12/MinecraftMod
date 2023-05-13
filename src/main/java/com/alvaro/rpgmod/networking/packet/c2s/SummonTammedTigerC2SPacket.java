@@ -1,4 +1,4 @@
-package com.alvaro.rpgmod.networking.packet;
+package com.alvaro.rpgmod.networking.packet.c2s;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;

@@ -1,14 +1,15 @@
 package com.alvaro.rpgmod.networking;
 
 import com.alvaro.rpgmod.RPGMod;
-import com.alvaro.rpgmod.networking.packet.OpenScreenC2SPacket;
-import com.alvaro.rpgmod.networking.packet.SelectClassC2SPacket;
-import com.alvaro.rpgmod.networking.packet.StatsDataSyncS2C;
-import com.alvaro.rpgmod.networking.packet.SummonTammedTigerC2SPacket;
-import com.alvaro.rpgmod.networking.packet.UpdateAttributesC2SPacket;
-import com.alvaro.rpgmod.networking.packet.addAttributeC2SPacket;
-import com.alvaro.rpgmod.networking.packet.skills.UseDashSkillC2SPacket;
-import com.alvaro.rpgmod.networking.packet.SubManaC2SPacket;
+import com.alvaro.rpgmod.networking.packet.c2s.OpenScreenC2SPacket;
+import com.alvaro.rpgmod.networking.packet.c2s.SelectClassC2SPacket;
+import com.alvaro.rpgmod.networking.packet.c2s.SubManaC2SPacket;
+import com.alvaro.rpgmod.networking.packet.c2s.SummonTammedTigerC2SPacket;
+import com.alvaro.rpgmod.networking.packet.c2s.UpdateDatasC2SPacket;
+import com.alvaro.rpgmod.networking.packet.c2s.addAttributeC2SPacket;
+import com.alvaro.rpgmod.networking.packet.c2s.skills.UseDashSkillC2SPacket;
+import com.alvaro.rpgmod.networking.packet.s2c.MissionsDataSyncS2C;
+import com.alvaro.rpgmod.networking.packet.s2c.StatsDataSyncS2C;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -48,10 +49,10 @@ public class ModMessages {
                 .consumerMainThread(SubManaC2SPacket::handle)
                 .add();
 
-        net.messageBuilder(UpdateAttributesC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(UpdateAttributesC2SPacket::new)
-                .encoder(UpdateAttributesC2SPacket::toBytes)
-                .consumerMainThread(UpdateAttributesC2SPacket::handle)
+        net.messageBuilder(UpdateDatasC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(UpdateDatasC2SPacket::new)
+                .encoder(UpdateDatasC2SPacket::toBytes)
+                .consumerMainThread(UpdateDatasC2SPacket::handle)
                 .add(); 
 
         net.messageBuilder(OpenScreenC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
@@ -70,6 +71,12 @@ public class ModMessages {
                 .decoder(StatsDataSyncS2C::new)
                 .encoder(StatsDataSyncS2C::toBytes)
                 .consumerMainThread(StatsDataSyncS2C::handle)
+                .add();
+
+        net.messageBuilder(MissionsDataSyncS2C.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(MissionsDataSyncS2C::new)
+                .encoder(MissionsDataSyncS2C::toBytes)
+                .consumerMainThread(MissionsDataSyncS2C::handle)
                 .add();
 
         net.messageBuilder(SelectClassC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
